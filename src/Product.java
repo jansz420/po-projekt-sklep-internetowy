@@ -27,37 +27,45 @@ public class Product {
         price += quantity;
     }
 
-    public void reduceStockQuantity(int quantity) {
-        stockQuantity -= quantity;
+    public int reduceStockQuantity(int quantity) {
+        if (quantity > stockQuantity) {
+            stockQuantity -= quantity;
+            return 1;
+        } else {
+            return 0;
+        }
     }
+
+    public void displayExtraInfo() {}
 
     public void displayInfo() {
 
-        for (int i=0; i<name.length()+3; i++) {
+        for (int i=0; i<name.length()+4; i++) {
             System.out.print("-");
         }
         System.out.print("\n");
-        System.out.println(name.toUpperCase());
-        for (int i=0; i<name.length()+3; i++) {
+        System.out.println("| " + name.toUpperCase() + " |");
+        for (int i=0; i<name.length()+4; i++) {
             System.out.print("-");
         }
         System.out.print("\n");
-        System.out.println("Cena: " + price);
+        System.out.printf("Cena: %.2f zł\n", price);
+        System.out.println("Dostępność: " + stockQuantity + " szt");
         System.out.println(description);
         System.out.println("\nDane techniczne: ");
         System.out.println("Marka: " + brand);
-        System.out.println("Dostępność: " + stockQuantity);
+        displayExtraInfo();
         System.out.println("Kolor: " + color);
-        System.out.println("Waga: " + weight);
-        System.out.println("Rozmiar: " + size);
-        System.out.println("Gwarancja: " + warranty + "miesięcy");
+        System.out.println("Waga: " + weight + " g");
+        System.out.println("Rozmiar: " + size + " [cm]");
+        System.out.println("Gwarancja: " + warranty + " mies.");
     }
 
     public void changePrice(double percentage) {
         price *= percentage;
     }
 
-    private void showListToEdit() {
+    protected void showListToEdit() {
         System.out.println("Co chcesz zmienić?:");
         System.out.println("1. Nazwę produktu");
         System.out.println("2. Cenę");
@@ -75,7 +83,7 @@ public class Product {
         Scanner scanner = new Scanner(System.in);
         this.showListToEdit();
         System.out.println("0. Anuluj");
-        int action = 404;
+        int action = -1;
         while (scanner.hasNextInt()) {
             action  = scanner.nextInt();
         }
@@ -87,7 +95,7 @@ public class Product {
                 name = scanner.nextLine();
                 break;
             case 2:
-                System.out.print("Podaj nową cenę: ");
+                System.out.print("Podaj nową cenę[zł]: ");
                 price = scanner.nextDouble();
                 break;
             case 3:
@@ -107,7 +115,7 @@ public class Product {
                 color = scanner.nextLine();
                 break;
             case 7:
-                System.out.print("Podaj nową wagę: ");
+                System.out.print("Podaj nową wagę[g]: ");
                 weight = scanner.nextDouble();
                 break;
             case 8:
@@ -119,8 +127,8 @@ public class Product {
                 warranty = scanner.nextInt();
                 break;
             default:
-                System.out.println("ERROR. Something went wrong with input.");
-                break;
+                System.out.println("Błędny numer akcji.");
+                return 0;
         }
         return 1;
     }
