@@ -35,15 +35,6 @@ public class ShoppingCart {
     }
 
     /**
-     * Wyświetla podstawowe informacje o produktach w koszyku
-     */
-    public void display() {
-        for (Product cartProduct : cartProducts) {
-            cartProduct.displayInfo();
-        }
-    }
-
-    /**
      * Sumuje ceny produktów znajdujących się w koszyku
      * @return suma cen
      */
@@ -81,5 +72,26 @@ public class ShoppingCart {
             totalVolume += length * width * height;
         }
         return totalVolume;
+    }
+
+    /**
+     * Wyświetla podstawowe informacje o produktach w koszyku
+     */
+    public void display() {
+        for (Product cartProduct : cartProducts) {
+            cartProduct.displayInfo();
+        }
+    }
+
+    //tutaj jeszcze nie wiem jak chce aby dokładnie wyglądało podsumowanie
+    public String cartSummary() {
+        String summary= "\n";
+//        for (Product cartProduct : cartProducts) {
+//            summary += cartProduct.toString() + ", ";
+//        }
+        for (int i = 0; i < cartProducts.size(); i++) {
+            summary += (i+1) + " " + cartProducts.get(i).toString() + "\n";
+        }
+        return summary;
     }
 }

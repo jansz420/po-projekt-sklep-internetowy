@@ -132,4 +132,9 @@ public class Product {
         }
         return 1;
     }
+
+    @Override
+    public String toString(){
+        return String.format("Produkt[nazwa: %s, marka: %s, cena: %.2f zł, Dostępność: %d szt]",name, brand, price, stockQuantity);
+    }
 }
