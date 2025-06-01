@@ -27,15 +27,19 @@ public class ShoppingCart {
      * @param product produkt do usunięcia
      */
     public void removeFromCart(Product product) {
-        cartProducts.remove(product);
+        if (cartProducts.contains(product)) {
+            cartProducts.remove(product);
+        } else {
+            System.out.println("Produkt " + product.name + " nie znajduję się w twoim koszyku");
+        }
     }
 
     /**
      * Wyświetla podstawowe informacje o produktach w koszyku
      */
     public void display() {
-        for (int i=0;i<cartProducts.size();i++) {
-            cartProducts.get(i).displayInfo();
+        for (Product cartProduct : cartProducts) {
+            cartProduct.displayInfo();
         }
     }
 
@@ -45,8 +49,8 @@ public class ShoppingCart {
      */
     public double sumUpPrices() {
         double totalPrice = 0;
-        for (int i=0;i<cartProducts.size();i++) {
-            totalPrice+=cartProducts.get(i).price;
+        for (Product cartProduct : cartProducts) {
+            totalPrice += cartProduct.price;
         }
         return totalPrice;
     }
