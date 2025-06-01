@@ -17,7 +17,7 @@ public class ShoppingCart {
      * @param amount ilość
      */
     public void addProduct(Product product, int amount) {
-        for (int i=0;i<amount; i++) {
+        for (int i = 0 ; i < amount ; i++) {
             cartProducts.add(product);
         }
     }
@@ -30,7 +30,7 @@ public class ShoppingCart {
         if (cartProducts.contains(product)) {
             cartProducts.remove(product);
         } else {
-            System.out.println("Produkt " + product.name + " nie znajduję się w twoim koszyku");
+            System.out.println("Nie znaleziono produktu " + product.name + " w twoim koszyku.");
         }
     }
 
@@ -44,7 +44,7 @@ public class ShoppingCart {
     }
 
     /**
-     * sumuje ceny produktów znajdujących się w koszyku
+     * Sumuje ceny produktów znajdujących się w koszyku
      * @return suma cen
      */
     public double sumUpPrices() {
@@ -53,5 +53,33 @@ public class ShoppingCart {
             totalPrice += cartProduct.price;
         }
         return totalPrice;
+    }
+
+    /**
+     * Oblicza wagę wszystkich produktów w koszyku [g]
+     * @return waga koszyka
+     */
+    public double getTotalWeight() {
+        double totalWeight = 0;
+        for (Product cartProduct : cartProducts) {
+            totalWeight += cartProduct.weight;
+        }
+        return totalWeight;
+    }
+
+    /**
+     * Oblicza objętość paczki [cm^3]
+     * @return objętość paczki
+     */
+    public double calculateTotalVolume() {
+        double totalVolume = 0;
+        for (Product cartProduct : cartProducts) {
+            String[] dimensions = cartProduct.size.split("x");
+            double length = Double.parseDouble(dimensions[0]);
+            double width = Double.parseDouble(dimensions[1]);
+            double height = Double.parseDouble(dimensions[2]);
+            totalVolume += length * width * height;
+        }
+        return totalVolume;
     }
 }
