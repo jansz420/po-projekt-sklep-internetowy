@@ -104,8 +104,8 @@ public class AudioDevice extends PeripheralDevice{
                     portType = scanner.nextLine();
                     break;
                 case 13:
-//                System.out.print("Zmien typ urzadzenia: ");
-//                graphicsCardType = scanner.nextLine();
+                    System.out.print("Zmien typ urzadzenia: ");
+                    inputOutput = scanner.nextLine();
                     break;
                 case 14:
                     System.out.print("Zmieniono wodoodporność");
@@ -120,8 +120,9 @@ public class AudioDevice extends PeripheralDevice{
                     cableLength = scanner.nextDouble();
                     break;
                 case 17:
-//                System.out.print("Podaj nowy typ urzadzenia: ");
-//                deviceType = scanner.nextLine();
+                    System.out.print("Podaj nowy typ urzadzenia audio: ");
+                    deviceType = scanner.nextLine();
+                    break;
                 case 18:
                     System.out.print("Zmieniono HiFi");
                     isHifi = !isHifi;

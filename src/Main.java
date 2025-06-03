@@ -4,6 +4,8 @@ public class Main {
         test.displayInfo();
         Catalog catalog = new Catalog();
         catalog.addNewProduct();
+        catalog.addNewProduct();
+        catalog.addNewProduct();
         catalog.displayProductList();
     }
 }

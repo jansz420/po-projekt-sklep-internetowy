@@ -1,3 +1,4 @@
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,7 +19,7 @@ public class Catalog {
         System.out.println("5. Myszka");
         System.out.println("6. Klawiatura");
         System.out.println("7. Monitor");
-        System.out.println("0. Anuluj");
+        System.out.println("0. Zakoncz");
         System.out.println("Podaj typ produktu: ");
         int action = -1;
         if (scanner.hasNextInt()) {
@@ -47,12 +48,22 @@ public class Catalog {
                 products.add(newAudioDevice);
                 break;
             case 5:
+                Mouse newMouse = new Mouse("brak", "brak", 0, 0, "brak", "brak", 0, "brak", 0, false, "brak", "brak", "brak", false, false, 0, 0, 0, "brak");
+                newMouse.editProduct();
+                products.add(newMouse);
                 break;
             case 6:
+                Keyboard newKeyboard = new Keyboard("brak", "brak", 0, 0, "brak", "brak", 0, "brak", 0, false, "brak", "brak", "brak", false, false, 0, "brak", false, "brak", false);
+                newKeyboard.editProduct();
+                products.add(newKeyboard);
                 break;
             case 7:
+                Monitor newMonitor = new Monitor("brak", "brak", 0, 0, "brak", "brak", 0, "brak", 0, false, "brak", "brak", "brak", false, false, 0, "brak", "brak", 0, 0, false);
+                newMonitor.editProduct();
+                products.add(newMonitor);
                 break;
             default:
+
                 break;
         }
     }

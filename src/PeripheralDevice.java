@@ -111,8 +111,8 @@ public class PeripheralDevice extends Product {
                     portType = scanner.nextLine();
                     break;
                 case 13:
-//                System.out.print("Zmien typ urzadzenia: ");
-//                graphicsCardType = scanner.nextLine();
+                    System.out.print("Zmien typ urzadzenia: ");
+                    inputOutput = scanner.nextLine();
                     break;
                 case 14:
                     System.out.print("Zmieniono wodoodporność");

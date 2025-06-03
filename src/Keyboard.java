@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Keyboard extends PeripheralDevice{
     protected String keyboardType;
     protected boolean hasNumPad;
@@ -32,5 +34,109 @@ public class Keyboard extends PeripheralDevice{
         System.out.println("18. Klawisze numeryczne");
         System.out.println("19. Układ klawiszy");
         System.out.println("20. Podpórka pod nadgarstki");
+    }
+
+    public int editProduct() {
+        while(true) {
+            this.displayInfo();
+            Scanner scanner = new Scanner(System.in);
+            this.showListToEdit();
+            System.out.println("0. Anuluj");
+            int action = -1;
+            if (scanner.hasNextInt()) {
+                action  = scanner.nextInt();
+                scanner.nextLine();
+            }
+            switch(action) {
+                case 0:
+                    return 0;
+                case 1:
+                    System.out.print("Podaj nową nazwę: ");
+                    name = scanner.nextLine();
+                    break;
+                case 2:
+                    System.out.print("Podaj nową cenę[zł]: ");
+                    price = scanner.nextDouble();
+                    break;
+                case 3:
+                    System.out.print("Podaj nowy opis: ");
+                    description = scanner.nextLine();
+                    break;
+                case 4:
+                    System.out.print("Podaj nową liczbę produktu na magazynie: ");
+                    stockQuantity = scanner.nextInt();
+                    break;
+                case 5:
+                    System.out.print("Podaj nową markę: ");
+                    brand = scanner.nextLine();
+                    break;
+                case 6:
+                    System.out.print("Podaj nowy kolor: ");
+                    color = scanner.nextLine();
+                    break;
+                case 7:
+                    System.out.print("Podaj nową wagę[g]: ");
+                    weight = scanner.nextDouble();
+                    break;
+                case 8:
+                    System.out.print("Podaj nowy rozmiar (WYS[cm]xSZER[cm]xDŁ[cm]: ");
+                    size = scanner.nextLine();
+                    break;
+                case 9:
+                    System.out.print("Podaj nową długość gwarancji(ile miesięcy): ");
+                    warranty = scanner.nextInt();
+                    break;
+                case 10:
+                    System.out.print("Zmieniono łączność");
+                    isWireless = !isWireless;
+                    break;
+                case 11:
+                    System.out.print("Podaj nowy rodzaj zasilania: ");
+                    powerSupply = scanner.nextLine();
+                    break;
+                case 12:
+                    System.out.print("Podaj nowy typ portu: ");
+                    portType = scanner.nextLine();
+                    break;
+                case 13:
+                    System.out.print("Zmien typ urzadzenia: ");
+                    inputOutput = scanner.nextLine();
+                    break;
+                case 14:
+                    System.out.print("Zmieniono wodoodporność");
+                    isWaterproof = !isWaterproof;
+                    break;
+                case 15:
+                    System.out.print("Zmieniono obecność RGB");
+                    hasRgb = !hasRgb;
+                    break;
+                case 16:
+                    System.out.print("Podaj nową długość kabla");
+                    cableLength = scanner.nextDouble();
+                    break;
+                case 17:
+                    System.out.print("Podaj nowy typ klawiatury: ");
+                    keyboardType = scanner.nextLine();
+                    break;
+                case 18:
+                    System.out.print("Zmieniono obecność NumPada");
+                    hasNumPad = !hasNumPad;
+                    break;
+                case 20:
+                    System.out.print("Podaj nowy układ klawiszy: ");
+                    keyLayout = scanner.nextLine();
+                    break;
+                case 21:
+                    System.out.print("Zmieniono obecność podpórki pod nadgarstek");
+                    hasWristRest = !hasWristRest;
+                    break;
+                default:
+                    System.out.println("Błędny numer akcji.");
+                    return 0;
+            }
+//            return 1;
+        }
+
+
     }
 }
