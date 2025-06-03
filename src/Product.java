@@ -79,57 +79,61 @@ public class Product {
     }
 
     public int editProduct(){
-        this.displayInfo();
-        Scanner scanner = new Scanner(System.in);
-        this.showListToEdit();
-        System.out.println("0. Anuluj");
-        int action = -1;
-        while (scanner.hasNextInt()) {
-            action  = scanner.nextInt();
+        while (true){
+            this.displayInfo();
+            Scanner scanner = new Scanner(System.in);
+            this.showListToEdit();
+            System.out.println("0. Anuluj");
+            int action = -1;
+            if (scanner.hasNextInt()) {
+                action  = scanner.nextInt();
+                scanner.nextLine();
+            }
+            switch(action) {
+                case 0:
+                    return 0;
+                case 1:
+                    System.out.print("Podaj nową nazwę: ");
+                    name = scanner.nextLine();
+                    break;
+                case 2:
+                    System.out.print("Podaj nową cenę[zł]: ");
+                    price = scanner.nextDouble();
+                    break;
+                case 3:
+                    System.out.print("Podaj nowy opis: ");
+                    description = scanner.nextLine();
+                    break;
+                case 4:
+                    System.out.print("Podaj nową liczbę produktu na magazynie: ");
+                    stockQuantity = scanner.nextInt();
+                    break;
+                case 5:
+                    System.out.print("Podaj nową markę: ");
+                    brand = scanner.nextLine();
+                    break;
+                case 6:
+                    System.out.print("Podaj nowy kolor: ");
+                    color = scanner.nextLine();
+                    break;
+                case 7:
+                    System.out.print("Podaj nową wagę[g]: ");
+                    weight = scanner.nextDouble();
+                    break;
+                case 8:
+                    System.out.print("Podaj nowy rozmiar (WYS[cm]xSZER[cm]xDŁ[cm]: ");
+                    size = scanner.nextLine();
+                    break;
+                case 9:
+                    System.out.print("Podaj nową długość gwarancji(ile miesięcy): ");
+                    warranty = scanner.nextInt();
+                    break;
+                default:
+                    System.out.println("Błędny numer akcji.");
+                    return 0;
+            }
+//            return 1;
         }
-        switch(action) {
-            case 0:
-                return 0;
-            case 1:
-                System.out.print("Podaj nową nazwę: ");
-                name = scanner.nextLine();
-                break;
-            case 2:
-                System.out.print("Podaj nową cenę[zł]: ");
-                price = scanner.nextDouble();
-                break;
-            case 3:
-                System.out.print("Podaj nowy opis: ");
-                description = scanner.nextLine();
-                break;
-            case 4:
-                System.out.print("Podaj nową liczbę produktu na magazynie: ");
-                stockQuantity = scanner.nextInt();
-                break;
-            case 5:
-                System.out.print("Podaj nową markę: ");
-                brand = scanner.nextLine();
-                break;
-            case 6:
-                System.out.print("Podaj nowy kolor: ");
-                color = scanner.nextLine();
-                break;
-            case 7:
-                System.out.print("Podaj nową wagę[g]: ");
-                weight = scanner.nextDouble();
-                break;
-            case 8:
-                System.out.print("Podaj nowy rozmiar (WYS[cm]xSZER[cm]xDŁ[cm]: ");
-                size = scanner.nextLine();
-                break;
-            case 9:
-                System.out.print("Podaj nową długość gwarancji(ile miesięcy): ");
-                warranty = scanner.nextInt();
-                break;
-            default:
-                System.out.println("Błędny numer akcji.");
-                return 0;
-        }
-        return 1;
+
     }
 }

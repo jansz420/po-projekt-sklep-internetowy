@@ -50,86 +50,88 @@ public class Computer extends Product {
     }
 
     public int editProduct() {
-        this.displayInfo();
-        Scanner scanner = new Scanner(System.in);
-        this.showListToEdit();
-        System.out.println("0. Anuluj");
-        int action = -1;
-        while (scanner.hasNextInt()) {
-            action  = scanner.nextInt();
+        while (true){
+            this.displayInfo();
+            Scanner scanner = new Scanner(System.in);
+            this.showListToEdit();
+            System.out.println("0. Anuluj");
+            int action = -1;
+            if (scanner.hasNextInt()) {
+                action  = scanner.nextInt();
+                scanner.nextLine();
+            }
+            switch(action) {
+                case 0:
+                    return 0;
+                case 1:
+                    System.out.print("Podaj nową nazwę: ");
+                    name = scanner.nextLine();
+                    break;
+                case 2:
+                    System.out.print("Podaj nową cenę[zł]: ");
+                    price = scanner.nextDouble();
+                    break;
+                case 3:
+                    System.out.print("Podaj nowy opis: ");
+                    description = scanner.nextLine();
+                    break;
+                case 4:
+                    System.out.print("Podaj nową liczbę produktu na magazynie: ");
+                    stockQuantity = scanner.nextInt();
+                    break;
+                case 5:
+                    System.out.print("Podaj nową markę: ");
+                    brand = scanner.nextLine();
+                    break;
+                case 6:
+                    System.out.print("Podaj nowy kolor: ");
+                    color = scanner.nextLine();
+                    break;
+                case 7:
+                    System.out.print("Podaj nową wagę[g]: ");
+                    weight = scanner.nextDouble();
+                    break;
+                case 8:
+                    System.out.print("Podaj nowy rozmiar (WYS[cm]xSZER[cm]xDŁ[cm]: ");
+                    size = scanner.nextLine();
+                    break;
+                case 9:
+                    System.out.print("Podaj nową długość gwarancji(ile miesięcy): ");
+                    warranty = scanner.nextInt();
+                    break;
+                case 10:
+                    System.out.print("Podaj nowy typ urządzenia: ");
+                    type = scanner.nextLine();
+                    break;
+                case 11:
+                    System.out.print("Podaj nowy procesor: ");
+                    processor = scanner.nextLine();
+                    break;
+                case 12:
+                    System.out.print("Podaj nową ilość pamięci RAM[GB]: ");
+                    ram = scanner.nextInt();
+                    break;
+                case 13:
+                    System.out.print("Podaj nową ilość pamięci użytkowej[GB]: ");
+                    memory = scanner.nextInt();
+                    break;
+                case 14:
+                    System.out.print("Podaj nowy typ karty graficznej: ");
+                    graphicsCardType = scanner.nextLine();
+                    break;
+                case 15:
+                    System.out.print("Podaj nową nazwę karty graficznej: ");
+                    graphicsCardName = scanner.nextLine();
+                    break;
+                case 16:
+                    System.out.print("Podaj nowy system operacyjny: ");
+                    operatingSystem = scanner.nextLine();
+                    break;
+                default:
+                    System.out.println("Błędny numer akcji.");
+                    return 0;
+            }
+//            return 1;
         }
-        switch(action) {
-            case 0:
-                return 0;
-            case 1:
-                System.out.print("Podaj nową nazwę: ");
-                name = scanner.nextLine();
-                break;
-            case 2:
-                System.out.print("Podaj nową cenę[zł]: ");
-                price = scanner.nextDouble();
-                break;
-            case 3:
-                System.out.print("Podaj nowy opis: ");
-                description = scanner.nextLine();
-                break;
-            case 4:
-                System.out.print("Podaj nową liczbę produktu na magazynie: ");
-                stockQuantity = scanner.nextInt();
-                break;
-            case 5:
-                System.out.print("Podaj nową markę: ");
-                brand = scanner.nextLine();
-                break;
-            case 6:
-                System.out.print("Podaj nowy kolor: ");
-                color = scanner.nextLine();
-                break;
-            case 7:
-                System.out.print("Podaj nową wagę[g]: ");
-                weight = scanner.nextDouble();
-                break;
-            case 8:
-                System.out.print("Podaj nowy rozmiar (WYS[cm]xSZER[cm]xDŁ[cm]: ");
-                size = scanner.nextLine();
-                break;
-            case 9:
-                System.out.print("Podaj nową długość gwarancji(ile miesięcy): ");
-                warranty = scanner.nextInt();
-                break;
-            case 10:
-                System.out.print("Podaj nowy typ urządzenia: ");
-                type = scanner.nextLine();
-                break;
-            case 11:
-                System.out.print("Podaj nowy procesor: ");
-                processor = scanner.nextLine();
-                break;
-            case 12:
-                System.out.print("Podaj nową ilość pamięci RAM[GB]: ");
-                ram = scanner.nextInt();
-                break;
-            case 13:
-                System.out.print("Podaj nową ilość pamięci użytkowej[GB]: ");
-                memory = scanner.nextInt();
-                break;
-            case 14:
-                System.out.print("Podaj nowy typ karty graficznej: ");
-                graphicsCardType = scanner.nextLine();
-                break;
-            case 15:
-                System.out.print("Podaj nową nazwę karty graficznej: ");
-                graphicsCardName = scanner.nextLine();
-                break;
-            case 16:
-                System.out.print("Podaj nowy system operacyjny: ");
-                operatingSystem = scanner.nextLine();
-                break;
-            default:
-                System.out.println("Błędny numer akcji.");
-                return 0;
-        }
-        return 1;
-
     }
 }

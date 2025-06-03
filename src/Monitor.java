@@ -19,6 +19,10 @@ public class Monitor extends PeripheralDevice{
         return false;
     }
 
+    public String screenFormat(){
+        return "temp";
+    }
+
     public void displayExtraInfo() {
         System.out.println("Rozdzielczość: " + resolution);
         System.out.printf("Rodzaj matrycy: %s\n", panelType);
