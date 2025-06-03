@@ -92,6 +92,7 @@ public class ShoppingCart {
         for (int i = 0; i < cartProducts.size(); i++) {
             summary += (i+1) + " " + cartProducts.get(i).toString() + "\n";
         }
+        summary += "Cena Koszyka "+ this.sumUpPrices()+" zł\n";
         return summary;
     }
 }

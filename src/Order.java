@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
 public class Order {
     private ShoppingCart cart = new ShoppingCart();
     private double deliveryPrice;
@@ -57,8 +61,26 @@ public class Order {
     public String orderSummary() {
         String summary = this.cart.cartSummary();
 
-        summary += "Cena Koszyka "+ this.cart.sumUpPrices()+" zł\nCena dostawy " + this.getDeliveryPrice()+" zł\nCena ostateczna " + this.getUltimatePrice()+" zł";
+        summary += "Cena dostawy " + this.getDeliveryPrice()+" zł\nCena ostateczna " + this.getUltimatePrice()+" zł";
         return summary;
     }
 
+    /**
+     * Zapisywanie podsumowania zamówienia do pliku
+     * @return true przy powodzeniu, false przy błędzie
+     */
+    public boolean printToFile() {
+        File summary = new File("orderSummary.txt");
+        try (PrintWriter writer = new PrintWriter(summary)) {
+            writer.println(this.orderSummary());
+            System.out.println("Pomyślnie zapisano podsumowanie zamówienia.");
+            return true;
+        } catch (FileNotFoundException e) {
+            System.out.println("Nie można utworzyć pliku: " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            System.out.println("Wystąpił błąd podczas zapisu do pliku: " + e.getMessage());
+            return false;
+        }
+    }
 }
