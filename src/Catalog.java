@@ -100,7 +100,7 @@ public class Catalog {
     }
 
     /**
-     * Wyswietla liste produktow
+     * Wyswietla interfejs listy produktow
      */
         public void displayProductList(){
             Scanner scanner = new Scanner(System.in);
@@ -109,13 +109,16 @@ public class Catalog {
             int pageAmount = (products.size() + productsPerPage - 1) / productsPerPage;
 
             while (true) {
-                System.out.printf("\n==== Strona %d z %d ====\n", page + 15, pageAmount);
+                System.out.printf("\n==== Strona %d z %d ====\n", page + 1, pageAmount);
 
                 int start = page * productsPerPage;  //indeks pierwszego produktu do wysw na stronie
                 int end = Math.min(start + productsPerPage, products.size()); //indeks ostatniego
 
                 for (int i = start, id = 1; i < end; i++, id++) {
                     System.out.printf("%d.", id);
+                    for (int j = 0; j < 86; j++) {
+                        System.out.print("=");
+                    }
                     products.get(i).displayInfo();
                 }
 
@@ -132,18 +135,14 @@ public class Catalog {
                     action  = scanner.nextInt();
                     scanner.nextLine();
                 }
+                int productIndex = page * productsPerPage + (action - 1);
                 switch (action) {
                     case 0:
+
                         return;
-                    case 1:
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-                        break;
-                    case 5:
+                    case 1, 2, 3, 4, 5:
+                        products.get(productIndex).displayExtraInfo();
+                        products.get(productIndex).productOptions();
                         break;
                     case 6:
                         page++;

@@ -36,10 +36,17 @@ public class Product {
         }
     }
 
-    public void displayExtraInfo() {}
+    public void displayExtraInfo() {
+        System.out.println("Marka: " + brand);
+        System.out.println("Kolor: " + color);
+        System.out.println("Waga: " + weight + " g");
+        System.out.println("Rozmiar: " + size + " [cm]");
+        System.out.println("Gwarancja: " + warranty + " mies.");
+    }
 
     public void displayInfo() {
-        for (int i=0; i<86; i++) {
+        System.out.print("\n");
+        for (int i=0; i<88; i++) {
             System.out.print("-");
         }
         System.out.print("\n");
@@ -142,5 +149,31 @@ public class Product {
     @Override
     public String toString(){
         return String.format("Produkt[nazwa: %s, kolor: %s, cena: %.2f zł, Dostępność: %d szt]",name, color, price, stockQuantity);
+    }
+
+    public void productOptions(){
+        while (true){
+
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Opcje:");
+            System.out.println("1 - Dodaj do koszyka");
+            System.out.println("2 - cos tam");
+            System.out.println("0 - Wroc");
+            int action = -1;
+            if (scanner.hasNextInt()) {
+                action  = scanner.nextInt();
+                scanner.nextLine();
+            }
+            switch(action) {
+                case 0:
+                    return;
+                case 1:
+                    //tutaj dodanie do koszyka
+                    System.out.printf("\n%s zostal dodany do koszyka!\n", name);
+                    break;
+                case 2:
+                    break;
+            }
+        }
     }
 }
