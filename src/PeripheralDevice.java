@@ -1,56 +1,55 @@
 import java.util.Scanner;
 
-public class Computer extends Product {
-    protected String type;
-    protected String processor;
-    protected int ram;
-    protected int memory;
-    protected String graphicsCardType;
-    protected String graphicsCardName;
-    protected String operatingSystem;
+public class PeripheralDevice extends Product {
+    protected boolean isWireless;
+    protected String powerSupply;
+    protected String portType;
+    protected String inputOutput;
+    protected boolean isWaterproof;
+    protected boolean hasRgb;
+    protected double cableLength;
 
-    public Computer(String name, String brand, double price, int stockQuantity, String description, String color, double weight, String size, int warranty, String type, String processor, int ram, int memory, String graphicsCardType, String graphicsCardName, String operatingSystem) {
+
+    public PeripheralDevice(String name, String brand, double price, int stockQuantity, String description, String color, double weight, String size, int warranty, boolean isWireless, String powerSupply, String portType, String inputOutput, boolean isWaterproof, boolean hasRgb, double cableLength) {
         super(name, brand, price, stockQuantity, description, color, weight, size, warranty);
-        this.type = type;
-        this.processor = processor;
-        this.ram = ram;
-        this.memory = memory;
-        this.graphicsCardType = graphicsCardType;
-        this.graphicsCardName = graphicsCardName;
-        this.operatingSystem = operatingSystem;
+        this.isWireless = isWireless;
+        this.powerSupply = powerSupply;
+        this.portType = portType;
+        this.inputOutput = inputOutput;
+        this.isWaterproof = isWaterproof;
+        this.hasRgb = hasRgb;
+        this.cableLength = cableLength;
     }
 
-    public boolean isGaming() {
-        return ram >= 16 && graphicsCardType.compareTo("Dedykowana") == 0 && operatingSystem.contains("Windows");
+    public boolean isForGaming() {
+        return hasRgb;
     }
 
     @Override
     public void displayExtraInfo() {
         super.displayExtraInfo();
-        System.out.println("Typ urządzenia: " + type);
-        System.out.println("Procesor: " + processor);
-        System.out.println("Ilość pamięci RAM: " + ram + "GB");
-        System.out.println("Ilość pamięci użytkowej: " + memory + "GB");
-        System.out.println("Typ karty graficznej: " + graphicsCardType);
-        if(graphicsCardType.compareTo("Dedykowana")==0) {
-            System.out.println("Nazwa karty graficznej: " + graphicsCardName);
-        }
-        System.out.println("System operacyjny: " + operatingSystem);
+        System.out.printf("Łączność: %s\n", isWireless ? "bezprzewodowa" : "przewodowa");
+        System.out.println("Zasilanie: " + powerSupply);
+        System.out.println("Interfejs: " + portType);
+        System.out.println("Typ urządzenia: " + inputOutput); //do zmiany
+        System.out.printf("Wodoodporność: %s\n", isWaterproof ? "tak" : "nie");
+        System.out.printf("Podświetlenie RGB: %s\n", hasRgb ? "tak" : "nie");
+        System.out.printf("Długość przewodu: %.2f\n", cableLength);
     }
 
     protected void showListToEdit() {
         super.showListToEdit();
-        System.out.println("10. Typ urządzenia");
-        System.out.println("11. Procesor");
-        System.out.println("12. Ilość pamięci RAM");
-        System.out.println("13. Ilość pamięci użytkowej");
-        System.out.println("14. Typ karty graficznej");
-        System.out.println("15. Nazwa karty graficznej");
-        System.out.println("16. System operacyjny");
+        System.out.println("10. Łączność");
+        System.out.println("11. Zasilanie");
+        System.out.println("12. Interfejs");
+        System.out.println("13. Typ urządzenia");
+        System.out.println("14. Wodoodporność");
+        System.out.println("15. Podświetlenie RGB");
+        System.out.println("16. Długość przewodu");
     }
 
     public int editProduct() {
-        while (true){
+        while(true) {
             this.displayInfo();
             Scanner scanner = new Scanner(System.in);
             this.showListToEdit();
@@ -100,32 +99,32 @@ public class Computer extends Product {
                     warranty = scanner.nextInt();
                     break;
                 case 10:
-                    System.out.print("Podaj nowy typ urządzenia: ");
-                    type = scanner.nextLine();
+                    System.out.print("Zmieniono łączność");
+                    isWireless = !isWireless;
                     break;
                 case 11:
-                    System.out.print("Podaj nowy procesor: ");
-                    processor = scanner.nextLine();
+                    System.out.print("Podaj nowy rodzaj zasilania: ");
+                    powerSupply = scanner.nextLine();
                     break;
                 case 12:
-                    System.out.print("Podaj nową ilość pamięci RAM[GB]: ");
-                    ram = scanner.nextInt();
+                    System.out.print("Podaj nowy typ portu: ");
+                    portType = scanner.nextLine();
                     break;
                 case 13:
-                    System.out.print("Podaj nową ilość pamięci użytkowej[GB]: ");
-                    memory = scanner.nextInt();
+                    System.out.print("Zmien typ urzadzenia: ");
+                    inputOutput = scanner.nextLine();
                     break;
                 case 14:
-                    System.out.print("Podaj nowy typ karty graficznej: ");
-                    graphicsCardType = scanner.nextLine();
+                    System.out.print("Zmieniono wodoodporność");
+                    isWaterproof = !isWaterproof;
                     break;
                 case 15:
-                    System.out.print("Podaj nową nazwę karty graficznej: ");
-                    graphicsCardName = scanner.nextLine();
+                    System.out.print("Zmieniono obecność RGB");
+                    hasRgb = !hasRgb;
                     break;
                 case 16:
-                    System.out.print("Podaj nowy system operacyjny: ");
-                    operatingSystem = scanner.nextLine();
+                    System.out.print("Podaj nową długość kabla");
+                    cableLength = scanner.nextDouble();
                     break;
                 default:
                     System.out.println("Błędny numer akcji.");
@@ -133,5 +132,7 @@ public class Computer extends Product {
             }
 //            return 1;
         }
+
+
     }
 }

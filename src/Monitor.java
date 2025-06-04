@@ -1,42 +1,50 @@
 import java.util.Scanner;
 
-public class MobileDevice extends Computer{
-    protected int batteryCapacity;
-    protected double screenSize;
+public class Monitor extends PeripheralDevice{
     protected String resolution;
+    protected String panelType;
+    protected double screenSize;
     protected int refreshRate;
+    protected boolean hasSpeakers;
 
-    public MobileDevice(String name, String brand, double price, int stockQuantity, String description, String color, double weight, String size, int warranty, String type, String processor, int ram, int memory, String graphicsCardType, String graphicsCardName, String operatingSystem, int batteryCapacity, double screenSize, String resolution, int refreshRate) {
-        super(name, brand, price, stockQuantity, description, color, weight, size, warranty, type, processor, ram, memory, graphicsCardType, graphicsCardName, operatingSystem);
-        this.batteryCapacity = batteryCapacity;
-        this.screenSize = screenSize;
+    public Monitor(String name, String brand, double price, int stockQuantity, String description, String color, double weight, String size, int warranty, boolean isWireless, String powerSupply, String portType, String inputOutput, boolean isWaterproof, boolean hasRgb, double cableLength, String resolution, String panelType, double screenSize, int refreshRate, boolean hasSpeakers) {
+        super(name, brand, price, stockQuantity, description, color, weight, size, warranty, isWireless, powerSupply, portType, inputOutput, isWaterproof, hasRgb, cableLength);
         this.resolution = resolution;
+        this.panelType = panelType;
+        this.screenSize = screenSize;
         this.refreshRate = refreshRate;
+        this.hasSpeakers = hasSpeakers;
     }
 
     @Override
-    public boolean isGaming() {
-        return ram >= 16 && graphicsCardType.compareTo("Dedykowana") == 0 && operatingSystem.contains("Windows") && refreshRate >=90;
+    public boolean isForGaming(){
+        return false;
+    }
+
+    public String screenFormat(){
+        return "temp";
     }
 
     public void displayExtraInfo() {
+        System.out.println("Rozdzielczość: " + resolution);
+        System.out.printf("Rodzaj matrycy: %s\n", panelType);
+        System.out.printf("Przekątna ekranu: %.1f\n", screenSize);
+        System.out.printf("Częstotliwość odświeżania: %d\n", refreshRate);
+        System.out.printf("Wbudowane głośniki: %s\n", hasSpeakers ? "tak" : "nie");
         super.displayExtraInfo();
-        System.out.println("Rozmiar ekranu: " + screenSize + " cali");
-        System.out.println("Pojemność baterii: " + batteryCapacity + " mAh");
-        System.out.println("Rozdzielczość  ekranu: " + resolution + "[px]");
-        System.out.println("Częstotliwość odświerzania ekranu: " + refreshRate + " Hz");
     }
 
     protected void showListToEdit() {
         super.showListToEdit();
-        System.out.println("17. Rozmiar ekranu");
-        System.out.println("18. Pojemność baterii");
-        System.out.println("19. Rozdzielczość ekranu");
-        System.out.println("20. Częstotliwość odświerzania ekranu");
+        System.out.println("17. Rozdzielczość");
+        System.out.println("18. Rodzaj matrycy");
+        System.out.println("19. Przekątna ekranu");
+        System.out.println("20. Częstotliwość odświeżania");
+        System.out.println("21. Wbudowane głośniki");
     }
 
     public int editProduct() {
-        while (true){
+        while(true) {
             this.displayInfo();
             Scanner scanner = new Scanner(System.in);
             this.showListToEdit();
@@ -86,48 +94,52 @@ public class MobileDevice extends Computer{
                     warranty = scanner.nextInt();
                     break;
                 case 10:
-                    System.out.print("Podaj nowy typ urządzenia: ");
-                    type = scanner.nextLine();
+                    System.out.print("Zmieniono łączność");
+                    isWireless = !isWireless;
                     break;
                 case 11:
-                    System.out.print("Podaj nowy procesor: ");
-                    processor = scanner.nextLine();
+                    System.out.print("Podaj nowy rodzaj zasilania: ");
+                    powerSupply = scanner.nextLine();
                     break;
                 case 12:
-                    System.out.print("Podaj nową ilość pamięci RAM[GB]: ");
-                    ram = scanner.nextInt();
+                    System.out.print("Podaj nowy typ portu: ");
+                    portType = scanner.nextLine();
                     break;
                 case 13:
-                    System.out.print("Podaj nową ilość pamięci użytkowej[GB]: ");
-                    memory = scanner.nextInt();
+                    System.out.print("Zmien typ urzadzenia: ");
+                    inputOutput = scanner.nextLine();
                     break;
                 case 14:
-                    System.out.print("Podaj nowy typ karty graficznej: ");
-                    graphicsCardType = scanner.nextLine();
+                    System.out.print("Zmieniono wodoodporność");
+                    isWaterproof = !isWaterproof;
                     break;
                 case 15:
-                    System.out.print("Podaj nową nazwę karty graficznej: ");
-                    graphicsCardName = scanner.nextLine();
+                    System.out.print("Zmieniono obecność RGB");
+                    hasRgb = !hasRgb;
                     break;
                 case 16:
-                    System.out.print("Podaj nowy system operacyjny: ");
-                    operatingSystem = scanner.nextLine();
+                    System.out.print("Podaj nową długość kabla");
+                    cableLength = scanner.nextDouble();
                     break;
                 case 17:
-                    System.out.print("Podaj nową pojemność baterii: ");
-                    batteryCapacity = scanner.nextInt();
-                    break;
-                case 18:
-                    System.out.print("Podaj nowy rozmiar ekranu: ");
-                    screenSize = scanner.nextDouble();
-                    break;
-                case 19:
                     System.out.print("Podaj nową rozdzielczość: ");
                     resolution = scanner.nextLine();
                     break;
+                case 18:
+                    System.out.print("Podaj nowy rodzaj matrycy: ");
+                    panelType = scanner.nextLine();
+                    break;
                 case 20:
+                    System.out.print("Podaj nową przekątną ekranu: ");
+                    screenSize = scanner.nextDouble();
+                    break;
+                case 21:
                     System.out.print("Podaj nową częstotliwość odświeżania: ");
                     refreshRate = scanner.nextInt();
+                    break;
+                case 22:
+                    System.out.print("Zmieniono obecność głośników");
+                    hasSpeakers = !hasSpeakers;
                     break;
                 default:
                     System.out.println("Błędny numer akcji.");
@@ -135,5 +147,7 @@ public class MobileDevice extends Computer{
             }
 //            return 1;
         }
+
+
     }
 }
