@@ -139,7 +139,8 @@ public class Product {
 
     }
 
-    public String toFileString(){
-        return "Product;" + name + ";" + price + ";" + stockQuantity + ";" + brand + ";" + color + ";" + weight + ";" + size + ";" + warranty;
+    @Override
+    public String toString(){
+        return String.format("Produkt[nazwa: %s, kolor: %s, cena: %.2f zł, Dostępność: %d szt]",name, color, price, stockQuantity);
     }
 }
