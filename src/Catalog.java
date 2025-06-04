@@ -102,11 +102,63 @@ public class Catalog {
     /**
      * Wyswietla liste produktow
      */
-    public void displayProductList(){
-        for (Product product : products) {
-            product.displayInfo();
+        public void displayProductList(){
+            Scanner scanner = new Scanner(System.in);
+            int page = 0;
+            int productsPerPage = 5;
+            int pageAmount = (products.size() + productsPerPage - 1) / productsPerPage;
+
+            while (true) {
+                System.out.printf("\n==== Strona %d z %d ====\n", page + 15, pageAmount);
+
+                int start = page * productsPerPage;  //indeks pierwszego produktu do wysw na stronie
+                int end = Math.min(start + productsPerPage, products.size()); //indeks ostatniego
+
+                for (int i = start, id = 1; i < end; i++, id++) {
+                    System.out.printf("%d.", id);
+                    products.get(i).displayInfo();
+                }
+
+                int action = -1;
+                System.out.println("1-5 - Pokaż pełny opis");
+                if (page < pageAmount - 1) {
+                    System.out.println("6 - Nastepna strona");
+                }
+                if (page > 0){
+                    System.out.println("7 - Poprzednia strona");
+                }
+                System.out.println("8 - Zakoncz");
+                if (scanner.hasNextInt()) {
+                    action  = scanner.nextInt();
+                    scanner.nextLine();
+                }
+                switch (action) {
+                    case 0:
+                        return;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        page++;
+                        break;
+                    case 7:
+                        page--;
+                        break;
+                    default:
+                        System.out.println("Niepoprawna akcja");
+                        break;
+                }
+            }
+
+
         }
-    }
 
     public void filterProducts(){
 
