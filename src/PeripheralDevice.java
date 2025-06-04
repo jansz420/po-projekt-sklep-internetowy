@@ -21,10 +21,17 @@ public class PeripheralDevice extends Product {
         this.cableLength = cableLength;
     }
 
+    /**
+     * Sprawdza czy urzadzenie jest dla graczy na podstawie jego parametrow
+     * @return  true jesli tak
+     */
     public boolean isForGaming() {
         return hasRgb;
     }
 
+    /**
+     * Wyswietla pelne info produktu
+     */
     @Override
     public void displayExtraInfo() {
         super.displayExtraInfo();
@@ -37,6 +44,9 @@ public class PeripheralDevice extends Product {
         System.out.printf("Długość przewodu: %.2f\n", cableLength);
     }
 
+    /**
+     * Wyswietla menu edycji
+     */
     protected void showListToEdit() {
         super.showListToEdit();
         System.out.println("10. Łączność");
@@ -48,12 +58,16 @@ public class PeripheralDevice extends Product {
         System.out.println("16. Długość przewodu");
     }
 
+    /**
+     * Edytuje parametry produktu
+     * @return nie wiem
+     */
     public int editProduct() {
         while(true) {
             this.displayInfo();
             Scanner scanner = new Scanner(System.in);
             this.showListToEdit();
-            System.out.println("0. Anuluj");
+            System.out.println("0. Zakończ");
             int action = -1;
             if (scanner.hasNextInt()) {
                 action  = scanner.nextInt();
@@ -135,4 +149,8 @@ public class PeripheralDevice extends Product {
 
 
     }
+
+//    public String toFileString(){
+//        return "PeriphDevice;" + name + ";" + price + ";" + stockQuantity + ";" + brand + ";" + color + ";" + weight + ";" + size + ";" + warranty;
+//    }
 }

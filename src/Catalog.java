@@ -9,6 +9,9 @@ public class Catalog {
         products = new ArrayList<>();
     }
 
+    /**
+     * Tworzy nowy produkt wybranego typu i dodaje go do listy
+     */
     public void addNewProduct(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("===DODAWANIE PRODUKTU===");
@@ -68,18 +71,118 @@ public class Catalog {
         }
     }
 
-    public void removeProduct(String name){
-
+    /**
+     * Wyszukuje produkt po nazwie
+     * @param name nazwa szukanego produktu
+     * @return szukany obiekt Product lub null
+     */
+    public Product searchProduct(String name){
+        for (Product product : products) {
+            if (product.name.equals(name)) {
+                return product;
+            }
+        }
+        return null;
     }
 
-    public void displayProductList(){
-        for (Product product : products) {
-            product.displayInfo();
+    /**
+     * Usuwa produkt wyszukany na podstawie nazwy
+     * @param name nazwa produktu do usuniecia
+     */
+    public void removeProduct(String name){
+        if (searchProduct(name) != null) {
+            products.remove(searchProduct(name));
+            System.out.println("Produkt " + name + " został usunięty");
+        }
+        else {
+            System.out.println("Nie znaleziono produktu");
         }
     }
 
-    public Product searchProduct(String name){
-        return null;
+    /**
+     * Wyswietla interfejs listy produktow
+     */
+        public void displayProductList(){
+            Scanner scanner = new Scanner(System.in);
+            int page = 0;
+            int productsPerPage = 5;
+            int pageAmount = (products.size() + productsPerPage - 1) / productsPerPage;
+
+            while (true) {
+                System.out.printf("\n==== Strona %d z %d ====", page + 1, pageAmount);
+
+                int start = page * productsPerPage;  //indeks pierwszego produktu do wysw na stronie
+                int end = Math.min(start + productsPerPage, products.size()); //indeks ostatniego
+
+                for (int i = start, id = 1; i < end; i++, id++) {
+                    products.get(i).displayInfo();
+                    System.out.printf("%d.", id);
+                    for (int j = 0; j < 86; j++) {
+                        System.out.print("=");
+                    }
+                }
+
+                int action = -1;
+                System.out.println("\n1-5 - Pokaż pełny opis");
+                if (page < pageAmount - 1) {
+                    System.out.println("6 - Nastepna strona");
+                }
+                if (page > 0){
+                    System.out.println("7 - Poprzednia strona");
+                }
+                //wyswietl koszyk
+                System.out.println("0 - Zakoncz");
+                if (scanner.hasNextInt()) {
+                    action  = scanner.nextInt();
+                    scanner.nextLine();
+                }
+                int productIndex = page * productsPerPage + (action - 1);
+                switch (action) {
+                    case 0:
+
+                        return;
+                    case 1, 2, 3, 4, 5:
+                        products.get(productIndex).displayExtraInfo();
+                        productOptions(products.get(productIndex));
+                        break;
+                    case 6:
+                        page++;
+                        break;
+                    case 7:
+                        page--;
+                        break;
+                    default:
+                        System.out.println("Niepoprawna akcja");
+                        break;
+                }
+            }
+
+
+        }
+
+    public void productOptions(Product product){
+        while (true){
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Opcje:");
+            System.out.println("1 - Dodaj do koszyka");
+            System.out.println("2 - cos tam");
+            System.out.println("0 - Wroc");
+            int action = -1;
+            if (scanner.hasNextInt()) {
+                action  = scanner.nextInt();
+                scanner.nextLine();
+            }
+            switch(action) {
+                case 0:
+                    return;
+                case 1:
+
+                    System.out.printf("\n%s zostal dodany do koszyka!\n", product.name);
+                    break;
+                case 2:
+                    break;
+            }
+        }
     }
 
     public void filterProducts(){
@@ -91,6 +194,7 @@ public class Catalog {
     }
 
     public boolean saveToFile(String fileName){
+
         return false;
     }
 

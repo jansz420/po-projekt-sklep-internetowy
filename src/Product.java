@@ -36,29 +36,39 @@ public class Product {
         }
     }
 
-    public void displayExtraInfo() {}
-
-    public void displayInfo() {
-
-        for (int i=0; i<name.length()+4; i++) {
-            System.out.print("-");
-        }
-        System.out.print("\n");
-        System.out.println("| " + name.toUpperCase() + " |");
-        for (int i=0; i<name.length()+4; i++) {
-            System.out.print("-");
-        }
-        System.out.print("\n");
-        System.out.printf("Cena: %.2f zł\n", price);
-        System.out.println("Dostępność: " + stockQuantity + " szt");
-        System.out.println(description);
-        System.out.println("\nDane techniczne: ");
+    public void displayExtraInfo() {
+        displayInfo();
         System.out.println("Marka: " + brand);
-        displayExtraInfo();
         System.out.println("Kolor: " + color);
         System.out.println("Waga: " + weight + " g");
         System.out.println("Rozmiar: " + size + " [cm]");
         System.out.println("Gwarancja: " + warranty + " mies.");
+    }
+
+    public void displayInfo() {
+        System.out.print("\n");
+        for (int i=0; i<88; i++) {
+            System.out.print("-");
+        }
+        System.out.print("\n");
+        System.out.printf("| %-20s | Cena: %8.2f zł | Dostępność: %3d szt | Marka: %-12s |\n", name.toUpperCase(), price, stockQuantity, brand);
+//        System.out.printf(" | Cena: %.2f zł", price);
+//        System.out.printf(" | Dostępność: %d szt", stockQuantity);
+//        System.out.printf(" | Marka: %s |\n", brand);
+        for (int i=0; i<88; i++) {
+            System.out.print("-");
+        }
+        System.out.print("\n");
+//        System.out.printf("Cena: %.2f zł\n", price);
+//        System.out.println("Dostępność: " + stockQuantity + " szt");
+//        System.out.println(description);
+//        System.out.println("\nDane techniczne: ");
+//        System.out.println("Marka: " + brand);
+//        displayExtraInfo();
+//        System.out.println("Kolor: " + color);
+//        System.out.println("Waga: " + weight + " g");
+//        System.out.println("Rozmiar: " + size + " [cm]");
+//        System.out.println("Gwarancja: " + warranty + " mies.");
     }
 
     public void changePrice(double percentage) {
@@ -141,4 +151,6 @@ public class Product {
     public String toString(){
         return String.format("Produkt[nazwa: %s, kolor: %s, cena: %.2f zł, Dostępność: %d szt]",name, color, price, stockQuantity);
     }
+
+
 }

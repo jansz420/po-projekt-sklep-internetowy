@@ -26,12 +26,16 @@ public class Main {
                 14
         );
         test.displayInfo();
-       Catalog catalog = new Catalog();
-       catalog.addNewProduct();
-       catalog.addNewProduct();
-       catalog.addNewProduct();
-       catalog.displayProductList();
-     
+        Catalog catalog = new Catalog();
+        catalog.addNewProduct();
+        catalog.addNewProduct();
+        catalog.addNewProduct();
+        catalog.addNewProduct();
+        catalog.addNewProduct();
+        catalog.addNewProduct();
+        catalog.addNewProduct();
+        catalog.displayProductList();
+
         System.out.println();
         System.out.println();
         ShoppingCart cart = new ShoppingCart();
