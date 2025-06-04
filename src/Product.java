@@ -44,13 +44,16 @@ public class Product {
             System.out.print("-");
         }
         System.out.print("\n");
-        System.out.println("| " + name.toUpperCase() + " |");
+        System.out.printf("| %s", name.toUpperCase());
+        System.out.printf(" | Cena: %.2f zł", price);
+        System.out.printf(" | Dostępność: %d szt", stockQuantity);
+        System.out.printf(" | Marka: %s |\n", brand);
         for (int i=0; i<name.length()+4; i++) {
             System.out.print("-");
         }
         System.out.print("\n");
-        System.out.printf("Cena: %.2f zł\n", price);
-        System.out.println("Dostępność: " + stockQuantity + " szt");
+//        System.out.printf("Cena: %.2f zł\n", price);
+//        System.out.println("Dostępność: " + stockQuantity + " szt");
         System.out.println(description);
         System.out.println("\nDane techniczne: ");
         System.out.println("Marka: " + brand);
@@ -135,5 +138,9 @@ public class Product {
 //            return 1;
         }
 
+    }
+
+    public String toFileString(){
+        return "Product;" + name + ";" + price + ";" + stockQuantity + ";" + brand + ";" + color + ";" + weight + ";" + size + ";" + warranty;
     }
 }

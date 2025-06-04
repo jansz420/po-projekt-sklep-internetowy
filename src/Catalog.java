@@ -9,6 +9,9 @@ public class Catalog {
         products = new ArrayList<>();
     }
 
+    /**
+     * Tworzy nowy produkt wybranego typu i dodaje go do listy
+     */
     public void addNewProduct(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("===DODAWANIE PRODUKTU===");
@@ -68,18 +71,41 @@ public class Catalog {
         }
     }
 
-    public void removeProduct(String name){
-
+    /**
+     * Wyszukuje produkt po nazwie
+     * @param name nazwa szukanego produktu
+     * @return szukany obiekt Product lub null
+     */
+    public Product searchProduct(String name){
+        for (Product product : products) {
+            if (product.name.equals(name)) {
+                return product;
+            }
+        }
+        return null;
     }
 
+    /**
+     * Usuwa produkt wyszukany na podstawie nazwy
+     * @param name nazwa produktu do usuniecia
+     */
+    public void removeProduct(String name){
+        if (searchProduct(name) != null) {
+            products.remove(searchProduct(name));
+            System.out.println("Produkt " + name + " został usunięty");
+        }
+        else {
+            System.out.println("Nie znaleziono produktu");
+        }
+    }
+
+    /**
+     * Wyswietla liste produktow
+     */
     public void displayProductList(){
         for (Product product : products) {
             product.displayInfo();
         }
-    }
-
-    public Product searchProduct(String name){
-        return null;
     }
 
     public void filterProducts(){
@@ -91,6 +117,7 @@ public class Catalog {
     }
 
     public boolean saveToFile(String fileName){
+
         return false;
     }
 
