@@ -48,7 +48,7 @@ public class Monitor extends PeripheralDevice{
             this.displayInfo();
             Scanner scanner = new Scanner(System.in);
             this.showListToEdit();
-            System.out.println("0. Anuluj");
+            System.out.println("0. Zakończ");
             int action = -1;
             if (scanner.hasNextInt()) {
                 action  = scanner.nextInt();

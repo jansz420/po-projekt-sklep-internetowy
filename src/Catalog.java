@@ -109,28 +109,29 @@ public class Catalog {
             int pageAmount = (products.size() + productsPerPage - 1) / productsPerPage;
 
             while (true) {
-                System.out.printf("\n==== Strona %d z %d ====\n", page + 1, pageAmount);
+                System.out.printf("\n==== Strona %d z %d ====", page + 1, pageAmount);
 
                 int start = page * productsPerPage;  //indeks pierwszego produktu do wysw na stronie
                 int end = Math.min(start + productsPerPage, products.size()); //indeks ostatniego
 
                 for (int i = start, id = 1; i < end; i++, id++) {
+                    products.get(i).displayInfo();
                     System.out.printf("%d.", id);
                     for (int j = 0; j < 86; j++) {
                         System.out.print("=");
                     }
-                    products.get(i).displayInfo();
                 }
 
                 int action = -1;
-                System.out.println("1-5 - Pokaż pełny opis");
+                System.out.println("\n1-5 - Pokaż pełny opis");
                 if (page < pageAmount - 1) {
                     System.out.println("6 - Nastepna strona");
                 }
                 if (page > 0){
                     System.out.println("7 - Poprzednia strona");
                 }
-                System.out.println("8 - Zakoncz");
+                //wyswietl koszyk
+                System.out.println("0 - Zakoncz");
                 if (scanner.hasNextInt()) {
                     action  = scanner.nextInt();
                     scanner.nextLine();
@@ -142,7 +143,7 @@ public class Catalog {
                         return;
                     case 1, 2, 3, 4, 5:
                         products.get(productIndex).displayExtraInfo();
-                        products.get(productIndex).productOptions();
+                        productOptions(products.get(productIndex));
                         break;
                     case 6:
                         page++;
@@ -158,6 +159,31 @@ public class Catalog {
 
 
         }
+
+    public void productOptions(Product product){
+        while (true){
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Opcje:");
+            System.out.println("1 - Dodaj do koszyka");
+            System.out.println("2 - cos tam");
+            System.out.println("0 - Wroc");
+            int action = -1;
+            if (scanner.hasNextInt()) {
+                action  = scanner.nextInt();
+                scanner.nextLine();
+            }
+            switch(action) {
+                case 0:
+                    return;
+                case 1:
+
+                    System.out.printf("\n%s zostal dodany do koszyka!\n", product.name);
+                    break;
+                case 2:
+                    break;
+            }
+        }
+    }
 
     public void filterProducts(){
 
