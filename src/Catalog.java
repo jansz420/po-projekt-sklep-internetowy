@@ -193,8 +193,11 @@ public class Catalog {
 
     }
 
-    public boolean saveToFile(String fileName){
+    public boolean saveToFile(){
+        for (Product product : products) {
+            System.out.println(product.getClass().getCanonicalName());
 
+        }
         return false;
     }
 

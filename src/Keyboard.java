@@ -136,7 +136,8 @@ public class Keyboard extends PeripheralDevice{
             }
 //            return 1;
         }
-
-
+    }
+    public String toString(){
+        return String.format(";%s;%s;%b;%s;%b",super.toString(), keyboardType, hasNumPad, keyLayout, hasWristRest);
     }
 }
