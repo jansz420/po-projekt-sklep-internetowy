@@ -102,9 +102,14 @@ public class Catalog {
     }
 
     /**
-     * Wyswietla interfejs listy produktow
+     * Wyswietla interfejs katalogu
+     * @return true jesli wpisano kod admina
      */
-        public void displayProductList(){
+        public boolean displayProductList(){
+            if (products.isEmpty()) {
+                System.out.println("Nie udało sie wczytać listy produktów");
+            }
+
             Scanner scanner = new Scanner(System.in);
             int page = 0;
             int productsPerPage = 5;
@@ -126,6 +131,8 @@ public class Catalog {
                 }
 
                 int action = -1;
+
+
                 System.out.printf("\n1-%d - Pokaż pełny opis\n", id - 1); //poprawka zeby dobrze opcje wyswietlalo
                 if (page < pageAmount - 1) {
                     System.out.println("6 - Nastepna strona");
@@ -143,8 +150,7 @@ public class Catalog {
                 int productIndex = page * productsPerPage + (action - 1);
                 switch (action) {
                     case 0:
-
-                        return;
+                        return false;
                     case 1, 2, 3, 4, 5:
                         products.get(productIndex).displayExtraInfo();
                         productOptions(products.get(productIndex));
@@ -158,6 +164,8 @@ public class Catalog {
                     case 8:
                         sortListBy();
                         break;
+                    case 420:
+                        return true;
                     default:
                         System.out.println("Niepoprawna akcja");
                         break;
