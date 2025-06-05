@@ -1,5 +1,7 @@
 import java.security.Key;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Catalog {
@@ -113,8 +115,9 @@ public class Catalog {
 
                 int start = page * productsPerPage;  //indeks pierwszego produktu do wysw na stronie
                 int end = Math.min(start + productsPerPage, products.size()); //indeks ostatniego
+                int id = 1;
 
-                for (int i = start, id = 1; i < end; i++, id++) {
+                for (int i = start; i < end; i++, id++) {
                     products.get(i).displayInfo();
                     System.out.printf("%d.", id);
                     for (int j = 0; j < 86; j++) {
@@ -123,7 +126,7 @@ public class Catalog {
                 }
 
                 int action = -1;
-                System.out.println("\n1-5 - Pokaż pełny opis");
+                System.out.printf("\n1-%d - Pokaż pełny opis\n", id - 1); //poprawka zeby dobrze opcje wyswietlalo
                 if (page < pageAmount - 1) {
                     System.out.println("6 - Nastepna strona");
                 }
@@ -131,6 +134,7 @@ public class Catalog {
                     System.out.println("7 - Poprzednia strona");
                 }
                 //wyswietl koszyk
+                System.out.println("8 - Sortuj");
                 System.out.println("0 - Zakoncz");
                 if (scanner.hasNextInt()) {
                     action  = scanner.nextInt();
@@ -150,6 +154,9 @@ public class Catalog {
                         break;
                     case 7:
                         page--;
+                        break;
+                    case 8:
+                        sortListBy();
                         break;
                     default:
                         System.out.println("Niepoprawna akcja");
@@ -190,7 +197,45 @@ public class Catalog {
     }
 
     public void sortListBy(){
-
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Opcje:");
+        System.out.println("1 - Sortuj alfabetycznie");
+        System.out.println("2 - Sortuj cenowo (rosnąco)");
+        System.out.println("3 - Sortuj cenowo (malejąco)");
+        System.out.println("0 - Wroc");
+        int action = -1;
+        if (scanner.hasNextInt()) {
+            action  = scanner.nextInt();
+            scanner.nextLine();
+        }
+        switch(action) {
+            case 0:
+                return;
+            case 1:
+                Collections.sort(products, new Comparator<>() {
+                    @Override
+                    public int compare(Product p1, Product p2) {
+                        return p1.name.compareTo(p2.name);
+                    }
+                });
+                break;
+            case 2:
+                Collections.sort(products, new Comparator<>() {
+                    @Override
+                    public int compare(Product p1, Product p2) {
+                        return Double.compare(p1.price, p2.price);
+                    }
+                });
+                break;
+            case 3:
+                Collections.sort(products, new Comparator<>() {
+                    @Override
+                    public int compare(Product p1, Product p2) {
+                        return Double.compare(p2.price, p1.price);
+                    }
+                });
+            break;
+        }
     }
 
     public boolean saveToFile(String fileName){
