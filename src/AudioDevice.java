@@ -47,6 +47,7 @@ public class AudioDevice extends PeripheralDevice{
     public int editProduct() {
         while(true) {
             this.displayInfo();
+            this.displayExtraInfo();
             Scanner scanner = new Scanner(System.in);
             this.showListToEdit();
             System.out.println("0. Zakończ");
@@ -64,7 +65,8 @@ public class AudioDevice extends PeripheralDevice{
                     break;
                 case 2:
                     System.out.print("Podaj nową cenę[zł]: ");
-                    price = scanner.nextDouble();
+                    if (scanner.hasNextDouble()) { price = scanner.nextDouble(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 3:
                     System.out.print("Podaj nowy opis: ");
@@ -72,7 +74,8 @@ public class AudioDevice extends PeripheralDevice{
                     break;
                 case 4:
                     System.out.print("Podaj nową liczbę produktu na magazynie: ");
-                    stockQuantity = scanner.nextInt();
+                    if (scanner.hasNextInt()) { stockQuantity = scanner.nextInt(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 5:
                     System.out.print("Podaj nową markę: ");
@@ -84,7 +87,8 @@ public class AudioDevice extends PeripheralDevice{
                     break;
                 case 7:
                     System.out.print("Podaj nową wagę[g]: ");
-                    weight = scanner.nextDouble();
+                    if (scanner.hasNextDouble()) { weight = scanner.nextDouble(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 8:
                     System.out.print("Podaj nowy rozmiar (WYS[cm]xSZER[cm]xDŁ[cm]: ");
@@ -92,7 +96,8 @@ public class AudioDevice extends PeripheralDevice{
                     break;
                 case 9:
                     System.out.print("Podaj nową długość gwarancji(ile miesięcy): ");
-                    warranty = scanner.nextInt();
+                    if (scanner.hasNextInt()) { warranty = scanner.nextInt(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 10:
                     System.out.print("Zmieniono łączność");
@@ -120,7 +125,8 @@ public class AudioDevice extends PeripheralDevice{
                     break;
                 case 16:
                     System.out.print("Podaj nową długość kabla");
-                    cableLength = scanner.nextDouble();
+                    if (scanner.hasNextDouble()) { cableLength = scanner.nextDouble(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 17:
                     System.out.print("Podaj nowy typ urzadzenia audio: ");
@@ -132,19 +138,22 @@ public class AudioDevice extends PeripheralDevice{
                     break;
                 case 20:
                     System.out.print("Podaj nową impedancje: ");
-                    impedance = scanner.nextDouble();
+                    if (scanner.hasNextDouble()) { impedance = scanner.nextDouble(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 21:
                     System.out.print("Podaj nową moc: ");
-                    power = scanner.nextDouble();
+                    if (scanner.hasNextDouble()) { power = scanner.nextDouble(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 22:
                     System.out.print("Podaj nowe pasmo przenoszenia: ");
-                    frequencyResponse = scanner.nextDouble();
+                    if (scanner.hasNextDouble()) { frequencyResponse = scanner.nextDouble(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 default:
                     System.out.println("Błędny numer akcji.");
-                    return 0;
+                    break;
             }
 //            return 1;
         }

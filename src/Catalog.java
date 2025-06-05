@@ -193,7 +193,7 @@ public class Catalog {
     }
 
     public void filterProducts(){
-
+        
     }
 
     public void sortListBy(){

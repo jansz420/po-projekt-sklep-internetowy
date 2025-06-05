@@ -42,6 +42,7 @@ public class Keyboard extends PeripheralDevice{
     public int editProduct() {
         while(true) {
             this.displayInfo();
+            this.displayExtraInfo();
             Scanner scanner = new Scanner(System.in);
             this.showListToEdit();
             System.out.println("0. Zakończ");
@@ -59,7 +60,8 @@ public class Keyboard extends PeripheralDevice{
                     break;
                 case 2:
                     System.out.print("Podaj nową cenę[zł]: ");
-                    price = scanner.nextDouble();
+                    if (scanner.hasNextDouble()) { price = scanner.nextDouble(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 3:
                     System.out.print("Podaj nowy opis: ");
@@ -67,7 +69,8 @@ public class Keyboard extends PeripheralDevice{
                     break;
                 case 4:
                     System.out.print("Podaj nową liczbę produktu na magazynie: ");
-                    stockQuantity = scanner.nextInt();
+                    if (scanner.hasNextInt()) { stockQuantity = scanner.nextInt(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 5:
                     System.out.print("Podaj nową markę: ");
@@ -79,7 +82,8 @@ public class Keyboard extends PeripheralDevice{
                     break;
                 case 7:
                     System.out.print("Podaj nową wagę[g]: ");
-                    weight = scanner.nextDouble();
+                    if (scanner.hasNextDouble()) { weight = scanner.nextDouble(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 8:
                     System.out.print("Podaj nowy rozmiar (WYS[cm]xSZER[cm]xDŁ[cm]: ");
@@ -87,7 +91,8 @@ public class Keyboard extends PeripheralDevice{
                     break;
                 case 9:
                     System.out.print("Podaj nową długość gwarancji(ile miesięcy): ");
-                    warranty = scanner.nextInt();
+                    if (scanner.hasNextInt()) { warranty = scanner.nextInt(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 10:
                     System.out.print("Zmieniono łączność");
@@ -115,7 +120,8 @@ public class Keyboard extends PeripheralDevice{
                     break;
                 case 16:
                     System.out.print("Podaj nową długość kabla");
-                    cableLength = scanner.nextDouble();
+                    if (scanner.hasNextDouble()) { cableLength = scanner.nextDouble(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 17:
                     System.out.print("Podaj nowy typ klawiatury: ");
@@ -135,7 +141,7 @@ public class Keyboard extends PeripheralDevice{
                     break;
                 default:
                     System.out.println("Błędny numer akcji.");
-                    return 0;
+                    break;
             }
 //            return 1;
         }
