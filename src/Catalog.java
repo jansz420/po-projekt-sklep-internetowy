@@ -4,9 +4,10 @@ import java.util.Scanner;
 
 public class Catalog {
     public ArrayList<Product> products;
-
+    private ShoppingCart cart;
     public Catalog() {
         products = new ArrayList<>();
+        this.cart = new ShoppingCart();
     }
 
     /**
@@ -130,7 +131,8 @@ public class Catalog {
                 if (page > 0){
                     System.out.println("7 - Poprzednia strona");
                 }
-                //wyswietl koszyk
+                System.out.println("8 - Wyświetl koszyk");
+                System.out.println("9 - Złóż zamówienie");
                 System.out.println("0 - Zakoncz");
                 if (scanner.hasNextInt()) {
                     action  = scanner.nextInt();
@@ -151,6 +153,13 @@ public class Catalog {
                     case 7:
                         page--;
                         break;
+                    case 8:
+                        System.out.println(this.cart.cartSummary());
+                        break;
+                    case 9:
+                        System.out.println(this.cart.cartSummary());
+                        break;
+
                     default:
                         System.out.println("Niepoprawna akcja");
                         break;
@@ -165,7 +174,7 @@ public class Catalog {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Opcje:");
             System.out.println("1 - Dodaj do koszyka");
-            System.out.println("2 - cos tam");
+            System.out.println("2 - Usuń z koszyka");
             System.out.println("0 - Wroc");
             int action = -1;
             if (scanner.hasNextInt()) {
@@ -176,10 +185,18 @@ public class Catalog {
                 case 0:
                     return;
                 case 1:
-
-                    System.out.printf("\n%s zostal dodany do koszyka!\n", product.name);
+                    System.out.println("Podaj ilość sztuk: ");
+                    int quantity  = scanner.nextInt();
+                    scanner.nextLine();
+                    this.cart.addProduct(product, quantity);
+                    System.out.printf("\n%s został dodany do koszyka!\n", product.name);
                     break;
                 case 2:
+                    System.out.println("Podaj ilość sztuk do usunięcia: ");
+                    int quantityRm  = scanner.nextInt();
+                    scanner.nextLine();
+                    this.cart.removeFromCart(product,quantityRm);
+                    System.out.printf("\n%s został usunięty z koszyka!\n", product.name);
                     break;
             }
         }

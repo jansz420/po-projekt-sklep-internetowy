@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ShoppingCart {
     private List<Product> cartProducts =new ArrayList<>();
@@ -23,12 +25,32 @@ public class ShoppingCart {
     }
 
     /**
+     * Zlicza ilość wystąpienia danego produktu w koszyku
+     * @param product
+     * @return liczbę wystąpień w koszyku
+     */
+    public int countProducts(Product product) {
+        int count = 0;
+        for (Product p : cartProducts) {
+            if (p.equals(product)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
      * usuwa dany produkt z koszyka
      * @param product produkt do usunięcia
      */
-    public void removeFromCart(Product product) {
+    public void removeFromCart(Product product, int amount) {
         if (cartProducts.contains(product)) {
-            cartProducts.remove(product);
+            if (amount > this.countProducts(product)) {
+                System.out.println("W twoim koszyku znajdują się tylko "+ this.countProducts(product) + " takie produkty");
+            }
+            else {
+                cartProducts.remove(product);
+            }
         } else {
             System.out.println("Nie znaleziono produktu " + product.name + " w twoim koszyku.");
         }
@@ -85,6 +107,9 @@ public class ShoppingCart {
 
     //tutaj jeszcze nie wiem jak chce aby dokładnie wyglądało podsumowanie
     public String cartSummary() {
+        if (cartProducts.isEmpty()) {
+            return "Koszyk jest pusty";
+        }
         String summary= "\n";
 //        for (Product cartProduct : cartProducts) {
 //            summary += cartProduct.toString() + ", ";
