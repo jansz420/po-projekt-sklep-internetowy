@@ -55,6 +55,14 @@ public class Main {
 
         Catalog catalog = new Catalog();
 
+        catalog.addNewProduct();
+        catalog.addNewProduct();
+        catalog.addNewProduct();
+        catalog.addNewProduct();
+        catalog.addNewProduct();
+        catalog.addNewProduct();
+        catalog.addNewProduct();
+
         //interface
 
         while (true) {
