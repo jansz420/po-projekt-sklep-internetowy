@@ -16,10 +16,13 @@ public class Keyboard extends PeripheralDevice{
 
     @Override
     public boolean isForGaming(){
-        return false;
+        return super.isForGaming() && hasWristRest && keyboardType.equalsIgnoreCase("Mechaniczna");
     }
 
     public void displayExtraInfo() {
+        if (this.isForGaming()){
+            System.out.println("Idealny wybór dla graczy!");
+        }
         System.out.println("Typ klawiatury: " + keyboardType);
         System.out.printf("Klawisze numeryczne: %s\n", hasNumPad ? "tak" : "nie");
         System.out.printf("Układ klawiszy: %s\n", keyLayout);

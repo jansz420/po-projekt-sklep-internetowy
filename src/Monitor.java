@@ -18,7 +18,7 @@ public class Monitor extends PeripheralDevice{
 
     @Override
     public boolean isForGaming(){
-        return false;
+        return super.isForGaming() && refreshRate >= 120 && screenSize >= 24 && screenSize <= 32;
     }
 
     public String screenFormat(){
@@ -26,6 +26,9 @@ public class Monitor extends PeripheralDevice{
     }
 
     public void displayExtraInfo() {
+        if (this.isForGaming()){
+            System.out.println("Idealny wybór dla graczy!");
+        }
         System.out.println("Rozdzielczość: " + resolution);
         System.out.printf("Rodzaj matrycy: %s\n", panelType);
         System.out.printf("Przekątna ekranu: %.1f\n", screenSize);

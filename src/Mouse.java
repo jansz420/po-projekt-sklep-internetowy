@@ -14,10 +14,13 @@ public class Mouse extends PeripheralDevice{
 
     @Override
     public boolean isForGaming(){
-        return false;
+        return super.isForGaming() && dpi >= 1600 && buttonsAmount >= 5 && (sensorType.equalsIgnoreCase("Laserowy")) || (sensorType.equalsIgnoreCase("Optyczny"));
     }
 
     public void displayExtraInfo() {
+        if (this.isForGaming()){
+            System.out.println("Idealny wybór dla graczy!");
+        }
         System.out.println("DPI: " + dpi);
         System.out.println("Ilość przycisków: " + buttonsAmount);
         System.out.println("Sensor: " + sensorType);

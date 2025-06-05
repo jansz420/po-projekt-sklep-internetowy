@@ -26,7 +26,7 @@ public class PeripheralDevice extends Product {
      * @return  true jesli tak
      */
     public boolean isForGaming() {
-        return hasRgb;
+        return hasRgb && (isWireless || cableLength >= 1.5) && (portType.equalsIgnoreCase("USB"));
     }
 
     /**
