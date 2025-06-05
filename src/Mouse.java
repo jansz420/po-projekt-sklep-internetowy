@@ -129,6 +129,6 @@ public class Mouse extends PeripheralDevice{
         }
     }
     public String toString(){
-        return String.format(";%s;%d;%d;%s",super.toString(), dpi, buttonsAmount, sensorType);
+        return String.format("%s;%d;%d;%s",super.toString(), dpi, buttonsAmount, sensorType);
     }
 }

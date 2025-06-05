@@ -137,6 +137,6 @@ public class MobileDevice extends Computer{
         }
     }
     public String toString(){
-        return String.format(";%s;%d;%.1f;%s;%d",super.toString(), batteryCapacity, screenSize, resolution, refreshRate);
+        return String.format("%s;%d;%.1f;%s;%d",super.toString(), batteryCapacity, screenSize, resolution, refreshRate);
     }
 }

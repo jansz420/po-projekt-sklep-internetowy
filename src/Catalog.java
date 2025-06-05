@@ -1,4 +1,6 @@
-import java.security.Key;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -46,7 +48,7 @@ public class Catalog {
                 products.add(newDevice);
                 break;
             case 4:
-                AudioDevice newAudioDevice = new AudioDevice("brak", "brak", 0, 0, "brak", "brak", 0, "brak", 0, false, "brak", "brak", "brak", false, false, 0, "brak", false, 0, 0, 0);
+                AudioDevice newAudioDevice = new AudioDevice("brak", "brak", 0, 0, "brak", "brak", 0, "brak", 0, false, "brak", "brak", "brak", false, false, 0, "brak", false, 0, 0, "20Hz-20kHz");
                 newAudioDevice.editProduct();
                 products.add(newAudioDevice);
                 break;
@@ -193,12 +195,50 @@ public class Catalog {
 
     }
 
-    public boolean saveToFile(){
-        for (Product product : products) {
-            System.out.println(product.getClass().getCanonicalName());
+    public boolean saveToFile() throws IOException {
+        try (
+            PrintWriter productWriter = new PrintWriter(new File("Product.txt"));
+            PrintWriter computerWriter = new PrintWriter(new File("Computer.txt"));
+            PrintWriter mobileDeviceWriter = new PrintWriter(new File("MobileDevice.txt"));
+            PrintWriter peripheralDeviceWriter = new PrintWriter(new File("PeripheralDevice.txt"));
+            PrintWriter audioDeviceWriter = new PrintWriter(new File("AudioDevice.txt"));
+            PrintWriter keyboardWriter = new PrintWriter(new File("Keyboard.txt"));
+            PrintWriter monitorWriter = new PrintWriter(new File("Monitor.txt"));
+            PrintWriter mouseWriter = new PrintWriter(new File ("Mouse.txt"));
+        ) {
+            for (Product product : products) {
+                if (product instanceof Computer) {
+                    computerWriter.println(((Computer) product).toString());
+                } else if (product instanceof MobileDevice) {
+                    mobileDeviceWriter.println(((MobileDevice) product).toString());
+                } else if (product instanceof AudioDevice) {
+                    audioDeviceWriter.println(((AudioDevice) product).toString());
+                } else if (product instanceof Keyboard) {
+                    keyboardWriter.println(((Keyboard) product).toString());
+                } else if (product instanceof Monitor) {
+                    monitorWriter.println(((Monitor) product).toString());
+                } else if (product instanceof Mouse) {
+                    mouseWriter.println(((Mouse) product).toString());
+                } else if (product instanceof PeripheralDevice) {
+                    peripheralDeviceWriter.println(((PeripheralDevice) product).toString());
+                } else {
+                    productWriter.println(product.toString());
+                }
+            }
+            productWriter.close();
+            computerWriter.close();
+            mobileDeviceWriter.close();
+            peripheralDeviceWriter.close();
+            audioDeviceWriter.close();
+            keyboardWriter.close();
+            monitorWriter.close();
+            mouseWriter.close();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
 
         }
-        return false;
     }
 
     public boolean readFromFile(String fileName){

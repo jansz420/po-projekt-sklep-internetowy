@@ -147,6 +147,6 @@ public class AudioDevice extends PeripheralDevice{
         }
     }
     public String toString(){
-        return String.format(";%s;%s;%b;%d;%d;%s",super.toString(), deviceType, isHifi, impedance, power, frequencyResponse);
+        return String.format("%s;%s;%b;%d;%d;%s",super.toString(), deviceType, isHifi, impedance, power, frequencyResponse);
     }
 }

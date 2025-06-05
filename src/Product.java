@@ -149,7 +149,7 @@ public class Product {
 
     @Override
     public String toString(){
-        return String.format(";%s;%s;%.2f;%d;%s;%s;%.1f;%s;%d",name, brand, price, stockQuantity, description, color, weight, size, warranty);
+        return String.format("%s;%s;%.2f;%d;%s;%s;%.1f;%s;%d",name, brand, price, stockQuantity, description, color, weight, size, warranty);
     }
 
 

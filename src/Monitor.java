@@ -149,6 +149,6 @@ public class Monitor extends PeripheralDevice{
         }
     }
     public String toString(){
-        return String.format(";%s;%s;%s;%.1f;%d;%b",super.toString(), resolution, panelType, screenSize, refreshRate, hasSpeakers);
+        return String.format("%s;%s;%s;%.1f;%d;%b",super.toString(), resolution, panelType, screenSize, refreshRate, hasSpeakers);
     }
 }

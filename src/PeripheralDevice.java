@@ -150,6 +150,6 @@ public class PeripheralDevice extends Product {
         }
     }
     public String toString(){
-        return String.format(";%s;%b;%s;%s;%s;%b;%b;%.2f",super.toString(), isWireless, powerSupply, portType, inputOutput, isWaterproof, hasRgb, cableLength);
+        return String.format("%s;%b;%s;%s;%s;%b;%b;%.2f",super.toString(), isWireless, powerSupply, portType, inputOutput, isWaterproof, hasRgb, cableLength);
     }
 }
