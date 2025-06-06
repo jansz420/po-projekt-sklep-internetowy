@@ -243,58 +243,34 @@ public class Catalog {
                 }
                 return false;
             case 1:
-//                for (Product product : products) {
-//                    if (!(product instanceof Computer)) {
-//                        productsFilteredOut.add(product);
-//                        products.remove(product);
-//                    }
-//                }
                 for (int i = 0; i < products.size(); i++) {
                     if (!(products.get(i) instanceof Computer)) {
                         productsFilteredOut.add(products.get(i));
-                        products.remove(products.get(i));
+                        products.remove(products.get(i--));
                     }
                 }
                 return true;
             case 2:
-//                for (Product product : products) {
-//                    if (!(product instanceof PeripheralDevice)) {
-//                        productsFilteredOut.add(product);
-//                        products.remove(product);
-//                    }
-//                }
                 for (int i = 0; i < products.size(); i++) {
                     if (!(products.get(i) instanceof PeripheralDevice)) {
                         productsFilteredOut.add(products.get(i));
-                        products.remove(products.get(i));
+                        products.remove(products.get(i--));
                     }
                 }
                 return true;
             case 3:
-//                for (Product product : products) {
-//                    if (!(product instanceof AudioDevice)) {
-//                        productsFilteredOut.add(product);
-//                        products.remove(product);
-//                    }
-//                }
                 for (int i = 0; i < products.size(); i++) {
                     if (!(products.get(i) instanceof AudioDevice)) {
                         productsFilteredOut.add(products.get(i));
-                        products.remove(products.get(i));
+                        products.remove(products.get(i--));
                     }
                 }
                 return true;
             case 4:
-//                for (Product product : products) {
-//                    if (!(product instanceof Computer && ((Computer) product).isGaming()) && !(product instanceof PeripheralDevice && ((PeripheralDevice) product).isForGaming())) {
-//                        productsFilteredOut.add(product);
-//                        products.remove(product);
-//                    }
-//                }
                 for (int i = 0; i < products.size(); i++) {
                     if (!(products.get(i) instanceof Computer && ((Computer) products.get(i)).isGaming()) && !(products.get(i) instanceof PeripheralDevice && ((PeripheralDevice) products.get(i)).isForGaming())) {
                         productsFilteredOut.add(products.get(i));
-                        products.remove(products.get(i));
+                        products.remove(products.get(i--));
                     }
                 }
                 return true;
