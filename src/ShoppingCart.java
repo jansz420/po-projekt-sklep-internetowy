@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ShoppingCart {
     private List<Product> cartProducts =new ArrayList<>();
@@ -23,12 +25,34 @@ public class ShoppingCart {
     }
 
     /**
+     * Zlicza ilość wystąpienia danego produktu w koszyku
+     * @param product
+     * @return liczbę wystąpień w koszyku
+     */
+    public int countProducts(Product product) {
+        int count = 0;
+        for (Product p : cartProducts) {
+            if (p.equals(product)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
      * usuwa dany produkt z koszyka
      * @param product produkt do usunięcia
      */
-    public void removeFromCart(Product product) {
+    public void removeFromCart(Product product, int amount) {
         if (cartProducts.contains(product)) {
-            cartProducts.remove(product);
+            if (amount > this.countProducts(product)) {
+                System.out.println("W twoim koszyku znajdują się tylko "+ this.countProducts(product) + " takie produkty");
+            }
+            else {
+                for(int i = 0 ; i < amount ; i++) {
+                    cartProducts.remove(product);
+                }
+            }
         } else {
             System.out.println("Nie znaleziono produktu " + product.name + " w twoim koszyku.");
         }
@@ -44,6 +68,14 @@ public class ShoppingCart {
             totalPrice += cartProduct.price;
         }
         return totalPrice;
+    }
+
+    /**
+     * Opróżnia koszyk
+     */
+    public void clearCart() {
+        cartProducts.clear();
+        System.out.println("Koszyk został opróżniony.");
     }
 
     /**
@@ -75,22 +107,32 @@ public class ShoppingCart {
     }
 
     /**
-     * Wyświetla podstawowe informacje o produktach w koszyku
+     * Grupowanie produktów w koszyku
+     * @return mapa gdzie kluczem jest dany produkt, a wartością liczba jego występowania w koszyku
      */
-    public void display() {
-        for (Product cartProduct : cartProducts) {
-            cartProduct.displayInfo();
+    public Map<Product, Integer> getGroupedProducts() {
+        Map<Product, Integer> grouped = new HashMap<>();
+        for (Product product : cartProducts) {
+            grouped.put(product, grouped.getOrDefault(product, 0) + 1);
         }
+        return grouped;
     }
 
-    //tutaj jeszcze nie wiem jak chce aby dokładnie wyglądało podsumowanie
+    /**
+     * Tworzenie podsumowania koszyka, które zawiera najistotniejsze informacje i łączną cenę
+     * @return podsumowanie koszyka
+     */
     public String cartSummary() {
+        if (cartProducts.isEmpty()) {
+            return "Koszyk jest pusty";
+        }
         String summary= "\n";
-//        for (Product cartProduct : cartProducts) {
-//            summary += cartProduct.toString() + ", ";
-//        }
-        for (int i = 0; i < cartProducts.size(); i++) {
-            summary += (i+1) + " " + cartProducts.get(i).toString() + "\n";
+        Map<Product, Integer> grouped = getGroupedProducts();
+        int index = 0;
+        for (Map.Entry<Product, Integer> entry : grouped.entrySet()) {
+            Product product = entry.getKey();
+            int quantity = entry.getValue();
+            summary += (++index) + " " +product.name+" "+product.color+" "+product.price+" zł "+ "x"+quantity+"\n";
         }
         summary += "Cena Koszyka "+ this.sumUpPrices()+" zł\n";
         return summary;

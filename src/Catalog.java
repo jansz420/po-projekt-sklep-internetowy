@@ -1,17 +1,24 @@
 import java.security.Key;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 
 public class Catalog {
     public ArrayList<Product> products;
+    private ShoppingCart cart;
+   // private Order order;
     private final Scanner scanner = new Scanner(System.in);
     private boolean filtering = false;
     public ArrayList<Product> productsFilteredOut = new ArrayList<>();
 
+
     public Catalog() {
         products = new ArrayList<>();
+        this.cart = new ShoppingCart();
+        //this.order = null;
     }
 
     /**
@@ -146,9 +153,14 @@ public class Catalog {
                 if (page > 0){
                     System.out.println("7 - Poprzednia strona");
                 }
-                //wyswietl koszyk
-                System.out.println("8 - Sortuj");
-                System.out.println("9 - Filtrowanie");
+
+                System.out.println("8 - Wyświetl koszyk");
+                System.out.println("9 - Złóż zamówienie");
+
+              
+                System.out.println("10 - Sortuj");
+                System.out.println("11 - Filtrowanie");
+
                 System.out.println("0 - Zakoncz");
                 if (scanner.hasNextInt()) {
                     action  = scanner.nextInt();
@@ -173,13 +185,23 @@ public class Catalog {
                         page--;
                         break;
                     case 8:
-                        sortListBy();
+
+                        displayCartMenu();
                         break;
                     case 9:
+                        //this.order = new Order(cart);
+                        //System.out.println(this.order.orderSummary());
+                        break;
+
+                    case 10:
+                        sortListBy();
+                        break;
+                    case 11:
                         filtering = filterProducts();
                         break;
                     case 420:
                         return true;
+
                     default:
                         System.out.println("Niepoprawna akcja");
                         break;
@@ -189,16 +211,85 @@ public class Catalog {
 
         }
 
+
+
+    public void displayCartMenu() {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\n==== Koszyk ====");
+            System.out.println(cart.cartSummary());
+            System.out.println("1 - Usuń wybrany produkt");
+            System.out.println("2 - Opróżnij koszyk");
+            System.out.println("0 - Wróć");
+
+            String input = scanner.nextLine();
+
+            switch (input) {
+                case "1":
+                    Map<Product, Integer> productCounts = cart.getGroupedProducts();
+                    List<Product> uniqPrdcts = new ArrayList<>(productCounts.keySet());
+
+                    for (int i = 0; i < uniqPrdcts.size(); i++) {
+                        Product p = uniqPrdcts.get(i);
+                        System.out.printf("%d. %s x%d\n", i + 1, p.name, productCounts.get(p));
+                    }
+
+                    System.out.print("Podaj numer produktu do usunięcia: ");
+                    String idxStr = scanner.nextLine();
+                    int indexToRemove;
+                    try {
+                        indexToRemove = Integer.parseInt(idxStr) - 1;
+                        if (indexToRemove < 0 || indexToRemove >= uniqPrdcts.size()) {
+                            System.out.println("Nieprawidłowy numer.");
+                            continue;
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Wprowadź poprawną liczbę.");
+                        continue;
+                    }
+
+                    Product selectedProduct = uniqPrdcts.get(indexToRemove);
+
+                    System.out.print("Ile sztuk chcesz usunąć: ");
+                    String amountStr = scanner.nextLine();
+                    int amount;
+                    try {
+                        amount = Integer.parseInt(amountStr);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Wprowadź poprawną liczbę.");
+                        continue;
+                    }
+
+                    cart.removeFromCart(selectedProduct, amount);
+                    System.out.printf("Usunięto %d sztuk produktu %s z koszyka.\n", amount, selectedProduct.name);
+                    break;
+
+                case "2":
+                    cart.clearCart();
+                    break;
+
+                case "0":
+                    return;
+
+                default:
+                    System.out.println("Niepoprawna akcja. Wybierz 1, 2 lub 0.");
+            }
+        }
+    }
+
+
     /**
      * Wyswietla interfejs danego produktu
      * @param product wybrany przez uzytkownika produkt
      */
+
     public void productOptions(Product product){
         while (true){
 //            Scanner scanner = new Scanner(System.in);
             System.out.println("Opcje:");
             System.out.println("1 - Dodaj do koszyka");
-            System.out.println("2 - cos tam");
+            System.out.println("2 - Usuń z koszyka");
             System.out.println("0 - Wroc");
             int action = -1;
             if (scanner.hasNextInt()) {
@@ -209,10 +300,21 @@ public class Catalog {
                 case 0:
                     return;
                 case 1:
-
-                    System.out.printf("\n%s zostal dodany do koszyka!\n", product.name);
+                    System.out.println("Podaj ilość sztuk: ");
+                    int quantity  = scanner.nextInt();
+                    scanner.nextLine();
+                    this.cart.addProduct(product, quantity);
+                    System.out.printf("\n%s został dodany do koszyka!\n", product.name);
                     break;
                 case 2:
+                    System.out.println("Podaj ilość sztuk do usunięcia: ");
+                    int quantityRm  = scanner.nextInt();
+                    scanner.nextLine();
+                    this.cart.removeFromCart(product,quantityRm);
+                    System.out.printf("\n%s został usunięty z koszyka!\n", product.name);
+                    break;
+                default:
+                    System.out.println("Niepoprawna akcja");
                     break;
             }
         }
