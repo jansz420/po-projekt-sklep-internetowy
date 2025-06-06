@@ -116,52 +116,53 @@ public class Catalog {
      * @return true jesli wpisano kod admina
      */
         public boolean displayProductList(){
-            if (products.isEmpty()) {
-                System.out.println("Nie udało sie wczytać listy produktów");
-            }
-
-//            Scanner scanner = new Scanner(System.in);
             int page = 0;
             int productsPerPage = 5;
-            int pageAmount = (products.size() + productsPerPage - 1) / productsPerPage;
+            int pageAmount;
+            int action;
 
             while (true) {
-                System.out.printf("\n==== Strona %d z %d ====", page + 1, pageAmount);
+                action = -1;
+                pageAmount = (products.size() + productsPerPage - 1) / productsPerPage;
 
-                int start = page * productsPerPage;  //indeks pierwszego produktu do wysw na stronie
-                int end = Math.min(start + productsPerPage, products.size()); //indeks ostatniego
-                int id = 1;
 
-                for (int i = start; i < end; i++, id++) {
-                    products.get(i).displayInfo();
-                    System.out.printf("%d.", id);
-                    for (int j = 0; j < 86; j++) {
-                        System.out.print("=");
-                    }
-                }
-
-                int action = -1;
-
+                System.out.print("#################################[ KATALOG  PRODUKTÓW ]#################################");
 
                 if (!products.isEmpty()) {
-                    //tutaj wrzucic te printy jak maciej balcerzak raczy zrobic wyswietlanie koszyka
-                }
-                System.out.printf("\n1-%d - Pokaż pełny opis\n", id - 1); //poprawka zeby dobrze opcje wyswietlalo
-                if (page < pageAmount - 1) {
-                    System.out.println("6 - Nastepna strona");
-                }
-                if (page > 0){
-                    System.out.println("7 - Poprzednia strona");
-                }
+//                    System.out.printf("\n====[ Strona %d z %d ]====\n");
 
+                    int start = page * productsPerPage;  //indeks pierwszego produktu do wysw na stronie
+                    int end = Math.min(start + productsPerPage, products.size()); //indeks ostatniego
+                    int id = 1;
+
+                    for (int i = start; i < end; i++, id++) {
+                        products.get(i).displayInfo();
+                        System.out.printf("\t\t\t\t\t\t\t\t\t   <([ %d ])>\n", id);
+                    }
+                    System.out.printf("\n####################################[ Strona %d z %d ]####################################\n", page + 1, pageAmount);
+
+
+                    //tutaj wrzucic te printy jak maciej balcerzak raczy zrobic wyswietlanie koszyka
+                    System.out.printf("1-%d - Pokaż pełny opis\n", id - 1); //poprawka zeby dobrze opcje wyswietlalo
+                    if (page < pageAmount - 1) {
+                        System.out.println("6 - Nastepna strona");
+                    }
+                    if (page > 0){
+                        System.out.println("7 - Poprzednia strona");
+                    }
+
+                }
+                else {
+                    System.out.println("\n\n\tBrak produktów do wyświetlenia\n");
+                    System.out.println("########################################################################################");
+                }
                 System.out.println("8 - Wyświetl koszyk");
                 System.out.println("9 - Złóż zamówienie");
 
-              
                 System.out.println("10 - Sortuj");
                 System.out.println("11 - Filtrowanie");
-
                 System.out.println("0 - Zakoncz");
+
                 if (scanner.hasNextInt()) {
                     action  = scanner.nextInt();
                     scanner.nextLine();
@@ -179,10 +180,20 @@ public class Catalog {
                         productOptions(products.get(productIndex));
                         break;
                     case 6:
-                        page++;
+                        if (page < pageAmount - 1){
+                            page++;
+                        }
+                        else {
+                            System.out.println("Niepoprawna akcja");
+                        }
                         break;
                     case 7:
-                        page--;
+                        if (page > 0){
+                            page--;
+                        }
+                        else {
+                            System.out.println("Niepoprawna akcja");
+                        }
                         break;
                     case 8:
 
@@ -289,7 +300,7 @@ public class Catalog {
     public void productOptions(Product product){
         while (true){
 //            Scanner scanner = new Scanner(System.in);
-            System.out.println("Opcje:");
+            System.out.println("\nOpcje:");
             System.out.println("1 - Dodaj do koszyka");
             System.out.println("2 - Usuń z koszyka");
             System.out.println("0 - Wroc");

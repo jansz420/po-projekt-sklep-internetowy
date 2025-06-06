@@ -23,6 +23,7 @@ public class AudioDevice extends PeripheralDevice{
     }
 
     public void displayExtraInfo() {
+        super.displayExtraInfo();
         if (this.isForGaming()){
             System.out.println("Idealny wybór dla graczy!");
         }
@@ -31,22 +32,20 @@ public class AudioDevice extends PeripheralDevice{
         System.out.printf("Impedancja: %.2f\n", impedance);
         System.out.printf("Moc: %.2f\n", power);
         System.out.printf("Pasmo przenoszenia: %.2f\n", frequencyResponse);
-        super.displayExtraInfo();
-
     }
 
     protected void showListToEdit() {
         super.showListToEdit();
-        System.out.println("17. Typ urządzenia");
-        System.out.println("18. HiFi");
-        System.out.println("19. Impedancja");
-        System.out.println("20. Moc");
-        System.out.println("21. Pasmo przenoszenia");
+        System.out.print("\t\t17. Typ urządzenia");
+        System.out.println("\t\t18. HiFi");
+        System.out.print("19. Impedancja");
+        System.out.print("\t\t\t\t20. Moc");
+        System.out.println("\t\t\t\t\t21. Pasmo przenoszenia");
     }
 
+    @Override
     public int editProduct() {
         while(true) {
-            this.displayInfo();
             this.displayExtraInfo();
             Scanner scanner = new Scanner(System.in);
             this.showListToEdit();

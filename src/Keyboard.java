@@ -20,6 +20,7 @@ public class Keyboard extends PeripheralDevice{
     }
 
     public void displayExtraInfo() {
+        super.displayExtraInfo();
         if (this.isForGaming()){
             System.out.println("Idealny wybór dla graczy!");
         }
@@ -27,21 +28,19 @@ public class Keyboard extends PeripheralDevice{
         System.out.printf("Klawisze numeryczne: %s\n", hasNumPad ? "tak" : "nie");
         System.out.printf("Układ klawiszy: %s\n", keyLayout);
         System.out.printf("Podpórka pod nadgarstki: %s\n", hasWristRest ? "tak" : "nie");
-        super.displayExtraInfo();
-
     }
 
     protected void showListToEdit() {
         super.showListToEdit();
-        System.out.println("17. Typ klawiatury");
-        System.out.println("18. Klawisze numeryczne");
-        System.out.println("19. Układ klawiszy");
-        System.out.println("20. Podpórka pod nadgarstki");
+        System.out.print("\t\t17. Typ klawiatury");
+        System.out.println("\t\t18. Klawisze numeryczne");
+        System.out.print("19. Układ klawiszy");
+        System.out.println("\t\t\t20. Podpórka pod nadgarstki");
     }
 
+    @Override
     public int editProduct() {
         while(true) {
-            this.displayInfo();
             this.displayExtraInfo();
             Scanner scanner = new Scanner(System.in);
             this.showListToEdit();
