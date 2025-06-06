@@ -1,6 +1,4 @@
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -241,7 +239,115 @@ public class Catalog {
         }
     }
 
-    public boolean readFromFile(String fileName){
-        return false;
+    private boolean readFromSingleFile(String fileName, String type) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(";");
+
+                Product product = null;
+
+                switch (type) {
+                    case "Computer":
+                        product = new Computer(
+                                parts[0], parts[1], Double.parseDouble(parts[2]), Integer.parseInt(parts[3]),
+                                parts[4], parts[5], Double.parseDouble(parts[6]), parts[7], Integer.parseInt(parts[8]),
+                                parts[9], parts[10], Integer.parseInt(parts[11]), Integer.parseInt(parts[12]), parts[13],
+                                parts[14], parts[15]
+                        );
+                        break;
+
+                    case "MobileDevice":
+                        product = new MobileDevice(
+                                parts[0], parts[1], Double.parseDouble(parts[2]), Integer.parseInt(parts[3]),
+                                parts[4], parts[5], Double.parseDouble(parts[6]), parts[7], Integer.parseInt(parts[8]),
+                                parts[9], parts[10], Integer.parseInt(parts[11]), Integer.parseInt(parts[12]), parts[13],
+                                parts[14], parts[15], Integer.parseInt(parts[16]), Double.parseDouble(parts[17]), parts[18],
+                                Integer.parseInt(parts[19])
+                        );
+                        break;
+
+                    case "Product":
+                        product = new Product(
+                                parts[0], parts[1], Double.parseDouble(parts[2]), Integer.parseInt(parts[3]),
+                                parts[4], parts[5], Double.parseDouble(parts[6]), parts[7], Integer.parseInt(parts[8])
+                        );
+                        break;
+
+                    case "PeripheralDevice":
+                        product = new PeripheralDevice(
+                                parts[0], parts[1], Double.parseDouble(parts[2]), Integer.parseInt(parts[3]),
+                                parts[4], parts[5], Double.parseDouble(parts[6]), parts[7], Integer.parseInt(parts[8]),
+                                Boolean.parseBoolean(parts[9]), parts[10], parts[11], parts[12], Boolean.parseBoolean(parts[13]),
+                                Boolean.parseBoolean(parts[14]), Double.parseDouble(parts[15])
+                        );
+                        break;
+
+                    case "Mouse":
+                        product = new Mouse(
+                                parts[0], parts[1], Double.parseDouble(parts[2]), Integer.parseInt(parts[3]),
+                                parts[4], parts[5], Double.parseDouble(parts[6]), parts[7], Integer.parseInt(parts[8]),
+                                Boolean.parseBoolean(parts[9]), parts[10], parts[11], parts[12], Boolean.parseBoolean(parts[13]),
+                                Boolean.parseBoolean(parts[14]), Double.parseDouble(parts[15]), Integer.parseInt(parts[16]),
+                                Integer.parseInt(parts[17]), parts[18]
+                        );
+                        break;
+
+                    case "Monitor":
+                        product = new Monitor(
+                                parts[0], parts[1], Double.parseDouble(parts[2]), Integer.parseInt(parts[3]),
+                                parts[4], parts[5], Double.parseDouble(parts[6]), parts[7], Integer.parseInt(parts[8]),
+                                Boolean.parseBoolean(parts[9]), parts[10], parts[11], parts[12], Boolean.parseBoolean(parts[13]),
+                                Boolean.parseBoolean(parts[14]), Double.parseDouble(parts[15]), parts[16], parts[17],
+                                Double.parseDouble(parts[18]), Integer.parseInt(parts[19]), Boolean.parseBoolean(parts[20])
+                        );
+                        break;
+
+                    case "AudioDevice":
+                        product = new AudioDevice(
+                                parts[0], parts[1], Double.parseDouble(parts[2]), Integer.parseInt(parts[3]),
+                                parts[4], parts[5], Double.parseDouble(parts[6]), parts[7], Integer.parseInt(parts[8]),
+                                Boolean.parseBoolean(parts[9]), parts[10], parts[11], parts[12], Boolean.parseBoolean(parts[13]),
+                                Boolean.parseBoolean(parts[14]), Double.parseDouble(parts[15]), parts[16], Boolean.parseBoolean(parts[17]),
+                                Integer.parseInt(parts[18]), Integer.parseInt(parts[19]), parts[20]
+                        );
+                        break;
+
+                    case "Keyboard":
+                        product = new Keyboard(
+                                parts[0], parts[1], Double.parseDouble(parts[2]), Integer.parseInt(parts[3]),
+                                parts[4], parts[5], Double.parseDouble(parts[6]), parts[7], Integer.parseInt(parts[8]),
+                                Boolean.parseBoolean(parts[9]), parts[10], parts[11], parts[12], Boolean.parseBoolean(parts[13]),
+                                Boolean.parseBoolean(parts[14]), Double.parseDouble(parts[15]), parts[16], Boolean.parseBoolean(parts[17]),
+                                parts[18], Boolean.parseBoolean(parts[19])
+                        );
+                        break;
+                }
+
+                if (product != null) {
+                    products.add(product);
+                }
+            }
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean readFromFile() throws IOException{
+            if(
+                readFromSingleFile("Product.txt", "Product") &&
+                readFromSingleFile("Computer.txt", "Computer") &&
+                readFromSingleFile("MobileDevice.txt", "MobileDevice") &&
+                readFromSingleFile("PeripheralDevice.txt", "PeripheralDevice") &&
+                readFromSingleFile("AudioDevice.txt", "AudioDevice") &&
+                readFromSingleFile("Keyboard.txt", "Keyboard") &&
+                readFromSingleFile("Monitor.txt", "Monitor") &&
+                readFromSingleFile("Mouse.txt", "Mouse")
+            ) {
+                return true;
+            } else {
+                return false;
+            }
     }
 }
