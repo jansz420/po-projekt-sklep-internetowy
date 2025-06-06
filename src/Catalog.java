@@ -564,7 +564,7 @@ public class Catalog {
                                 parts[4], parts[5], Double.parseDouble(parts[6]), parts[7], Integer.parseInt(parts[8]),
                                 Boolean.parseBoolean(parts[9]), parts[10], parts[11], parts[12], Boolean.parseBoolean(parts[13]),
                                 Boolean.parseBoolean(parts[14]), Double.parseDouble(parts[15]), parts[16], Boolean.parseBoolean(parts[17]),
-                                Integer.parseInt(parts[18]), Integer.parseInt(parts[19]), parts[20]
+                                Double.parseDouble(parts[18]), Double.parseDouble(parts[19]), Double.parseDouble(parts[20])
                         );
                         break;
 

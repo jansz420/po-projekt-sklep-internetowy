@@ -3,11 +3,11 @@ import java.util.Scanner;
 public class AudioDevice extends PeripheralDevice{
     protected String deviceType;
     protected boolean isHifi;
-    protected int impedance;
-    protected int power;
-    protected String frequencyResponse;
+    protected double impedance;
+    protected double power;
+    protected double frequencyResponse;
 
-    public AudioDevice(String name, String brand, double price, int stockQuantity, String description, String color, double weight, String size, int warranty, boolean isWireless, String powerSupply, String portType, String inputOutput, boolean isWaterproof, boolean hasRgb, double cableLength, String deviceType, boolean isHifi, int impedance, int power, String frequencyResponse) {
+    public AudioDevice(String name, String brand, double price, int stockQuantity, String description, String color, double weight, String size, int warranty, boolean isWireless, String powerSupply, String portType, String inputOutput, boolean isWaterproof, boolean hasRgb, double cableLength, String deviceType, boolean isHifi, double impedance, double power, double frequencyResponse) {
         super(name, brand, price, stockQuantity, description, color, weight, size, warranty, isWireless, powerSupply, portType, inputOutput, isWaterproof, hasRgb, cableLength);
         this.deviceType = deviceType;
         this.isHifi = isHifi;
@@ -135,17 +135,20 @@ public class AudioDevice extends PeripheralDevice{
                     System.out.print("Zmieniono HiFi");
                     isHifi = !isHifi;
                     break;
-                case 20:
+                case 19:
                     System.out.print("Podaj nową impedancje: ");
-                    impedance = scanner.nextInt();
+                    if (scanner.hasNextDouble()) { impedance = scanner.nextDouble(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
+                    break;
+                case 20:
+                    System.out.print("Podaj nową moc: ");
+                    if (scanner.hasNextDouble()) { power = scanner.nextDouble(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 21:
-                    System.out.print("Podaj nową moc: ");
-                    power = scanner.nextInt();
-                    break;
-                case 22:
                     System.out.print("Podaj nowe pasmo przenoszenia: ");
-                    frequencyResponse = scanner.nextLine();
+                    if (scanner.hasNextDouble()) { frequencyResponse = scanner.nextDouble(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 default:
                     System.out.println("Błędny numer akcji.");
