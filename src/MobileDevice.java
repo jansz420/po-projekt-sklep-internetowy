@@ -38,6 +38,7 @@ public class MobileDevice extends Computer{
     public int editProduct() {
         while (true){
             this.displayInfo();
+            this.displayExtraInfo();
             Scanner scanner = new Scanner(System.in);
             this.showListToEdit();
             System.out.println("0. Zakończ");
@@ -55,7 +56,8 @@ public class MobileDevice extends Computer{
                     break;
                 case 2:
                     System.out.print("Podaj nową cenę[zł]: ");
-                    price = scanner.nextDouble();
+                    if (scanner.hasNextDouble()) { price = scanner.nextDouble(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 3:
                     System.out.print("Podaj nowy opis: ");
@@ -63,7 +65,8 @@ public class MobileDevice extends Computer{
                     break;
                 case 4:
                     System.out.print("Podaj nową liczbę produktu na magazynie: ");
-                    stockQuantity = scanner.nextInt();
+                    if (scanner.hasNextInt()) { stockQuantity = scanner.nextInt(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 5:
                     System.out.print("Podaj nową markę: ");
@@ -75,7 +78,8 @@ public class MobileDevice extends Computer{
                     break;
                 case 7:
                     System.out.print("Podaj nową wagę[g]: ");
-                    weight = scanner.nextDouble();
+                    if (scanner.hasNextDouble()) { weight = scanner.nextDouble(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 8:
                     System.out.print("Podaj nowy rozmiar (WYS[cm]xSZER[cm]xDŁ[cm]: ");
@@ -83,7 +87,8 @@ public class MobileDevice extends Computer{
                     break;
                 case 9:
                     System.out.print("Podaj nową długość gwarancji(ile miesięcy): ");
-                    warranty = scanner.nextInt();
+                    if (scanner.hasNextInt()) { warranty = scanner.nextInt(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 10:
                     System.out.print("Podaj nowy typ urządzenia: ");
@@ -95,11 +100,13 @@ public class MobileDevice extends Computer{
                     break;
                 case 12:
                     System.out.print("Podaj nową ilość pamięci RAM[GB]: ");
-                    ram = scanner.nextInt();
+                    if (scanner.hasNextInt()) { ram = scanner.nextInt(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 13:
                     System.out.print("Podaj nową ilość pamięci użytkowej[GB]: ");
-                    memory = scanner.nextInt();
+                    if (scanner.hasNextInt()) { memory = scanner.nextInt(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 14:
                     System.out.print("Podaj nowy typ karty graficznej: ");
@@ -115,11 +122,13 @@ public class MobileDevice extends Computer{
                     break;
                 case 17:
                     System.out.print("Podaj nową pojemność baterii: ");
-                    batteryCapacity = scanner.nextInt();
+                    if (scanner.hasNextInt()) { batteryCapacity = scanner.nextInt(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 18:
                     System.out.print("Podaj nowy rozmiar ekranu: ");
-                    screenSize = scanner.nextDouble();
+                    if (scanner.hasNextDouble()) { screenSize = scanner.nextDouble(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 19:
                     System.out.print("Podaj nową rozdzielczość: ");
@@ -127,11 +136,12 @@ public class MobileDevice extends Computer{
                     break;
                 case 20:
                     System.out.print("Podaj nową częstotliwość odświeżania: ");
-                    refreshRate = scanner.nextInt();
+                    if (scanner.hasNextInt()) { refreshRate = scanner.nextInt(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 default:
                     System.out.println("Błędny numer akcji.");
-                    return 0;
+                    break;
             }
 //            return 1;
         }
