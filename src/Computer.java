@@ -40,22 +40,22 @@ public class Computer extends Product {
 
     protected void showListToEdit() {
         super.showListToEdit();
-        System.out.println("10. Typ urządzenia");
-        System.out.println("11. Procesor");
-        System.out.println("12. Ilość pamięci RAM");
-        System.out.println("13. Ilość pamięci użytkowej");
-        System.out.println("14. Typ karty graficznej");
-        System.out.println("15. Nazwa karty graficznej");
-        System.out.println("16. System operacyjny");
+        System.out.println("DANE CHARAKTERYSTYCZNE:");
+        System.out.print("10. Typ urządzenia");
+        System.out.print("\t\t\t\t11. Procesor");
+        System.out.println("\t\t\t\t\t12. Ilość pamięci RAM");
+        System.out.print("13. Ilość pamięci użytkowej");
+        System.out.print("\t\t14. Typ karty graficznej");
+        System.out.println("\t\t15. Nazwa karty graficznej");
+        System.out.print("16. System operacyjny");
     }
 
     public int editProduct() {
         while (true){
-            this.displayInfo();
             this.displayExtraInfo();
             Scanner scanner = new Scanner(System.in);
             this.showListToEdit();
-            System.out.println("0. Zakończ");
+            System.out.println("\n0. Zakończ");
             int action = -1;
             if (scanner.hasNextInt()) {
                 action  = scanner.nextInt();

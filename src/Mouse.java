@@ -12,31 +12,30 @@ public class Mouse extends PeripheralDevice{
         this.sensorType = sensorType;
     }
 
-    @Override
     public boolean isForGaming(){
         return super.isForGaming() && dpi >= 1600 && buttonsAmount >= 5 && (sensorType.equalsIgnoreCase("Laserowy")) || (sensorType.equalsIgnoreCase("Optyczny"));
     }
 
     public void displayExtraInfo() {
+        super.displayExtraInfo();
         if (this.isForGaming()){
             System.out.println("Idealny wybór dla graczy!");
         }
         System.out.println("DPI: " + dpi);
         System.out.println("Ilość przycisków: " + buttonsAmount);
         System.out.println("Sensor: " + sensorType);
-        super.displayExtraInfo();
     }
 
     protected void showListToEdit() {
         super.showListToEdit();
-        System.out.println("17. DPI");
-        System.out.println("18. Ilość przycisków");
+        System.out.print("\t\t17. DPI");
+        System.out.println("\t\t\t\t\t18. Ilość przycisków");
         System.out.println("19. Sensor");
     }
 
+    @Override
     public int editProduct() {
         while(true) {
-            this.displayInfo();
             this.displayExtraInfo();
             Scanner scanner = new Scanner(System.in);
             this.showListToEdit();

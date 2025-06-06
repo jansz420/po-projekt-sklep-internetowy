@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 
+import static java.lang.Integer.parseInt;
+
 public class Catalog {
     public ArrayList<Product> products;
     private ShoppingCart cart;
@@ -36,49 +38,52 @@ public class Catalog {
         System.out.println("7. Monitor");
         System.out.println("0. Zakoncz");
         System.out.println("Podaj typ produktu: ");
-        int action = -1;
-        if (scanner.hasNextInt()) {
-            action = scanner.nextInt();
-            scanner.nextLine();
-        }
+        String action;
+//        if (scanner.hasNextInt()) {
+//            action = scanner.nextInt();
+//            scanner.nextLine();
+//        }
+        action = scanner.nextLine();
         switch (action) {
-            case 1:
+            case "0":
+                break;
+            case "1":
                 Computer newComputer =  new Computer("brak", "brak", 0, 0, "brak", "brak", 0, "brak", 0, "brak", "brak", 0, 0, "brak", "brak", "brak");
                 newComputer.editProduct();
                 products.add(newComputer);
                 break;
-            case 2:
+            case "2":
                 MobileDevice newMobile = new MobileDevice("brak", "brak", 0, 0, "brak", "brak", 0, "brak", 0, "brak", "brak", 0, 0, "brak", "brak", "brak", 0, 0, "brak", 0);
                 newMobile.editProduct();
                 products.add(newMobile);
                 break;
-            case 3:
+            case "3":
                 PeripheralDevice newDevice = new PeripheralDevice("brak", "brak", 0, 0, "brak", "brak", 0, "brak", 0, false, "brak", "brak", "brak", false, false, 0);
                 newDevice.editProduct();
                 products.add(newDevice);
                 break;
-            case 4:
-                AudioDevice newAudioDevice = new AudioDevice("brak", "brak", 0, 0, "brak", "brak", 0, "brak", 0, false, "brak", "brak", "brak", false, false, 0, "brak", false, 0, 0, "20Hz-20kHz");
+            case "4":
+                AudioDevice newAudioDevice = new AudioDevice("brak", "brak", 0, 0, "brak", "brak", 0, "brak", 0, false, "brak", "brak", "brak", false, false, 0, "brak", false, 0, 0, 0);
                 newAudioDevice.editProduct();
                 products.add(newAudioDevice);
                 break;
-            case 5:
+            case "5":
                 Mouse newMouse = new Mouse("brak", "brak", 0, 0, "brak", "brak", 0, "brak", 0, false, "brak", "brak", "brak", false, false, 0, 0, 0, "brak");
                 newMouse.editProduct();
                 products.add(newMouse);
                 break;
-            case 6:
+            case "6":
                 Keyboard newKeyboard = new Keyboard("brak", "brak", 0, 0, "brak", "brak", 0, "brak", 0, false, "brak", "brak", "brak", false, false, 0, "brak", false, "brak", false);
                 newKeyboard.editProduct();
                 products.add(newKeyboard);
                 break;
-            case 7:
+            case "7":
                 Monitor newMonitor = new Monitor("brak", "brak", 0, 0, "brak", "brak", 0, "brak", 0, false, "brak", "brak", "brak", false, false, 0, "brak", "brak", 0, 0, false);
                 newMonitor.editProduct();
                 products.add(newMonitor);
                 break;
             default:
-
+                System.out.println("Nieprawidłowa wartość!");
                 break;
         }
     }
@@ -116,61 +121,65 @@ public class Catalog {
      * @return true jesli wpisano kod admina
      */
         public boolean displayProductList(){
-            if (products.isEmpty()) {
-                System.out.println("Nie udało sie wczytać listy produktów");
-            }
-
-//            Scanner scanner = new Scanner(System.in);
             int page = 0;
             int productsPerPage = 5;
-            int pageAmount = (products.size() + productsPerPage - 1) / productsPerPage;
+            int pageAmount;
+            int productIndex;
+            String action;
 
             while (true) {
-                System.out.printf("\n==== Strona %d z %d ====", page + 1, pageAmount);
+//                action = -1;
+                pageAmount = (products.size() + productsPerPage - 1) / productsPerPage;
 
-                int start = page * productsPerPage;  //indeks pierwszego produktu do wysw na stronie
-                int end = Math.min(start + productsPerPage, products.size()); //indeks ostatniego
-                int id = 1;
 
-                for (int i = start; i < end; i++, id++) {
-                    products.get(i).displayInfo();
-                    System.out.printf("%d.", id);
-                    for (int j = 0; j < 86; j++) {
-                        System.out.print("=");
-                    }
-                }
-
-                int action = -1;
-
+                System.out.print("#################################[ KATALOG  PRODUKTÓW ]#################################");
 
                 if (!products.isEmpty()) {
-                    //tutaj wrzucic te printy jak maciej balcerzak raczy zrobic wyswietlanie koszyka
-                }
-                System.out.printf("\n1-%d - Pokaż pełny opis\n", id - 1); //poprawka zeby dobrze opcje wyswietlalo
-                if (page < pageAmount - 1) {
-                    System.out.println("6 - Nastepna strona");
-                }
-                if (page > 0){
-                    System.out.println("7 - Poprzednia strona");
-                }
+//                    System.out.printf("\n====[ Strona %d z %d ]====\n");
 
+                    int start = page * productsPerPage;  //indeks pierwszego produktu do wysw na stronie
+                    int end = Math.min(start + productsPerPage, products.size()); //indeks ostatniego
+                    int id = 1;
+
+                    for (int i = start; i < end; i++, id++) {
+                        products.get(i).displayInfo();
+                        System.out.printf("\t\t\t\t\t\t\t\t\t   <([ %d ])>\n", id);
+                    }
+                    System.out.printf("\n####################################[ Strona %d z %d ]####################################\n", page + 1, pageAmount);
+
+
+                    //tutaj wrzucic te printy jak maciej balcerzak raczy zrobic wyswietlanie koszyka
+                    System.out.printf("1-%d - Pokaż pełny opis\n", id - 1); //poprawka zeby dobrze opcje wyswietlalo
+                    if (page < pageAmount - 1) {
+                        System.out.println("6 - Nastepna strona");
+                    }
+                    if (page > 0){
+                        System.out.println("7 - Poprzednia strona");
+                    }
+
+                }
+                else {
+                    System.out.println("\n\n\tBrak produktów do wyświetlenia\n");
+                    System.out.println("########################################################################################");
+                }
                 System.out.println("8 - Wyświetl koszyk");
                 System.out.println("9 - Złóż zamówienie");
 
-              
                 System.out.println("10 - Sortuj");
-                System.out.println("11 - Filtrowanie");
-
+                System.out.printf("11 - Filtrowanie %s\n", filtering ? "[AKTYWNE]" : "");
                 System.out.println("0 - Zakoncz");
-                if (scanner.hasNextInt()) {
-                    action  = scanner.nextInt();
-                    scanner.nextLine();
-                }
-                int productIndex = page * productsPerPage + (action - 1);
+
+//                if (scanner.hasNextInt()) {
+//                    action  = scanner.nextInt();
+//                    scanner.nextLine();
+//                }
+                action = scanner.nextLine();
+
                 switch (action) {
-                    case 0:
+                    case "0":
                         return false;
-                    case 1, 2, 3, 4, 5:
+                    case "1", "2", "3", "4", "5":
+                        productIndex = page * productsPerPage + (parseInt(action) - 1);
                         if (productIndex >= products.size()) {
                             System.out.println("Niepoprawna akcja");
                             break;
@@ -178,28 +187,38 @@ public class Catalog {
                         products.get(productIndex).displayExtraInfo();
                         productOptions(products.get(productIndex));
                         break;
-                    case 6:
-                        page++;
+                    case "6":
+                        if (page < pageAmount - 1){
+                            page++;
+                        }
+                        else {
+                            System.out.println("Niepoprawna akcja");
+                        }
                         break;
-                    case 7:
-                        page--;
+                    case "7":
+                        if (page > 0){
+                            page--;
+                        }
+                        else {
+                            System.out.println("Niepoprawna akcja");
+                        }
                         break;
-                    case 8:
+                    case "8":
 
                         displayCartMenu();
                         break;
-                    case 9:
+                    case "9":
                         //this.order = new Order(cart);
                         //System.out.println(this.order.orderSummary());
                         break;
 
-                    case 10:
+                    case "10":
                         sortListBy();
                         break;
-                    case 11:
+                    case "11":
                         filtering = filterProducts();
                         break;
-                    case 420:
+                    case "420":
                         return true;
 
                     default:
@@ -216,7 +235,7 @@ public class Catalog {
      * Wyświetla interfejs koszyka
      */
     public void displayCartMenu() {
-        Scanner scanner = new Scanner(System.in);
+//        Scanner scanner = new Scanner(System.in);
 
         while (true) {
             System.out.println("\n==== Koszyk ====");
@@ -241,7 +260,7 @@ public class Catalog {
                     String idxStr = scanner.nextLine();
                     int indexToRemove;
                     try {
-                        indexToRemove = Integer.parseInt(idxStr) - 1;
+                        indexToRemove = parseInt(idxStr) - 1;
                         if (indexToRemove < 0 || indexToRemove >= uniqPrdcts.size()) {
                             System.out.println("Nieprawidłowy numer.");
                             continue;
@@ -257,7 +276,7 @@ public class Catalog {
                     String amountStr = scanner.nextLine();
                     int amount;
                     try {
-                        amount = Integer.parseInt(amountStr);
+                        amount = parseInt(amountStr);
                     } catch (NumberFormatException e) {
                         System.out.println("Wprowadź poprawną liczbę.");
                         continue;
@@ -289,7 +308,7 @@ public class Catalog {
     public void productOptions(Product product){
         while (true){
 //            Scanner scanner = new Scanner(System.in);
-            System.out.println("Opcje:");
+            System.out.println("\nOpcje:");
             System.out.println("1 - Dodaj do koszyka");
             System.out.println("2 - Usuń z koszyka");
             System.out.println("0 - Wroc");

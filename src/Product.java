@@ -38,12 +38,14 @@ public class Product {
 
     public void displayExtraInfo() {
         displayInfo();
-        System.out.println("Dane techniczne:");
+        System.out.printf("Opis produktu: \n%s\n", description);
+        System.out.println("\nDANE TECHNICZNE:");
         System.out.printf("Marka: %s\t\t\t\t", brand);
         System.out.printf("Kolor: %s\t\t\t",color);
         System.out.println("Waga: " + weight + " g");
         System.out.printf("Rozmiar: %s [cm]\t\t", size);
         System.out.println("Gwarancja: " + warranty + " mies.");
+        System.out.println("\nDANE CHARAKTERYSTYCZNE:");
     }
 
     public void displayInfo() {
@@ -53,23 +55,10 @@ public class Product {
         }
         System.out.print("\n");
         System.out.printf("| %-20s | Cena: %8.2f zł | Dostępność: %3d szt | Marka: %-12s |\n", name.toUpperCase(), price, stockQuantity, brand);
-//        System.out.printf(" | Cena: %.2f zł", price);
-//        System.out.printf(" | Dostępność: %d szt", stockQuantity);
-//        System.out.printf(" | Marka: %s |\n", brand);
         for (int i=0; i<88; i++) {
             System.out.print("-");
         }
         System.out.print("\n");
-//        System.out.printf("Cena: %.2f zł\n", price);
-//        System.out.println("Dostępność: " + stockQuantity + " szt");
-//        System.out.println(description);
-//        System.out.println("\nDane techniczne: ");
-//        System.out.println("Marka: " + brand);
-//        displayExtraInfo();
-//        System.out.println("Kolor: " + color);
-//        System.out.println("Waga: " + weight + " g");
-//        System.out.println("Rozmiar: " + size + " [cm]");
-//        System.out.println("Gwarancja: " + warranty + " mies.");
     }
 
     public void changePrice(double percentage) {
@@ -89,9 +78,8 @@ public class Product {
         System.out.println("9. Gwarancję");
     }
 
-    public int editProduct(){
+    public int editProduct(){  //to chyba useles bo kazda klasa i tak ma wlasne
         while (true){
-            this.displayInfo();
             this.displayExtraInfo();
             Scanner scanner = new Scanner(System.in);
             this.showListToEdit();
@@ -110,7 +98,8 @@ public class Product {
                     break;
                 case 2:
                     System.out.print("Podaj nową cenę[zł]: ");
-                    price = scanner.nextDouble();
+                    if (scanner.hasNextDouble()) { price = scanner.nextDouble(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 3:
                     System.out.print("Podaj nowy opis: ");
@@ -118,7 +107,8 @@ public class Product {
                     break;
                 case 4:
                     System.out.print("Podaj nową liczbę produktu na magazynie: ");
-                    stockQuantity = scanner.nextInt();
+                    if (scanner.hasNextInt()) { stockQuantity = scanner.nextInt(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 5:
                     System.out.print("Podaj nową markę: ");
@@ -130,7 +120,8 @@ public class Product {
                     break;
                 case 7:
                     System.out.print("Podaj nową wagę[g]: ");
-                    weight = scanner.nextDouble();
+                    if (scanner.hasNextDouble()) { weight = scanner.nextDouble(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 8:
                     System.out.print("Podaj nowy rozmiar (WYS[cm]xSZER[cm]xDŁ[cm]: ");

@@ -58,10 +58,17 @@ public class Main {
         catalog.addNewProduct();
         catalog.addNewProduct();
         catalog.addNewProduct();
-        catalog.addNewProduct();
-        catalog.addNewProduct();
-        catalog.addNewProduct();
-        catalog.addNewProduct();
+//        catalog.addNewProduct();
+//        catalog.addNewProduct();
+//        catalog.addNewProduct();
+//        catalog.addNewProduct();
+//        catalog.addNewProduct();
+//        catalog.addNewProduct();
+//        catalog.addNewProduct();
+//        catalog.addNewProduct();
+//        catalog.addNewProduct();
+//        catalog.addNewProduct();
+//        catalog.addNewProduct();
 
         //interface
 
