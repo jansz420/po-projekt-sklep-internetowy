@@ -23,7 +23,8 @@ public class PeripheralDevice extends Product {
 
     /**
      * Sprawdza czy urzadzenie jest dla graczy na podstawie jego parametrow
-     * @return  true jesli tak
+     *
+     * @return true jesli tak
      */
     public boolean isForGaming() {
         return hasRgb && (isWireless || cableLength >= 1.5) && (portType.equalsIgnoreCase("USB"));
@@ -60,10 +61,11 @@ public class PeripheralDevice extends Product {
 
     /**
      * Edytuje parametry produktu
+     *
      * @return nie wiem
      */
     public int editProduct() {
-        while(true) {
+        while (true) {
             this.displayInfo();
             this.displayExtraInfo();
             Scanner scanner = new Scanner(System.in);
@@ -71,10 +73,10 @@ public class PeripheralDevice extends Product {
             System.out.println("0. Zakończ");
             int action = -1;
             if (scanner.hasNextInt()) {
-                action  = scanner.nextInt();
+                action = scanner.nextInt();
                 scanner.nextLine();
             }
-            switch(action) {
+            switch (action) {
                 case 0:
                     return 0;
                 case 1:
@@ -152,11 +154,8 @@ public class PeripheralDevice extends Product {
             }
 //            return 1;
         }
-
-
     }
-
-//    public String toFileString(){
-//        return "PeriphDevice;" + name + ";" + price + ";" + stockQuantity + ";" + brand + ";" + color + ";" + weight + ";" + size + ";" + warranty;
-//    }
+    public String toString(){
+        return String.format("%s;%b;%s;%s;%s;%b;%b;%.2f",super.toString(), isWireless, powerSupply, portType, inputOutput, isWaterproof, hasRgb, cableLength);
+    }
 }

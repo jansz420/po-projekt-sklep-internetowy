@@ -1,4 +1,4 @@
-import java.security.Key;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -58,7 +58,7 @@ public class Catalog {
                 products.add(newDevice);
                 break;
             case 4:
-                AudioDevice newAudioDevice = new AudioDevice("brak", "brak", 0, 0, "brak", "brak", 0, "brak", 0, false, "brak", "brak", "brak", false, false, 0, "brak", false, 0, 0, 0);
+                AudioDevice newAudioDevice = new AudioDevice("brak", "brak", 0, 0, "brak", "brak", 0, "brak", 0, false, "brak", "brak", "brak", false, false, 0, "brak", false, 0, 0, "20Hz-20kHz");
                 newAudioDevice.editProduct();
                 products.add(newAudioDevice);
                 break;
@@ -429,12 +429,161 @@ public class Catalog {
         }
     }
 
-    public boolean saveToFile(String fileName){
+    public boolean saveToFile() throws IOException {
+        try (
+            PrintWriter productWriter = new PrintWriter(new File("Product.txt"));
+            PrintWriter computerWriter = new PrintWriter(new File("Computer.txt"));
+            PrintWriter mobileDeviceWriter = new PrintWriter(new File("MobileDevice.txt"));
+            PrintWriter peripheralDeviceWriter = new PrintWriter(new File("PeripheralDevice.txt"));
+            PrintWriter audioDeviceWriter = new PrintWriter(new File("AudioDevice.txt"));
+            PrintWriter keyboardWriter = new PrintWriter(new File("Keyboard.txt"));
+            PrintWriter monitorWriter = new PrintWriter(new File("Monitor.txt"));
+            PrintWriter mouseWriter = new PrintWriter(new File ("Mouse.txt"));
+        ) {
+            for (Product product : products) {
+                if (product instanceof Computer) {
+                    computerWriter.println(((Computer) product).toString());
+                } else if (product instanceof MobileDevice) {
+                    mobileDeviceWriter.println(((MobileDevice) product).toString());
+                } else if (product instanceof AudioDevice) {
+                    audioDeviceWriter.println(((AudioDevice) product).toString());
+                } else if (product instanceof Keyboard) {
+                    keyboardWriter.println(((Keyboard) product).toString());
+                } else if (product instanceof Monitor) {
+                    monitorWriter.println(((Monitor) product).toString());
+                } else if (product instanceof Mouse) {
+                    mouseWriter.println(((Mouse) product).toString());
+                } else if (product instanceof PeripheralDevice) {
+                    peripheralDeviceWriter.println(((PeripheralDevice) product).toString());
+                } else {
+                    productWriter.println(product.toString());
+                }
+            }
+            productWriter.close();
+            computerWriter.close();
+            mobileDeviceWriter.close();
+            peripheralDeviceWriter.close();
+            audioDeviceWriter.close();
+            keyboardWriter.close();
+            monitorWriter.close();
+            mouseWriter.close();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
 
-        return false;
+        }
     }
 
-    public boolean readFromFile(String fileName){
-        return false;
+    private boolean readFromSingleFile(String fileName, String type) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(";");
+
+                Product product = null;
+
+                switch (type) {
+                    case "Computer":
+                        product = new Computer(
+                                parts[0], parts[1], Double.parseDouble(parts[2]), Integer.parseInt(parts[3]),
+                                parts[4], parts[5], Double.parseDouble(parts[6]), parts[7], Integer.parseInt(parts[8]),
+                                parts[9], parts[10], Integer.parseInt(parts[11]), Integer.parseInt(parts[12]), parts[13],
+                                parts[14], parts[15]
+                        );
+                        break;
+
+                    case "MobileDevice":
+                        product = new MobileDevice(
+                                parts[0], parts[1], Double.parseDouble(parts[2]), Integer.parseInt(parts[3]),
+                                parts[4], parts[5], Double.parseDouble(parts[6]), parts[7], Integer.parseInt(parts[8]),
+                                parts[9], parts[10], Integer.parseInt(parts[11]), Integer.parseInt(parts[12]), parts[13],
+                                parts[14], parts[15], Integer.parseInt(parts[16]), Double.parseDouble(parts[17]), parts[18],
+                                Integer.parseInt(parts[19])
+                        );
+                        break;
+
+                    case "Product":
+                        product = new Product(
+                                parts[0], parts[1], Double.parseDouble(parts[2]), Integer.parseInt(parts[3]),
+                                parts[4], parts[5], Double.parseDouble(parts[6]), parts[7], Integer.parseInt(parts[8])
+                        );
+                        break;
+
+                    case "PeripheralDevice":
+                        product = new PeripheralDevice(
+                                parts[0], parts[1], Double.parseDouble(parts[2]), Integer.parseInt(parts[3]),
+                                parts[4], parts[5], Double.parseDouble(parts[6]), parts[7], Integer.parseInt(parts[8]),
+                                Boolean.parseBoolean(parts[9]), parts[10], parts[11], parts[12], Boolean.parseBoolean(parts[13]),
+                                Boolean.parseBoolean(parts[14]), Double.parseDouble(parts[15])
+                        );
+                        break;
+
+                    case "Mouse":
+                        product = new Mouse(
+                                parts[0], parts[1], Double.parseDouble(parts[2]), Integer.parseInt(parts[3]),
+                                parts[4], parts[5], Double.parseDouble(parts[6]), parts[7], Integer.parseInt(parts[8]),
+                                Boolean.parseBoolean(parts[9]), parts[10], parts[11], parts[12], Boolean.parseBoolean(parts[13]),
+                                Boolean.parseBoolean(parts[14]), Double.parseDouble(parts[15]), Integer.parseInt(parts[16]),
+                                Integer.parseInt(parts[17]), parts[18]
+                        );
+                        break;
+
+                    case "Monitor":
+                        product = new Monitor(
+                                parts[0], parts[1], Double.parseDouble(parts[2]), Integer.parseInt(parts[3]),
+                                parts[4], parts[5], Double.parseDouble(parts[6]), parts[7], Integer.parseInt(parts[8]),
+                                Boolean.parseBoolean(parts[9]), parts[10], parts[11], parts[12], Boolean.parseBoolean(parts[13]),
+                                Boolean.parseBoolean(parts[14]), Double.parseDouble(parts[15]), parts[16], parts[17],
+                                Double.parseDouble(parts[18]), Integer.parseInt(parts[19]), Boolean.parseBoolean(parts[20])
+                        );
+                        break;
+
+                    case "AudioDevice":
+                        product = new AudioDevice(
+                                parts[0], parts[1], Double.parseDouble(parts[2]), Integer.parseInt(parts[3]),
+                                parts[4], parts[5], Double.parseDouble(parts[6]), parts[7], Integer.parseInt(parts[8]),
+                                Boolean.parseBoolean(parts[9]), parts[10], parts[11], parts[12], Boolean.parseBoolean(parts[13]),
+                                Boolean.parseBoolean(parts[14]), Double.parseDouble(parts[15]), parts[16], Boolean.parseBoolean(parts[17]),
+                                Integer.parseInt(parts[18]), Integer.parseInt(parts[19]), parts[20]
+                        );
+                        break;
+
+                    case "Keyboard":
+                        product = new Keyboard(
+                                parts[0], parts[1], Double.parseDouble(parts[2]), Integer.parseInt(parts[3]),
+                                parts[4], parts[5], Double.parseDouble(parts[6]), parts[7], Integer.parseInt(parts[8]),
+                                Boolean.parseBoolean(parts[9]), parts[10], parts[11], parts[12], Boolean.parseBoolean(parts[13]),
+                                Boolean.parseBoolean(parts[14]), Double.parseDouble(parts[15]), parts[16], Boolean.parseBoolean(parts[17]),
+                                parts[18], Boolean.parseBoolean(parts[19])
+                        );
+                        break;
+                }
+
+                if (product != null) {
+                    products.add(product);
+                }
+            }
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean readFromFile() throws IOException{
+            if(
+                readFromSingleFile("Product.txt", "Product") &&
+                readFromSingleFile("Computer.txt", "Computer") &&
+                readFromSingleFile("MobileDevice.txt", "MobileDevice") &&
+                readFromSingleFile("PeripheralDevice.txt", "PeripheralDevice") &&
+                readFromSingleFile("AudioDevice.txt", "AudioDevice") &&
+                readFromSingleFile("Keyboard.txt", "Keyboard") &&
+                readFromSingleFile("Monitor.txt", "Monitor") &&
+                readFromSingleFile("Mouse.txt", "Mouse")
+            ) {
+                return true;
+            } else {
+                return false;
+            }
     }
 }

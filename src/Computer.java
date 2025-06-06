@@ -141,4 +141,8 @@ public class Computer extends Product {
 //            return 1;
         }
     }
+
+    public String toString(){
+        return String.format("%s;%s;%s;%d;%d;%s;%s;%s",super.toString(), type, processor, ram, memory, graphicsCardType, graphicsCardName, operatingSystem);
+    }
 }
