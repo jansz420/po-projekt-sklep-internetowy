@@ -38,10 +38,11 @@ public class Product {
 
     public void displayExtraInfo() {
         displayInfo();
-        System.out.println("Marka: " + brand);
-        System.out.println("Kolor: " + color);
+        System.out.println("Dane techniczne:");
+        System.out.printf("Marka: %s\t\t\t\t", brand);
+        System.out.printf("Kolor: %s\t\t\t",color);
         System.out.println("Waga: " + weight + " g");
-        System.out.println("Rozmiar: " + size + " [cm]");
+        System.out.printf("Rozmiar: %s [cm]\t\t", size);
         System.out.println("Gwarancja: " + warranty + " mies.");
     }
 
@@ -77,20 +78,21 @@ public class Product {
 
     protected void showListToEdit() {
         System.out.println("Co chcesz zmienić?:");
-        System.out.println("1. Nazwę produktu");
-        System.out.println("2. Cenę");
+        System.out.print("1. Nazwę produktu\t\t");
+        System.out.print("2. Cenę\t\t\t");
         System.out.println("3. Opis");
-        System.out.println("4. Stan na magazynie");
-        System.out.println("5. Markę");
+        System.out.print("4. Stan na magazynie\t");
+        System.out.print("5. Markę\t\t");
         System.out.println("6. Kolor");
-        System.out.println("7. Wagę");
-        System.out.println("8. Rozmiar");
+        System.out.print("7. Wagę\t\t\t\t\t");
+        System.out.print("8. Rozmiar\t\t");
         System.out.println("9. Gwarancję");
     }
 
     public int editProduct(){
         while (true){
             this.displayInfo();
+            this.displayExtraInfo();
             Scanner scanner = new Scanner(System.in);
             this.showListToEdit();
             System.out.println("0. Anuluj");
@@ -140,7 +142,7 @@ public class Product {
                     break;
                 default:
                     System.out.println("Błędny numer akcji.");
-                    return 0;
+                    break;
             }
 //            return 1;
         }

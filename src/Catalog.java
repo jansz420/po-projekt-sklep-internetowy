@@ -2,12 +2,19 @@ import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Catalog {
     public ArrayList<Product> products;
     private ShoppingCart cart;
    // private Order order;
+    private final Scanner scanner = new Scanner(System.in);
+    private boolean filtering = false;
+    public ArrayList<Product> productsFilteredOut = new ArrayList<>();
+
+
     public Catalog() {
         products = new ArrayList<>();
         this.cart = new ShoppingCart();
@@ -18,7 +25,7 @@ public class Catalog {
      * Tworzy nowy produkt wybranego typu i dodaje go do listy
      */
     public void addNewProduct(){
-        Scanner scanner = new Scanner(System.in);
+//        Scanner scanner = new Scanner(System.in);
         System.out.println("===DODAWANIE PRODUKTU===");
         System.out.println("1. Komputer");
         System.out.println("2. Mobilny komputer");
@@ -105,10 +112,15 @@ public class Catalog {
     }
 
     /**
-     * Wyswietla interfejs listy produktow
+     * Wyswietla interfejs katalogu
+     * @return true jesli wpisano kod admina
      */
-        public void displayProductList(){
-            Scanner scanner = new Scanner(System.in);
+        public boolean displayProductList(){
+            if (products.isEmpty()) {
+                System.out.println("Nie udało sie wczytać listy produktów");
+            }
+
+//            Scanner scanner = new Scanner(System.in);
             int page = 0;
             int productsPerPage = 5;
             int pageAmount = (products.size() + productsPerPage - 1) / productsPerPage;
@@ -118,8 +130,9 @@ public class Catalog {
 
                 int start = page * productsPerPage;  //indeks pierwszego produktu do wysw na stronie
                 int end = Math.min(start + productsPerPage, products.size()); //indeks ostatniego
+                int id = 1;
 
-                for (int i = start, id = 1; i < end; i++, id++) {
+                for (int i = start; i < end; i++, id++) {
                     products.get(i).displayInfo();
                     System.out.printf("%d.", id);
                     for (int j = 0; j < 86; j++) {
@@ -128,15 +141,26 @@ public class Catalog {
                 }
 
                 int action = -1;
-                System.out.println("\n1-5 - Pokaż pełny opis");
+
+
+                if (!products.isEmpty()) {
+                    //tutaj wrzucic te printy jak maciej balcerzak raczy zrobic wyswietlanie koszyka
+                }
+                System.out.printf("\n1-%d - Pokaż pełny opis\n", id - 1); //poprawka zeby dobrze opcje wyswietlalo
                 if (page < pageAmount - 1) {
                     System.out.println("6 - Nastepna strona");
                 }
                 if (page > 0){
                     System.out.println("7 - Poprzednia strona");
                 }
+
                 System.out.println("8 - Wyświetl koszyk");
                 System.out.println("9 - Złóż zamówienie");
+
+              
+                System.out.println("10 - Sortuj");
+                System.out.println("11 - Filtrowanie");
+
                 System.out.println("0 - Zakoncz");
                 if (scanner.hasNextInt()) {
                     action  = scanner.nextInt();
@@ -145,9 +169,12 @@ public class Catalog {
                 int productIndex = page * productsPerPage + (action - 1);
                 switch (action) {
                     case 0:
-
-                        return;
+                        return false;
                     case 1, 2, 3, 4, 5:
+                        if (productIndex >= products.size()) {
+                            System.out.println("Niepoprawna akcja");
+                            break;
+                        }
                         products.get(productIndex).displayExtraInfo();
                         productOptions(products.get(productIndex));
                         break;
@@ -158,12 +185,22 @@ public class Catalog {
                         page--;
                         break;
                     case 8:
+
                         displayCartMenu();
                         break;
                     case 9:
                         //this.order = new Order(cart);
                         //System.out.println(this.order.orderSummary());
                         break;
+
+                    case 10:
+                        sortListBy();
+                        break;
+                    case 11:
+                        filtering = filterProducts();
+                        break;
+                    case 420:
+                        return true;
 
                     default:
                         System.out.println("Niepoprawna akcja");
@@ -173,6 +210,7 @@ public class Catalog {
 
 
         }
+
 
 
     public void displayCartMenu() {
@@ -240,9 +278,15 @@ public class Catalog {
         }
     }
 
+
+    /**
+     * Wyswietla interfejs danego produktu
+     * @param product wybrany przez uzytkownika produkt
+     */
+
     public void productOptions(Product product){
         while (true){
-            Scanner scanner = new Scanner(System.in);
+//            Scanner scanner = new Scanner(System.in);
             System.out.println("Opcje:");
             System.out.println("1 - Dodaj do koszyka");
             System.out.println("2 - Usuń z koszyka");
@@ -276,12 +320,111 @@ public class Catalog {
         }
     }
 
-    public void filterProducts(){
+    /**
+     * Wlacza filtrowanie listy produktow
+     * @return true jesli filtrowanie jest wlaczone
+     */
+    public boolean filterProducts(){
 
+        System.out.println("Opcje:");
+        System.out.println("1 - Komputery");
+        System.out.println("2 - Urzadzenia peryferyjne");
+        System.out.println("3 - Urządzenia audio");
+        System.out.println("4 - Dla graczy");
+        System.out.printf("0 - %s\n", filtering ? "Wyłącz filtrowanie" : "Wróć");
+        int action = -1;
+        if (scanner.hasNextInt()) {
+            action  = scanner.nextInt();
+            scanner.nextLine();
+        }
+        switch (action) {
+            case 0:
+                if (filtering){
+                    products.addAll(productsFilteredOut);
+                    productsFilteredOut.clear();
+                }
+                return false;
+            case 1:
+                for (int i = 0; i < products.size(); i++) {
+                    if (!(products.get(i) instanceof Computer)) {
+                        productsFilteredOut.add(products.get(i));
+                        products.remove(products.get(i--));
+                    }
+                }
+                return true;
+            case 2:
+                for (int i = 0; i < products.size(); i++) {
+                    if (!(products.get(i) instanceof PeripheralDevice)) {
+                        productsFilteredOut.add(products.get(i));
+                        products.remove(products.get(i--));
+                    }
+                }
+                return true;
+            case 3:
+                for (int i = 0; i < products.size(); i++) {
+                    if (!(products.get(i) instanceof AudioDevice)) {
+                        productsFilteredOut.add(products.get(i));
+                        products.remove(products.get(i--));
+                    }
+                }
+                return true;
+            case 4:
+                for (int i = 0; i < products.size(); i++) {
+                    if (!(products.get(i) instanceof Computer && ((Computer) products.get(i)).isGaming()) && !(products.get(i) instanceof PeripheralDevice && ((PeripheralDevice) products.get(i)).isForGaming())) {
+                        productsFilteredOut.add(products.get(i));
+                        products.remove(products.get(i--));
+                    }
+                }
+                return true;
+            default:
+                System.out.println("Niepoprawna akcja");
+                return false;
+        }
     }
 
+    /**
+     * Wywoluje nterfejs sortowania katalogu
+     */
     public void sortListBy(){
-
+//        Scanner scanner = new Scanner(System.in);
+        System.out.println("Opcje:");
+        System.out.println("1 - Sortuj alfabetycznie");
+        System.out.println("2 - Sortuj cenowo (rosnąco)");
+        System.out.println("3 - Sortuj cenowo (malejąco)");
+        System.out.println("0 - Wroc");
+        int action = -1;
+        if (scanner.hasNextInt()) {
+            action  = scanner.nextInt();
+            scanner.nextLine();
+        }
+        switch(action) {
+            case 0:
+                return;
+            case 1:
+                Collections.sort(products, new Comparator<>() {
+                    @Override
+                    public int compare(Product p1, Product p2) {
+                        return p1.name.compareTo(p2.name);
+                    }
+                });
+                break;
+            case 2:
+                Collections.sort(products, new Comparator<>() {
+                    @Override
+                    public int compare(Product p1, Product p2) {
+                        return Double.compare(p1.price, p2.price);
+                    }
+                });
+                break;
+            case 3:
+                Collections.sort(products, new Comparator<>() {
+                    @Override
+                    public int compare(Product p1, Product p2) {
+                        return Double.compare(p2.price, p1.price);
+                    }
+                });
+            break;
+        }
     }
 
     public boolean saveToFile(String fileName){
