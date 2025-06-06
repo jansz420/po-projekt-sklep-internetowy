@@ -52,6 +52,7 @@ public class ShoppingCart {
                 for(int i = 0 ; i < amount ; i++) {
                     cartProducts.remove(product);
                 }
+                System.out.printf("Usunięto %d sztuk produktu %s z koszyka.\n", amount, product.name);
             }
         } else {
             System.out.println("Nie znaleziono produktu " + product.name + " w twoim koszyku.");

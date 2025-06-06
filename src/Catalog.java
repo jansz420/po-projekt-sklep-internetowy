@@ -212,7 +212,9 @@ public class Catalog {
         }
 
 
-
+    /**
+     * Wyświetla interfejs koszyka
+     */
     public void displayCartMenu() {
         Scanner scanner = new Scanner(System.in);
 
@@ -262,7 +264,7 @@ public class Catalog {
                     }
 
                     cart.removeFromCart(selectedProduct, amount);
-                    System.out.printf("Usunięto %d sztuk produktu %s z koszyka.\n", amount, selectedProduct.name);
+
                     break;
 
                 case "2":
