@@ -1,13 +1,17 @@
 import java.security.Key;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Catalog {
     public ArrayList<Product> products;
     private ShoppingCart cart;
+   // private Order order;
     public Catalog() {
         products = new ArrayList<>();
         this.cart = new ShoppingCart();
+        //this.order = null;
     }
 
     /**
@@ -154,10 +158,11 @@ public class Catalog {
                         page--;
                         break;
                     case 8:
-                        System.out.println(this.cart.cartSummary());
+                        displayCartMenu();
                         break;
                     case 9:
-                        System.out.println(this.cart.cartSummary());
+                        //this.order = new Order(cart);
+                        //System.out.println(this.order.orderSummary());
                         break;
 
                     default:
@@ -168,6 +173,72 @@ public class Catalog {
 
 
         }
+
+
+    public void displayCartMenu() {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\n==== Koszyk ====");
+            System.out.println(cart.cartSummary());
+            System.out.println("1 - Usuń wybrany produkt");
+            System.out.println("2 - Opróżnij koszyk");
+            System.out.println("0 - Wróć");
+
+            String input = scanner.nextLine();
+
+            switch (input) {
+                case "1":
+                    Map<Product, Integer> productCounts = cart.getGroupedProducts();
+                    List<Product> uniqPrdcts = new ArrayList<>(productCounts.keySet());
+
+                    for (int i = 0; i < uniqPrdcts.size(); i++) {
+                        Product p = uniqPrdcts.get(i);
+                        System.out.printf("%d. %s x%d\n", i + 1, p.name, productCounts.get(p));
+                    }
+
+                    System.out.print("Podaj numer produktu do usunięcia: ");
+                    String idxStr = scanner.nextLine();
+                    int indexToRemove;
+                    try {
+                        indexToRemove = Integer.parseInt(idxStr) - 1;
+                        if (indexToRemove < 0 || indexToRemove >= uniqPrdcts.size()) {
+                            System.out.println("Nieprawidłowy numer.");
+                            continue;
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Wprowadź poprawną liczbę.");
+                        continue;
+                    }
+
+                    Product selectedProduct = uniqPrdcts.get(indexToRemove);
+
+                    System.out.print("Ile sztuk chcesz usunąć: ");
+                    String amountStr = scanner.nextLine();
+                    int amount;
+                    try {
+                        amount = Integer.parseInt(amountStr);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Wprowadź poprawną liczbę.");
+                        continue;
+                    }
+
+                    cart.removeFromCart(selectedProduct, amount);
+                    System.out.printf("Usunięto %d sztuk produktu %s z koszyka.\n", amount, selectedProduct.name);
+                    break;
+
+                case "2":
+                    cart.clearCart();
+                    break;
+
+                case "0":
+                    return;
+
+                default:
+                    System.out.println("Niepoprawna akcja. Wybierz 1, 2 lub 0.");
+            }
+        }
+    }
 
     public void productOptions(Product product){
         while (true){
@@ -197,6 +268,9 @@ public class Catalog {
                     scanner.nextLine();
                     this.cart.removeFromCart(product,quantityRm);
                     System.out.printf("\n%s został usunięty z koszyka!\n", product.name);
+                    break;
+                default:
+                    System.out.println("Niepoprawna akcja");
                     break;
             }
         }
