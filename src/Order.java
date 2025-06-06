@@ -59,10 +59,11 @@ public class Order {
 
 
     public String orderSummary() {
-        String summary = this.cart.cartSummary();
-
-        summary += "Cena dostawy " + this.getDeliveryPrice()+" zł\nCena ostateczna " + this.getUltimatePrice()+" zł";
-        return summary;
+        StringBuilder summary = new StringBuilder();
+        summary.append(this.cart.cartSummary());
+        summary.append(String.format("Koszt dostawy   : %.2f zł\n", this.getDeliveryPrice()));
+        summary.append(String.format("Cena ostateczna : %.2f zł\n", this.getUltimatePrice()));
+        return summary.toString();
     }
 
     /**

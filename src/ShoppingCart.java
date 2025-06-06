@@ -4,28 +4,31 @@ import java.util.List;
 import java.util.Map;
 
 public class ShoppingCart {
-    private List<Product> cartProducts =new ArrayList<>();
+    private List<Product> cartProducts = new ArrayList<>();
 
     public ShoppingCart() {
 
     }
+
     public ShoppingCart(List<Product> cartProducts) {
         this.cartProducts = cartProducts;
     }
 
     /**
      * dodaje produkt do koszyka
+     *
      * @param product produkt, który ma zostać dodany
-     * @param amount ilość
+     * @param amount  ilość
      */
     public void addProduct(Product product, int amount) {
-        for (int i = 0 ; i < amount ; i++) {
+        for (int i = 0; i < amount; i++) {
             cartProducts.add(product);
         }
     }
 
     /**
      * Zlicza ilość wystąpienia danego produktu w koszyku
+     *
      * @param product
      * @return liczbę wystąpień w koszyku
      */
@@ -41,15 +44,15 @@ public class ShoppingCart {
 
     /**
      * usuwa dany produkt z koszyka
+     *
      * @param product produkt do usunięcia
      */
     public void removeFromCart(Product product, int amount) {
         if (cartProducts.contains(product)) {
             if (amount > this.countProducts(product)) {
-                System.out.println("W twoim koszyku znajdują się tylko "+ this.countProducts(product) + " takie produkty");
-            }
-            else {
-                for(int i = 0 ; i < amount ; i++) {
+                System.out.println("W twoim koszyku znajdują się tylko " + this.countProducts(product) + " takie produkty");
+            } else {
+                for (int i = 0; i < amount; i++) {
                     cartProducts.remove(product);
                 }
                 System.out.printf("Usunięto %d sztuk produktu %s z koszyka.\n", amount, product.name);
@@ -61,6 +64,7 @@ public class ShoppingCart {
 
     /**
      * Sumuje ceny produktów znajdujących się w koszyku
+     *
      * @return suma cen
      */
     public double sumUpPrices() {
@@ -81,6 +85,7 @@ public class ShoppingCart {
 
     /**
      * Oblicza wagę wszystkich produktów w koszyku [g]
+     *
      * @return waga koszyka
      */
     public double getTotalWeight() {
@@ -93,6 +98,7 @@ public class ShoppingCart {
 
     /**
      * Oblicza objętość paczki [cm^3]
+     *
      * @return objętość paczki
      */
     public double calculateTotalVolume() {
@@ -109,6 +115,7 @@ public class ShoppingCart {
 
     /**
      * Grupowanie produktów w koszyku
+     *
      * @return mapa gdzie kluczem jest dany produkt, a wartością liczba jego występowania w koszyku
      */
     public Map<Product, Integer> getGroupedProducts() {
@@ -121,21 +128,27 @@ public class ShoppingCart {
 
     /**
      * Tworzenie podsumowania koszyka, które zawiera najistotniejsze informacje i łączną cenę
+     *
      * @return podsumowanie koszyka
      */
     public String cartSummary() {
         if (cartProducts.isEmpty()) {
-            return "Koszyk jest pusty";
+            return "\n=====================================\n" + "           Koszyk jest pusty         \n" + "=====================================\n";
         }
-        String summary= "\n";
+        StringBuilder summary = new StringBuilder();
+        summary.append("\n=====================================================================================\n");
+        summary.append("| Nr | Nazwa              | Marka      | Kolor      | Gwarancja | Cena [zł] | Ilość | \n");
+        summary.append("-------------------------------------------------------------------------------------\n");
         Map<Product, Integer> grouped = getGroupedProducts();
         int index = 0;
         for (Map.Entry<Product, Integer> entry : grouped.entrySet()) {
             Product product = entry.getKey();
             int quantity = entry.getValue();
-            summary += (++index) + " " +product.name+" "+product.color+" "+product.price+" zł "+ "x"+quantity+"\n";
+            summary.append(String.format("| %2d | %-18s | %-10s | %-10s | %3d mies. | %9.2f | %5d | \n", ++index, product.name, product.brand, product.color, product.warranty, product.price, quantity));
         }
-        summary += "Cena Koszyka "+ this.sumUpPrices()+" zł\n";
-        return summary;
+        summary.append("=====================================================================================\n");
+        summary.append(String.format("Suma do zapłaty: %.2f zł\n", this.sumUpPrices()));
+        return summary.toString();
     }
 }
+
