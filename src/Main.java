@@ -26,31 +26,6 @@ public class Main {
 //                "34.4x23.0x1.8",
 //                14
 //        );
-//        test.displayInfo();
-//        Catalog catalog = new Catalog();
-//        catalog.addNewProduct();
-//        catalog.addNewProduct();
-//        catalog.addNewProduct();
-//        catalog.addNewProduct();
-//        catalog.addNewProduct();
-//        catalog.addNewProduct();
-//        catalog.addNewProduct();
-//        catalog.displayProductList();
-//
-//        System.out.println();
-//        System.out.println();
-//        ShoppingCart cart = new ShoppingCart();
-//        Order order = new Order(cart);
-//        cart.addProduct(test, 1);
-//        cart.addProduct(test, 2);
-//        cart.cartSummary();
-//        System.out.println(cart.sumUpPrices());
-//        cart.removeFromCart(test2);
-//        System.out.println(cart.cartSummary());
-//        System.out.println(order.orderSummary());
-//        order.printToFile();
-//        cart.addProduct(test2, 2);
-//        order.printToFile();
 
         //initial
 
@@ -61,75 +36,14 @@ public class Main {
             System.out.println("Niektóre pliki nie zostały wczytane poprawnie.");
         }
 
-//        catalog.addNewProduct();
-//        catalog.addNewProduct();
-//        catalog.addNewProduct();
-//        catalog.addNewProduct();
-//        catalog.addNewProduct();
-//        catalog.addNewProduct();
-//        catalog.addNewProduct();
-//        catalog.addNewProduct();
-//        catalog.addNewProduct();
-//        catalog.addNewProduct();
-//        catalog.addNewProduct();
-//        catalog.addNewProduct();
-//        catalog.addNewProduct();
-//        catalog.addNewProduct();
-
         //interface
 
-        while (true) {
-            System.out.println("\n\t========== SKLEP INTERNETOWY ==========");
-            System.out.println("\t---- v0.9 Poczopek Industries inc. ----");
-            System.out.println("\t=======================================\n");
+        System.out.println("\n\t========== SKLEP INTERNETOWY ==========");
+        System.out.println("\t---- v0.9 Poczopek Industries inc. ----");
+        System.out.println("\t=======================================\n");
 
-            if (catalog.displayProductList()) {
-                //admin
-                Scanner scanner = new Scanner(System.in);
+        catalog.displayProductList();
 
-                System.out.print("Login: ");
-                String login = scanner.nextLine();
-
-                System.out.print("Hasło: ");
-                String password = scanner.nextLine();
-
-                boolean isAdmin = Admin.verifyAdminInfo(login, password);
-
-                if (isAdmin) {
-                    Admin admin = new Admin(login, password);
-                    System.out.println("Zalogowano jako "+admin.getName());
-
-                    boolean running = true;
-                    while (running) {
-                        System.out.println("\n--- MENU ADMINA ---");
-                        System.out.println("1. Dodaj produkt do katalogu ");
-                        System.out.println("2. Jakaś opcja ");
-                        System.out.println("0. Wyloguj");
-                        System.out.print("Wybór: ");
-
-                        int choice = Integer.parseInt(scanner.nextLine());
-
-                        switch (choice) {
-                            case 1:
-                                catalog.addNewProduct();
-                                break;
-                            case 2:
-                                //metoda skibidibi
-                                break;
-                            case 0:
-                                running = false;
-                                break;
-                            default:
-                                System.out.println("Nieprawidłowy wybór.");
-                        }
-                    }
-                }
-                else {
-                    System.out.println("Błąd logowania. Brak uprawnień administratora.");
-                }
-//                scanner.close(); //jak odkomentowane to zapetla program wiec nie wiem czy to potrzebne
-            }
-            else { break;} //konczy caly program
-        }
+        System.out.println("Do zobaczenia ponownie!");
     }
 }

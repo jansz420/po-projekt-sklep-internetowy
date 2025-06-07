@@ -14,6 +14,7 @@ public class Catalog {
     private final Scanner scanner = new Scanner(System.in);
     private boolean filtering = false;
     public ArrayList<Product> productsFilteredOut = new ArrayList<>();
+    private boolean isAdmin = false;
 
 
     public Catalog() {
@@ -91,33 +92,33 @@ public class Catalog {
      * @param name nazwa szukanego produktu
      * @return szukany obiekt Product lub null
      */
-    public Product searchProduct(String name){
-        for (Product product : products) {
-            if (product.name.equals(name)) {
-                return product;
-            }
-        }
-        return null;
-    }
+//    public Product searchProduct(String name){
+//        for (Product product : products) {
+//            if (product.name.equals(name)) {
+//                return product;
+//            }
+//        }
+//        return null;
+//    }
 
     /**
      * Usuwa produkt wyszukany na podstawie nazwy
      * @param name nazwa produktu do usuniecia
      */
-    public void removeProduct(String name){
-        if (searchProduct(name) != null) {
-            products.remove(searchProduct(name));
-        }
-        else {
-            System.out.println("Nie znaleziono produktu");
-        }
-    }
+//    public void removeProduct(int productIndex){
+//        if (searchProduct(name) != null) {
+//            products.remove(searchProduct(name));
+//        }
+//        else {
+//            System.out.println("Nie znaleziono produktu");
+//        }
+//    }
 
     /**
      * Wyswietla interfejs katalogu
      * @return true jesli wpisano kod admina
      */
-        public boolean displayProductList(){
+        public void displayProductList(){
             int page = 0;
             int productsPerPage = 5;
             int pageAmount;
@@ -153,8 +154,8 @@ public class Catalog {
                     if (page > 0){
                         System.out.println("7 - Poprzednia strona");
                     }
-
                 }
+
                 else {
                     System.out.println("\n\n\tBrak produktów do wyświetlenia\n");
                     System.out.println("########################################################################################");
@@ -162,17 +163,22 @@ public class Catalog {
                 System.out.println("8 - Wyświetl koszyk");
                 System.out.println("9 - Sortuj");
                 System.out.printf("10 - Filtrowanie %s\n", filtering ? "[AKTYWNE]" : "");
+                if(isAdmin) {
+                    System.out.println("\n--- MENU ADMINA ---");
+                    System.out.println("11. Dodaj produkt do katalogu ");
+                    System.out.println("12. Usuń produkt z katalogu");
+                    System.out.println("13. Wyloguj");
+                }
+
+
                 System.out.println("0 - Zakoncz");
 
-//                if (scanner.hasNextInt()) {
-//                    action  = scanner.nextInt();
-//                    scanner.nextLine();
-//                }
+
                 action = scanner.nextLine();
 
                 switch (action) {
                     case "0":
-                        return false;
+                        return;
                     case "1", "2", "3", "4", "5":
                         productIndex = page * productsPerPage + (parseInt(action) - 1);
                         if (productIndex >= products.size()) {
@@ -209,9 +215,35 @@ public class Catalog {
                     case "10":
                         filtering = filterProducts();
                         break;
+                    case "11":
+                        if (isAdmin) {
+                            addNewProduct();
+                        }
+                        else {
+                            System.out.println("Niepoprawna akcja");
+                        }
+                        break;
+                    case "12":
+                        if (isAdmin) {
+                            //remove product
+                        }
+                        else {
+                            System.out.println("Niepoprawna akcja");
+                        }
+                        break;
+                    case "13":
+                        if (isAdmin) {
+                            System.out.println("Wylogowano!");
+                        }
+                        else {
+                            System.out.println("Niepoprawna akcja");
+                        }
+                        isAdmin = false;
+                        break;
                     case "420":
-                        return true;
-
+                        isAdmin = Admin.adminLogin();
+                        break;
+                        //return true;
                     default:
                         System.out.println("Niepoprawna akcja");
                         break;
@@ -220,6 +252,9 @@ public class Catalog {
 
 
         }
+
+
+
 
 
     /**
@@ -327,9 +362,17 @@ public class Catalog {
         while (true){
 //            Scanner scanner = new Scanner(System.in);
             System.out.println("\nOpcje:");
-            System.out.println("1 - Dodaj do koszyka");
-            System.out.println("2 - Usuń z koszyka");
+            if (!isAdmin) {
+                System.out.println("1 - Dodaj do koszyka");
+                System.out.println("2 - Usuń z koszyka");
+            }
+            else {
+                System.out.println("\n--- MENU ADMINA ---");
+                System.out.println("3 - Edytuj produkt");
+            }
+
             System.out.println("0 - Wroc");
+
             int action = -1;
             if (scanner.hasNextInt()) {
                 action  = scanner.nextInt();
@@ -351,6 +394,14 @@ public class Catalog {
                     scanner.nextLine();
                     this.cart.removeFromCart(product,quantityRm);
                     System.out.printf("\n%s został usunięty z koszyka!\n", product.name);
+                    break;
+                case 3:
+                    if (isAdmin){
+                        product.editProduct();
+                    }
+                    else {
+                        System.out.println("Niepoprawna akcja");
+                    }
                     break;
                 default:
                     System.out.println("Niepoprawna akcja");
