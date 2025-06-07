@@ -323,8 +323,10 @@ public class Catalog {
                         break;
                     }
                     Order order = new Order(cart);
+                    String orderSum="";
                     System.out.println("\n\n==== Dane do Wysyłki ====");
-                    System.out.println(order.orderSummary());
+                    orderSum = order.orderSummary();
+                    System.out.println(orderSum);
 
                     while (true) {
                         System.out.println("\n1 - Zapisz podsumowanie do pliku");
@@ -334,15 +336,16 @@ public class Catalog {
                         String choice = scanner.nextLine();
 
                         if (choice.equals("1")) {
-                            order.printToFile();
+                            order.printToFile(orderSum);
                             break;
                         } else if (choice.equals("2")) {
-                            System.out.println(order.orderSummary());
+                            orderSum=order.orderSummary();
+                            System.out.println(orderSum);
                             //break;
                         } else if (choice.equals("0")) {
                             break;
                         } else {
-                            System.out.println("Niepoprawny wybór. Wpisz 1 lub 0.");
+                            System.out.println("Niepoprawny wybór. Wpisz 2 lub 1 lub 0.");
                         }
                     }
                     break;

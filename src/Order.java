@@ -67,10 +67,10 @@ public class Order {
      * Zapisywanie podsumowania zamówienia do pliku
      * @return true przy powodzeniu, false przy błędzie
      */
-    public boolean printToFile() {
+    public boolean printToFile(String orderSummary) {
         File summary = new File("orderSummary.txt");
         try (PrintWriter writer = new PrintWriter(summary)) {
-            writer.println(this.orderSummary());
+            writer.println(orderSummary);
             System.out.println("Pomyślnie zapisano podsumowanie zamówienia.");
             return true;
         } catch (FileNotFoundException e) {
