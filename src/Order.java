@@ -1,11 +1,11 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.Scanner;
 
 public class Order {
     private ShoppingCart cart = new ShoppingCart();
     private double deliveryPrice;
-    private String status;
     private String customerName;
     private String customerSurname;
     private String customerEmail;
@@ -14,8 +14,6 @@ public class Order {
 
     public Order(ShoppingCart cart) {
         this.cart = cart;
-        this.status ="Oczekujące";
-
     }
 
     /**
@@ -53,16 +51,15 @@ public class Order {
         return cart.sumUpPrices()+ this.getDeliveryPrice();
     }
 
-    public void changeStatus(String status) {
-        this.status = status;
-    }
 
 
     public String orderSummary() {
         StringBuilder summary = new StringBuilder();
+        summary.append("\n\n==== Podsumowanie Zamówienia ====");
         summary.append(this.cart.cartSummary());
         summary.append(String.format("Koszt dostawy   : %.2f zł\n", this.getDeliveryPrice()));
         summary.append(String.format("Cena ostateczna : %.2f zł\n", this.getUltimatePrice()));
+        summary.append(this.orderDetails());
         return summary.toString();
     }
 
@@ -84,4 +81,68 @@ public class Order {
             return false;
         }
     }
+
+    /**
+     * metoda pobierająca dane do zamówienia
+     * @return dane klienta
+     */
+    public String orderDetails() {
+
+        String details= "\n--- DANE ODBIORCY ---\n";
+        Scanner scanner = new Scanner(System.in);
+
+        while (true){
+            System.out.print("Imię: ");
+            this.customerName = scanner.nextLine().trim();
+            if (!this.customerName.isEmpty()) {
+                break;
+            }
+            System.out.println("Imię nie może być puste.");
+        }
+        details+="Imię: "+this.customerName+"\n";
+
+        while (true) {
+            System.out.print("Nazwisko: ");
+            this.customerSurname = scanner.nextLine().trim();
+            if (!this.customerSurname.isEmpty()) {
+                break;
+            }
+            System.out.println("Nazwisko nie może być puste.");
+        }
+        details+="Nazwisko: "+this.customerSurname+"\n";
+
+        while (true) {
+            System.out.print("Email: ");
+            this.customerEmail = scanner.nextLine().trim();
+            if (this.customerEmail.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+                break;
+            }
+            System.out.println("Niepoprawny adres email.");
+        }
+        details+="Adres Email: "+this.customerEmail+"\n";
+
+
+        while (true) {
+            System.out.print("Adres Wysyłki: ");
+            this.customerAddress = scanner.nextLine().trim();
+            if (this.customerAddress.matches("^(?=(?:.*[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]){3,}).{5,}$")) {
+                break;
+            }
+            System.out.println("Niepoprawny adres.");
+        }
+        details+="Adres Wysyłki: "+this.customerAddress+"\n";
+
+        while (true) {
+            System.out.print("Numer Telefonu: ");
+            this.customerPhoneNumber = scanner.nextLine().trim();
+            if (this.customerPhoneNumber.matches("^[0-9]{9}$")) {
+                break;
+            }
+            System.out.println("Numer telefonu powinien składać się z 9 cyfr.");
+        }
+        details+="Numer Telefonu: "+this.customerPhoneNumber+"\n";
+
+        return details;
+    }
+
 }

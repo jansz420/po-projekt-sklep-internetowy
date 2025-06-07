@@ -323,18 +323,22 @@ public class Catalog {
                         break;
                     }
                     Order order = new Order(cart);
-                    System.out.println("\n\n==== Podsumowanie Zamówienia ====");
+                    System.out.println("\n\n==== Dane do Wysyłki ====");
                     System.out.println(order.orderSummary());
 
                     while (true) {
                         System.out.println("\n1 - Zapisz podsumowanie do pliku");
+                        System.out.println("2 - Zmień Dane ");
                         System.out.println("0 - Wróć");
                         System.out.print("Wybierz: ");
                         String choice = scanner.nextLine();
 
                         if (choice.equals("1")) {
-                            order.printToFile(); // Twoja istniejąca metoda
+                            order.printToFile();
                             break;
+                        } else if (choice.equals("2")) {
+                            System.out.println(order.orderSummary());
+                            //break;
                         } else if (choice.equals("0")) {
                             break;
                         } else {
