@@ -127,12 +127,21 @@ public class ShoppingCart {
     }
 
     /**
+     * sprawdza czy koszyk jest pusty
+     * @return 1 jak jest pusty, 0 jak ma jakiś produkt/y
+     */
+
+    public boolean isEmpty() {
+        return cartProducts.isEmpty();
+    }
+
+    /**
      * Tworzenie podsumowania koszyka, które zawiera najistotniejsze informacje i łączną cenę
      *
      * @return podsumowanie koszyka
      */
     public String cartSummary() {
-        if (cartProducts.isEmpty()) {
+        if (this.isEmpty()){
             return "\n=====================================\n" + "           Koszyk jest pusty         \n" + "=====================================\n";
         }
         StringBuilder summary = new StringBuilder();

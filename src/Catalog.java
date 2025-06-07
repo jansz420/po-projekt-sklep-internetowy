@@ -11,7 +11,6 @@ import static java.lang.Integer.parseInt;
 public class Catalog {
     public ArrayList<Product> products;
     private ShoppingCart cart;
-   // private Order order;
     private final Scanner scanner = new Scanner(System.in);
     private boolean filtering = false;
     public ArrayList<Product> productsFilteredOut = new ArrayList<>();
@@ -20,7 +19,6 @@ public class Catalog {
     public Catalog() {
         products = new ArrayList<>();
         this.cart = new ShoppingCart();
-        //this.order = null;
     }
 
     /**
@@ -162,10 +160,8 @@ public class Catalog {
                     System.out.println("########################################################################################");
                 }
                 System.out.println("8 - Wyświetl koszyk");
-                System.out.println("9 - Złóż zamówienie");
-
-                System.out.println("10 - Sortuj");
-                System.out.printf("11 - Filtrowanie %s\n", filtering ? "[AKTYWNE]" : "");
+                System.out.println("9 - Sortuj");
+                System.out.printf("10 - Filtrowanie %s\n", filtering ? "[AKTYWNE]" : "");
                 System.out.println("0 - Zakoncz");
 
 //                if (scanner.hasNextInt()) {
@@ -206,15 +202,11 @@ public class Catalog {
 
                         displayCartMenu();
                         break;
-                    case "9":
-                        //this.order = new Order(cart);
-                        //System.out.println(this.order.orderSummary());
-                        break;
 
-                    case "10":
+                    case "9":
                         sortListBy();
                         break;
-                    case "11":
+                    case "10":
                         filtering = filterProducts();
                         break;
                     case "420":
@@ -241,6 +233,7 @@ public class Catalog {
             System.out.println(cart.cartSummary());
             System.out.println("1 - Usuń wybrany produkt");
             System.out.println("2 - Opróżnij koszyk");
+            System.out.println("3 - Złóż zamówienie");
             System.out.println("0 - Wróć");
 
             String input = scanner.nextLine();
@@ -287,6 +280,32 @@ public class Catalog {
 
                 case "2":
                     cart.clearCart();
+                    break;
+
+                case "3":
+                    if (cart.isEmpty()) {
+                        System.out.println("Koszyk jest pusty. Nie można złożyć zamówienia.");
+                        break;
+                    }
+                    Order order = new Order(cart);
+                    System.out.println("\n\n==== Podsumowanie Zamówienia ====");
+                    System.out.println(order.orderSummary());
+
+                    while (true) {
+                        System.out.println("\n1 - Zapisz podsumowanie do pliku");
+                        System.out.println("0 - Wróć");
+                        System.out.print("Wybierz: ");
+                        String choice = scanner.nextLine();
+
+                        if (choice.equals("1")) {
+                            order.printToFile(); // Twoja istniejąca metoda
+                            break;
+                        } else if (choice.equals("0")) {
+                            break;
+                        } else {
+                            System.out.println("Niepoprawny wybór. Wpisz 1 lub 0.");
+                        }
+                    }
                     break;
 
                 case "0":
