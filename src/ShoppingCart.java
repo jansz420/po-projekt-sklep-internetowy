@@ -136,17 +136,17 @@ public class ShoppingCart {
             return "\n=====================================\n" + "           Koszyk jest pusty         \n" + "=====================================\n";
         }
         StringBuilder summary = new StringBuilder();
-        summary.append("\n=====================================================================================\n");
-        summary.append("| Nr | Nazwa              | Marka      | Kolor      | Gwarancja | Cena [zł] | Ilość | \n");
-        summary.append("-------------------------------------------------------------------------------------\n");
+        summary.append("\n=========================================================================================\n");
+        summary.append("| Nr | Nazwa              | Marka        | Kolor        | Gwarancja | Cena [zł] | Ilość | \n");
+        summary.append("-----------------------------------------------------------------------------------------\n");
         Map<Product, Integer> grouped = getGroupedProducts();
         int index = 0;
         for (Map.Entry<Product, Integer> entry : grouped.entrySet()) {
             Product product = entry.getKey();
             int quantity = entry.getValue();
-            summary.append(String.format("| %2d | %-18s | %-10s | %-10s | %3d mies. | %9.2f | %5d | \n", ++index, product.name, product.brand, product.color, product.warranty, product.price, quantity));
+            summary.append(String.format("| %2d | %-18s | %-12s | %-12s | %3d mies. | %9.2f | %5d | \n", ++index, product.name, product.brand, product.color, product.warranty, product.price, quantity));
         }
-        summary.append("=====================================================================================\n");
+        summary.append("=========================================================================================\n");
         summary.append(String.format("Suma do zapłaty: %.2f zł\n", this.sumUpPrices()));
         return summary.toString();
     }

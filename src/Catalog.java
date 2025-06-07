@@ -109,7 +109,6 @@ public class Catalog {
     public void removeProduct(String name){
         if (searchProduct(name) != null) {
             products.remove(searchProduct(name));
-            System.out.println("Produkt " + name + " został usunięty");
         }
         else {
             System.out.println("Nie znaleziono produktu");
