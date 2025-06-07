@@ -1,0 +1,5 @@
+Galaxy S24 Ultra;Samsung;5999.99;20;Flagowy smartfon z rysikiem;Black;0.3;6.8-inch;24;5000;6.8;3088x1440;120
+iPad Pro 12.9;Apple;7499.00;12;Tablet z chipem M4;Silver;0.6;12.9-inch;12;10758;12.9;2048x2732;120
+XPS 13;Dell;5199.00;9;Ultramobilny laptop biznesowy;Platinum;1.2;13.3-inch;24;5200;13.3;1920x1200;60
+Redmi Note 13 Pro;Xiaomi;1499.00;35;Smartfon z aparatem 200 MP;Blue;0.2;6.67-inch;12;5100;6.67;1220x2712;120
+Surface Pro 9;Microsoft;6799.00;6;Laptop 2w1 z ekranem dotykowym;Platinum;0.9;13-inch;24;4820;13.0;2880x1920;120

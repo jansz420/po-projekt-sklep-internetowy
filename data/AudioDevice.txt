@@ -1,0 +1,5 @@
+WH-1000XM5;Sony;1599.99;15;Bezprzewodowe słuchawki z ANC;Black;0.25;Standard;24;Headphones;true;32;50;20kHz
+SoundLink Flex;Bose;899.00;10;Wodoodporny głośnik Bluetooth;Blue;0.6;Small;12;Speakers;true;8;20;18kHz
+Galaxy Buds 2 Pro;Samsung;799.00;20;Douszne słuchawki TWS;Graphite;0.1;Tiny;12;Earbuds;true;16;10;22kHz
+Yeti X;Blue;699.00;7;Profesjonalny mikrofon USB;Black;1.2;Desktop;12;Microphone;false;200;5;15kHz
+JBL Bar 9.1;JBL;3999.00;3;Soundbar z Dolby Atmos;Black;4.2;Wide;24;Soundbar;true;6;300;16kHz

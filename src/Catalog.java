@@ -431,20 +431,20 @@ public class Catalog {
 
     public boolean saveToFile() throws IOException {
         try (
-            PrintWriter productWriter = new PrintWriter(new File("Product.txt"));
-            PrintWriter computerWriter = new PrintWriter(new File("Computer.txt"));
-            PrintWriter mobileDeviceWriter = new PrintWriter(new File("MobileDevice.txt"));
-            PrintWriter peripheralDeviceWriter = new PrintWriter(new File("PeripheralDevice.txt"));
-            PrintWriter audioDeviceWriter = new PrintWriter(new File("AudioDevice.txt"));
-            PrintWriter keyboardWriter = new PrintWriter(new File("Keyboard.txt"));
-            PrintWriter monitorWriter = new PrintWriter(new File("Monitor.txt"));
-            PrintWriter mouseWriter = new PrintWriter(new File ("Mouse.txt"));
+            PrintWriter productWriter = new PrintWriter(new File("data/Product.txt"));
+            PrintWriter computerWriter = new PrintWriter(new File("data/Computer.txt"));
+            PrintWriter mobileDeviceWriter = new PrintWriter(new File("data/MobileDevice.txt"));
+            PrintWriter peripheralDeviceWriter = new PrintWriter(new File("data/PeripheralDevice.txt"));
+            PrintWriter audioDeviceWriter = new PrintWriter(new File("data/AudioDevice.txt"));
+            PrintWriter keyboardWriter = new PrintWriter(new File("data/Keyboard.txt"));
+            PrintWriter monitorWriter = new PrintWriter(new File("data/Monitor.txt"));
+            PrintWriter mouseWriter = new PrintWriter(new File ("data/Mouse.txt"));
         ) {
             for (Product product : products) {
-                if (product instanceof Computer) {
-                    computerWriter.println(((Computer) product).toString());
-                } else if (product instanceof MobileDevice) {
+                if (product instanceof MobileDevice) {
                     mobileDeviceWriter.println(((MobileDevice) product).toString());
+                } else if (product instanceof Computer) {
+                    computerWriter.println(((Computer) product).toString());
                 } else if (product instanceof AudioDevice) {
                     audioDeviceWriter.println(((AudioDevice) product).toString());
                 } else if (product instanceof Keyboard) {
@@ -572,14 +572,14 @@ public class Catalog {
     }
     public boolean readFromFile() throws IOException{
             if(
-                readFromSingleFile("Product.txt", "Product") &&
-                readFromSingleFile("Computer.txt", "Computer") &&
-                readFromSingleFile("MobileDevice.txt", "MobileDevice") &&
-                readFromSingleFile("PeripheralDevice.txt", "PeripheralDevice") &&
-                readFromSingleFile("AudioDevice.txt", "AudioDevice") &&
-                readFromSingleFile("Keyboard.txt", "Keyboard") &&
-                readFromSingleFile("Monitor.txt", "Monitor") &&
-                readFromSingleFile("Mouse.txt", "Mouse")
+                readFromSingleFile("data/Product.txt", "Product") &&
+                readFromSingleFile("data/Computer.txt", "Computer") &&
+                readFromSingleFile("data/MobileDevice.txt", "MobileDevice") &&
+                readFromSingleFile("data/PeripheralDevice.txt", "PeripheralDevice") &&
+                readFromSingleFile("data/AudioDevice.txt", "AudioDevice") &&
+                readFromSingleFile("data/Keyboard.txt", "Keyboard") &&
+                readFromSingleFile("data/Monitor.txt", "Monitor") &&
+                readFromSingleFile("data/Mouse.txt", "Mouse")
             ) {
                 return true;
             } else {

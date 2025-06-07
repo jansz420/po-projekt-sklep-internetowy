@@ -1,0 +1,5 @@
+K95 RGB Platinum;Corsair;799.00;10;Mechaniczna klawiatura gamingowa;Black;1.3;Standard;24;Mechanical;true;QWERTY;true
+MX Keys;Logitech;499.00;15;Ergonomiczna klawiatura do pracy;Gray;0.8;Slim;24;Membrane;false;QWERTY;true
+G413 TKL;Logitech;349.00;12;Tania mechaniczna klawiatura bez numpada;Black;1.0;Compact;24;Mechanical;false;QWERTY;false
+Magic Keyboard;Apple;599.00;8;Klawiatura z Touch ID do Maca;White;0.7;Compact;12;Membrane;false;QWERTY;false
+BlackWidow V3;Razer;699.00;9;Gamingowa klawiatura RGB;Green;1.1;Standard;24;Mechanical;true;QWERTY;true

@@ -1,0 +1,5 @@
+iMac 24;Apple;6999.99;10;Nowoczesny komputer All-in-One;Silver;4.5;iMac;24;Desktop;Apple M1;8;256;Integrated;Apple GPU;macOS Sonoma
+Predator Orion 5000;Acer;8999.00;5;Wydajny komputer do gamingu;Black;9.0;ATX;36;Desktop;Intel i7-13700KF;32;1024;Dedicated;NVIDIA RTX 4080;Windows 11
+ThinkCentre M90t;Lenovo;4599.50;8;Kompaktowy komputer biurowy;Black;6.2;MiniTower;24;Desktop;Intel i5-12500;16;512;Integrated;Intel UHD;Windows 11 Pro
+MacBook Pro 14;Apple;10999.00;4;Profesjonalny laptop z chipem M3;Space Gray;3.2;14-inch;12;Laptop;Apple M3;16;512;Integrated;Apple GPU;macOS Sonoma
+ROG Zephyrus G14;ASUS;7999.99;7;Lekki laptop gamingowy;White;1.8;14-inch;24;Laptop;AMD Ryzen 9 7940HS;32;1000;Dedicated;NVIDIA RTX 4060;Windows 11

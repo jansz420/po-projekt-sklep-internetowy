@@ -1,7 +1,8 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 //        Product test = new Product("Samsung galaxy S25", "Samsung", 9.00, 10, "Samsung Galaxy S25 to nowoczesny smartfon klasy premium, łączący elegancki design z najnowszymi technologiami. Wyposażony w wydajny procesor Exynos/Qualcomm (w zależności od regionu), jasny i płynny ekran AMOLED o wysokiej częstotliwości odświeżania oraz zaawansowany system aparatów, Galaxy S25 zapewnia doskonałą jakość zdjęć, szybkość działania i długą pracę na baterii. Idealny wybór dla wymagających użytkowników.", "niebieski", 162, "14.7x7.1x0.72", 24);
 //        Product test2 = new Product(
 //                "iPhone 16 Pro",
@@ -62,7 +63,7 @@ public class Main {
         catalog.addNewProduct();
         catalog.addNewProduct();
         catalog.addNewProduct();
-
+        catalog.saveToFile();
         //interface
 
         while (true) {

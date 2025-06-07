@@ -1,0 +1,5 @@
+MX Master 3S;Logitech;449.00;14;Profesjonalna mysz ergonomiczna;Gray;0.14;Compact;24;800;7;Laser
+G Pro X Superlight;Logitech;649.00;10;Ultralekka mysz gamingowa;Black;0.063;Small;24;1600;5;Optical
+Magic Mouse 2;Apple;499.00;9;Minimalistyczna mysz do Maca;White;0.10;Compact;12;1300;2;Laser
+Basilisk V3;Razer;399.00;7;Mysz z regulowanym scroll'em;Black;0.16;Standard;24;2000;11;Optical
+M720 Triathlon;Logitech;299.00;13;Wielofunkcyjna mysz biurowa;Gray;0.13;Compact;24;1000;8;Optical

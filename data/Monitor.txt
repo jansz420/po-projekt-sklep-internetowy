@@ -1,0 +1,5 @@
+UltraSharp U2723QE;Dell;2899.00;6;Monitor 4K z USB-C;Silver;4.3;27-inch;36;3840x2160;IPS;27.0;60;true
+Odyssey G7;Samsung;3499.00;4;Zakładany monitor gamingowy QHD;Black;6.5;32-inch;24;2560x1440;VA;32.0;240;true
+LG UltraFine 5K;LG;6499.00;3;Profesjonalny monitor dla Maca;Black;5.0;27-inch;24;5120x2880;IPS;27.0;60;true
+BenQ EX2510;BenQ;1299.00;8;Monitor FHD do pracy i gier;Black;3.8;25-inch;24;1920x1080;IPS;25.0;144;false
+TUF Gaming VG289Q;ASUS;1799.00;6;Monitor 4K HDR10 z FreeSync;Black;5.2;28-inch;24;3840x2160;IPS;28.0;60;false
