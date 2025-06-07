@@ -88,31 +88,17 @@ public class Catalog {
     }
 
     /**
-     * Wyszukuje produkt po nazwie
-     * @param name nazwa szukanego produktu
-     * @return szukany obiekt Product lub null
-     */
-//    public Product searchProduct(String name){
-//        for (Product product : products) {
-//            if (product.name.equals(name)) {
-//                return product;
-//            }
-//        }
-//        return null;
-//    }
-
-    /**
      * Usuwa produkt wyszukany na podstawie nazwy
-     * @param name nazwa produktu do usuniecia
+     * @param index index produktu do usuniecia
      */
-//    public void removeProduct(int productIndex){
-//        if (searchProduct(name) != null) {
-//            products.remove(searchProduct(name));
-//        }
-//        else {
-//            System.out.println("Nie znaleziono produktu");
-//        }
-//    }
+    public void removeProduct(int index){
+        if (products.get(index) != null) {
+            products.remove(products.get(index));
+        }
+        else {
+            System.out.println("Nie znaleziono produktu");
+        }
+    }
 
     /**
      * Wyswietla interfejs katalogu
@@ -225,7 +211,21 @@ public class Catalog {
                         break;
                     case "12":
                         if (isAdmin) {
-                            //remove product
+                            System.out.println("Wybierz produkt do usunięcia: ");
+                            int removeId;
+                            if (scanner.hasNextInt()) {
+                                removeId = scanner.nextInt();
+                            }
+                            else {
+                                System.out.println("Niepoprawna akcja");
+                                break;
+                            }
+                            productIndex = page * productsPerPage + (removeId - 1);
+                            if (productIndex >= products.size()) {
+                                System.out.println("Niepoprawna akcja");
+                                break;
+                            }
+                            removeProduct(productIndex);
                         }
                         else {
                             System.out.println("Niepoprawna akcja");
