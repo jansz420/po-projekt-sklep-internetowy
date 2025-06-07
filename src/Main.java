@@ -1,7 +1,8 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 //        Product test = new Product("Samsung galaxy S25", "Samsung", 9.00, 10, "Samsung Galaxy S25 to nowoczesny smartfon klasy premium, łączący elegancki design z najnowszymi technologiami. Wyposażony w wydajny procesor Exynos/Qualcomm (w zależności od regionu), jasny i płynny ekran AMOLED o wysokiej częstotliwości odświeżania oraz zaawansowany system aparatów, Galaxy S25 zapewnia doskonałą jakość zdjęć, szybkość działania i długą pracę na baterii. Idealny wybór dla wymagających użytkowników.", "niebieski", 162, "14.7x7.1x0.72", 24);
 //        Product test2 = new Product(
 //                "iPhone 16 Pro",
@@ -54,10 +55,15 @@ public class Main {
         //initial
 
         Catalog catalog = new Catalog();
+        if (catalog.readFromFile()) {
+            System.out.println("Wczytano wszystkie produkty!");
+        } else {
+            System.out.println("Niektóre pliki nie zostały wczytane poprawnie.");
+        }
 
-        catalog.addNewProduct();
-        catalog.addNewProduct();
-        catalog.addNewProduct();
+//        catalog.addNewProduct();
+//        catalog.addNewProduct();
+//        catalog.addNewProduct();
 //        catalog.addNewProduct();
 //        catalog.addNewProduct();
 //        catalog.addNewProduct();
@@ -91,12 +97,12 @@ public class Main {
 
                 if (isAdmin) {
                     Admin admin = new Admin(login, password);
-                    System.out.println("Zalogowano jako administrator.");
+                    System.out.println("Zalogowano jako "+admin.getName());
 
                     boolean running = true;
                     while (running) {
                         System.out.println("\n--- MENU ADMINA ---");
-                        System.out.println("1. Jakaś opcja ");
+                        System.out.println("1. Dodaj produkt do katalogu ");
                         System.out.println("2. Jakaś opcja ");
                         System.out.println("0. Wyloguj");
                         System.out.print("Wybór: ");
@@ -105,7 +111,7 @@ public class Main {
 
                         switch (choice) {
                             case 1:
-                                //metoda
+                                catalog.addNewProduct();
                                 break;
                             case 2:
                                 //metoda skibidibi

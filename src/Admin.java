@@ -33,4 +33,9 @@ public class Admin {
         }
         return false;
     }
+
+    public String getName() {
+        return name;
+    }
+
 }
