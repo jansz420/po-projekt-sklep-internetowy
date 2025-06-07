@@ -13,7 +13,7 @@ public class Catalog {
     private ShoppingCart cart;
     private final Scanner scanner = new Scanner(System.in);
     private boolean filtering = false;
-    public ArrayList<Product> productsFilteredOut = new ArrayList<>();
+    private ArrayList<Product> productsFilteredOut = new ArrayList<>();
     private boolean isAdmin = false;
 
 
@@ -26,7 +26,6 @@ public class Catalog {
      * Tworzy nowy produkt wybranego typu i dodaje go do listy
      */
     public void addNewProduct(){
-//        Scanner scanner = new Scanner(System.in);
         System.out.println("===DODAWANIE PRODUKTU===");
         System.out.println("1. Komputer");
         System.out.println("2. Mobilny komputer");
@@ -38,10 +37,7 @@ public class Catalog {
         System.out.println("0. Zakoncz");
         System.out.println("Podaj typ produktu: ");
         String action;
-//        if (scanner.hasNextInt()) {
-//            action = scanner.nextInt();
-//            scanner.nextLine();
-//        }
+
         action = scanner.nextLine();
         switch (action) {
             case "0":
@@ -102,7 +98,7 @@ public class Catalog {
 
     /**
      * Wyswietla interfejs katalogu
-     * @return true jesli wpisano kod admina
+     *
      */
         public void displayProductList(){
             int page = 0;
@@ -112,14 +108,12 @@ public class Catalog {
             String action;
 
             while (true) {
-//                action = -1;
                 pageAmount = (products.size() + productsPerPage - 1) / productsPerPage;
 
 
                 System.out.print("#################################[ KATALOG  PRODUKTÓW ]#################################");
 
                 if (!products.isEmpty()) {
-//                    System.out.printf("\n====[ Strona %d z %d ]====\n");
 
                     int start = page * productsPerPage;  //indeks pierwszego produktu do wysw na stronie
                     int end = Math.min(start + productsPerPage, products.size()); //indeks ostatniego
@@ -243,7 +237,6 @@ public class Catalog {
                     case "420":
                         isAdmin = Admin.adminLogin();
                         break;
-                        //return true;
                     default:
                         System.out.println("Niepoprawna akcja");
                         break;
@@ -261,7 +254,6 @@ public class Catalog {
      * Wyświetla interfejs koszyka
      */
     public void displayCartMenu() {
-//        Scanner scanner = new Scanner(System.in);
 
         while (true) {
             System.out.println("\n==== Koszyk ====");
@@ -366,8 +358,8 @@ public class Catalog {
      */
 
     public void productOptions(Product product){
+        String action;
         while (true){
-//            Scanner scanner = new Scanner(System.in);
             System.out.println("\nOpcje:");
             if (!isAdmin) {
                 System.out.println("1 - Dodaj do koszyka");
@@ -380,29 +372,26 @@ public class Catalog {
 
             System.out.println("0 - Wroc");
 
-            int action = -1;
-            if (scanner.hasNextInt()) {
-                action  = scanner.nextInt();
-                scanner.nextLine();
-            }
+            action = scanner.nextLine();
+
             switch(action) {
-                case 0:
+                case "0":
                     return;
-                case 1:
+                case "1":
                     System.out.println("Podaj ilość sztuk: ");
                     int quantity  = scanner.nextInt();
                     scanner.nextLine();
                     this.cart.addProduct(product, quantity);
                     System.out.printf("\n%s został dodany do koszyka!\n", product.name);
                     break;
-                case 2:
+                case "2":
                     System.out.println("Podaj ilość sztuk do usunięcia: ");
                     int quantityRm  = scanner.nextInt();
                     scanner.nextLine();
                     this.cart.removeFromCart(product,quantityRm);
                     System.out.printf("\n%s został usunięty z koszyka!\n", product.name);
                     break;
-                case 3:
+                case "3":
                     if (isAdmin){
                         product.editProduct();
                     }
@@ -429,19 +418,17 @@ public class Catalog {
         System.out.println("3 - Urządzenia audio");
         System.out.println("4 - Dla graczy");
         System.out.printf("0 - %s\n", filtering ? "Wyłącz filtrowanie" : "Wróć");
-        int action = -1;
-        if (scanner.hasNextInt()) {
-            action  = scanner.nextInt();
-            scanner.nextLine();
-        }
+        String action;
+
+        action = scanner.nextLine();
         switch (action) {
-            case 0:
+            case "0":
                 if (filtering){
                     products.addAll(productsFilteredOut);
                     productsFilteredOut.clear();
                 }
                 return false;
-            case 1:
+            case "1":
                 for (int i = 0; i < products.size(); i++) {
                     if (!(products.get(i) instanceof Computer)) {
                         productsFilteredOut.add(products.get(i));
@@ -449,7 +436,7 @@ public class Catalog {
                     }
                 }
                 return true;
-            case 2:
+            case "2":
                 for (int i = 0; i < products.size(); i++) {
                     if (!(products.get(i) instanceof PeripheralDevice)) {
                         productsFilteredOut.add(products.get(i));
@@ -457,7 +444,7 @@ public class Catalog {
                     }
                 }
                 return true;
-            case 3:
+            case "3":
                 for (int i = 0; i < products.size(); i++) {
                     if (!(products.get(i) instanceof AudioDevice)) {
                         productsFilteredOut.add(products.get(i));
@@ -465,7 +452,7 @@ public class Catalog {
                     }
                 }
                 return true;
-            case 4:
+            case "4":
                 for (int i = 0; i < products.size(); i++) {
                     if (!(products.get(i) instanceof Computer && ((Computer) products.get(i)).isGaming()) && !(products.get(i) instanceof PeripheralDevice && ((PeripheralDevice) products.get(i)).isForGaming())) {
                         productsFilteredOut.add(products.get(i));
@@ -480,7 +467,7 @@ public class Catalog {
     }
 
     /**
-     * Wywoluje nterfejs sortowania katalogu
+     * Wywoluje interfejs sortowania katalogu
      */
     public void sortListBy(){
 //        Scanner scanner = new Scanner(System.in);
@@ -489,15 +476,13 @@ public class Catalog {
         System.out.println("2 - Sortuj cenowo (rosnąco)");
         System.out.println("3 - Sortuj cenowo (malejąco)");
         System.out.println("0 - Wroc");
-        int action = -1;
-        if (scanner.hasNextInt()) {
-            action  = scanner.nextInt();
-            scanner.nextLine();
-        }
+        String action;
+
+        action = scanner.nextLine();
         switch(action) {
-            case 0:
+            case "0":
                 return;
-            case 1:
+            case "1":
                 Collections.sort(products, new Comparator<>() {
                     @Override
                     public int compare(Product p1, Product p2) {
@@ -505,7 +490,7 @@ public class Catalog {
                     }
                 });
                 break;
-            case 2:
+            case "2":
                 Collections.sort(products, new Comparator<>() {
                     @Override
                     public int compare(Product p1, Product p2) {
@@ -513,14 +498,17 @@ public class Catalog {
                     }
                 });
                 break;
-            case 3:
+            case "3":
                 Collections.sort(products, new Comparator<>() {
                     @Override
                     public int compare(Product p1, Product p2) {
                         return Double.compare(p2.price, p1.price);
                     }
                 });
-            break;
+                break;
+            default:
+                System.out.println("Niepoprawna akcja");
+                break;
         }
     }
 
