@@ -256,8 +256,7 @@ public class Catalog {
     public void displayCartMenu() {
 
         while (true) {
-            Map<Product, Integer> productCounts = cart.getGroupedProducts();
-            List<Product> uniqPrdcts = new ArrayList<>(productCounts.keySet());
+
             System.out.println("\n==== Koszyk ====");
             System.out.println(cart.cartSummary());
             System.out.println("1 - Usuń wybrany produkt");
@@ -269,6 +268,8 @@ public class Catalog {
 
             switch (input) {
                 case "1":
+                    Map<Product, Integer> productCounts = cart.getGroupedProducts();
+                    List<Product> uniqPrdcts = new ArrayList<>(productCounts.keySet());
                     for (int i = 0; i < uniqPrdcts.size(); i++) {
                         Product p = uniqPrdcts.get(i);
                         System.out.printf("%d. %s x%d\n", i + 1, p.name, productCounts.get(p));
