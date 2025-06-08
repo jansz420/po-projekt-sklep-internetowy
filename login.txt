@@ -1,3 +1,4 @@
 admin_Maciej:ZAQ!2wsx
 admin_Piotr:Q@WERTY
-admin_Jan:1234
+admin_Jan:Poczopekrzadzi
+test:1234

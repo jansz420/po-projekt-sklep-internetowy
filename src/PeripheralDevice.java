@@ -50,13 +50,14 @@ public class PeripheralDevice extends Product {
      */
     protected void showListToEdit() {
         super.showListToEdit();
-        System.out.println("10. Łączność");
-        System.out.println("11. Zasilanie");
-        System.out.println("12. Interfejs");
-        System.out.println("13. Typ urządzenia");
-        System.out.println("14. Wodoodporność");
-        System.out.println("15. Podświetlenie RGB");
-        System.out.println("16. Długość przewodu");
+        System.out.println("DANE CHARAKTERYSTYCZNE:");
+        System.out.print("10. Łączność");
+        System.out.print("\t\t\t\t11. Zasilanie");
+        System.out.println("\t\t\t12. Interfejs");
+        System.out.print("13. Typ urządzenia");
+        System.out.print("\t\t\t14. Wodoodporność");
+        System.out.println("\t\t15. Podświetlenie RGB");
+        System.out.print("16. Długość przewodu");
     }
 
     /**
@@ -64,13 +65,13 @@ public class PeripheralDevice extends Product {
      *
      * @return nie wiem
      */
-    public int editProduct() {
-        while (true) {
-            this.displayInfo();
+    @Override
+    public void editProduct() {
+        while(true) {
             this.displayExtraInfo();
             Scanner scanner = new Scanner(System.in);
             this.showListToEdit();
-            System.out.println("0. Zakończ");
+            System.out.println("\n0. Zakończ");
             int action = -1;
             if (scanner.hasNextInt()) {
                 action = scanner.nextInt();
@@ -78,7 +79,7 @@ public class PeripheralDevice extends Product {
             }
             switch (action) {
                 case 0:
-                    return 0;
+                    return;
                 case 1:
                     System.out.print("Podaj nową nazwę: ");
                     name = scanner.nextLine();
@@ -152,7 +153,6 @@ public class PeripheralDevice extends Product {
                     System.out.println("Błędny numer akcji.");
                     break;
             }
-//            return 1;
         }
     }
     public String toString(){

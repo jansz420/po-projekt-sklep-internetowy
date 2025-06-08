@@ -3,11 +3,11 @@ import java.util.Scanner;
 public class AudioDevice extends PeripheralDevice{
     protected String deviceType;
     protected boolean isHifi;
-    protected int impedance;
-    protected int power;
-    protected String frequencyResponse;
+    protected double impedance;
+    protected double power;
+    protected double frequencyResponse;
 
-    public AudioDevice(String name, String brand, double price, int stockQuantity, String description, String color, double weight, String size, int warranty, boolean isWireless, String powerSupply, String portType, String inputOutput, boolean isWaterproof, boolean hasRgb, double cableLength, String deviceType, boolean isHifi, int impedance, int power, String frequencyResponse) {
+    public AudioDevice(String name, String brand, double price, int stockQuantity, String description, String color, double weight, String size, int warranty, boolean isWireless, String powerSupply, String portType, String inputOutput, boolean isWaterproof, boolean hasRgb, double cableLength, String deviceType, boolean isHifi, double impedance, double power, double frequencyResponse) {
         super(name, brand, price, stockQuantity, description, color, weight, size, warranty, isWireless, powerSupply, portType, inputOutput, isWaterproof, hasRgb, cableLength);
         this.deviceType = deviceType;
         this.isHifi = isHifi;
@@ -23,30 +23,29 @@ public class AudioDevice extends PeripheralDevice{
     }
 
     public void displayExtraInfo() {
+        super.displayExtraInfo();
         if (this.isForGaming()){
             System.out.println("Idealny wybór dla graczy!");
         }
         System.out.println("Typ urządzenia: " + deviceType);
         System.out.printf("HiFi: %s\n", isHifi ? "tak" : "nie");
-        System.out.printf("Impedancja: %d\n", impedance);
-        System.out.printf("Moc: %d\n", power);
-        System.out.printf("Pasmo przenoszenia: %s\n", frequencyResponse);
-        super.displayExtraInfo();
-
+        System.out.printf("Impedancja: %.2f\n", impedance);
+        System.out.printf("Moc: %.2f\n", power);
+        System.out.printf("Pasmo przenoszenia: %.2f\n", frequencyResponse);
     }
 
     protected void showListToEdit() {
         super.showListToEdit();
-        System.out.println("17. Typ urządzenia");
-        System.out.println("18. HiFi");
-        System.out.println("19. Impedancja");
-        System.out.println("20. Moc");
-        System.out.println("21. Pasmo przenoszenia");
+        System.out.print("\t\t17. Typ urządzenia");
+        System.out.println("\t\t18. HiFi");
+        System.out.print("19. Impedancja");
+        System.out.print("\t\t\t\t20. Moc");
+        System.out.println("\t\t\t\t\t21. Pasmo przenoszenia");
     }
 
-    public int editProduct() {
+    @Override
+    public void editProduct() {
         while(true) {
-            this.displayInfo();
             this.displayExtraInfo();
             Scanner scanner = new Scanner(System.in);
             this.showListToEdit();
@@ -58,7 +57,7 @@ public class AudioDevice extends PeripheralDevice{
             }
             switch(action) {
                 case 0:
-                    return 0;
+                    return;
                 case 1:
                     System.out.print("Podaj nową nazwę: ");
                     name = scanner.nextLine();
@@ -136,23 +135,25 @@ public class AudioDevice extends PeripheralDevice{
                     System.out.print("Zmieniono HiFi");
                     isHifi = !isHifi;
                     break;
-                case 20:
+                case 19:
                     System.out.print("Podaj nową impedancje: ");
-                    impedance = scanner.nextInt();
+                    if (scanner.hasNextDouble()) { impedance = scanner.nextDouble(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
+                    break;
+                case 20:
+                    System.out.print("Podaj nową moc: ");
+                    if (scanner.hasNextDouble()) { power = scanner.nextDouble(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 case 21:
-                    System.out.print("Podaj nową moc: ");
-                    power = scanner.nextInt();
-                    break;
-                case 22:
                     System.out.print("Podaj nowe pasmo przenoszenia: ");
-                    frequencyResponse = scanner.nextLine();
+                    if (scanner.hasNextDouble()) { frequencyResponse = scanner.nextDouble(); }
+                    else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
                 default:
                     System.out.println("Błędny numer akcji.");
                     break;
             }
-//            return 1;
         }
     }
     public String toString(){

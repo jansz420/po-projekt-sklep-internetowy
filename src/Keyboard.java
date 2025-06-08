@@ -20,6 +20,7 @@ public class Keyboard extends PeripheralDevice{
     }
 
     public void displayExtraInfo() {
+        super.displayExtraInfo();
         if (this.isForGaming()){
             System.out.println("Idealny wybór dla graczy!");
         }
@@ -27,21 +28,19 @@ public class Keyboard extends PeripheralDevice{
         System.out.printf("Klawisze numeryczne: %s\n", hasNumPad ? "tak" : "nie");
         System.out.printf("Układ klawiszy: %s\n", keyLayout);
         System.out.printf("Podpórka pod nadgarstki: %s\n", hasWristRest ? "tak" : "nie");
-        super.displayExtraInfo();
-
     }
 
     protected void showListToEdit() {
         super.showListToEdit();
-        System.out.println("17. Typ klawiatury");
-        System.out.println("18. Klawisze numeryczne");
-        System.out.println("19. Układ klawiszy");
-        System.out.println("20. Podpórka pod nadgarstki");
+        System.out.print("\t\t17. Typ klawiatury");
+        System.out.println("\t\t18. Klawisze numeryczne");
+        System.out.print("19. Układ klawiszy");
+        System.out.println("\t\t\t20. Podpórka pod nadgarstki");
     }
 
-    public int editProduct() {
+    @Override
+    public void editProduct() {
         while(true) {
-            this.displayInfo();
             this.displayExtraInfo();
             Scanner scanner = new Scanner(System.in);
             this.showListToEdit();
@@ -53,7 +52,7 @@ public class Keyboard extends PeripheralDevice{
             }
             switch(action) {
                 case 0:
-                    return 0;
+                    return;
                 case 1:
                     System.out.print("Podaj nową nazwę: ");
                     name = scanner.nextLine();
@@ -143,7 +142,6 @@ public class Keyboard extends PeripheralDevice{
                     System.out.println("Błędny numer akcji.");
                     break;
             }
-//            return 1;
         }
     }
     public String toString(){

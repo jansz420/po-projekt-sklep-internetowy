@@ -29,15 +29,14 @@ public class MobileDevice extends Computer{
 
     protected void showListToEdit() {
         super.showListToEdit();
-        System.out.println("17. Rozmiar ekranu");
-        System.out.println("18. Pojemność baterii");
-        System.out.println("19. Rozdzielczość ekranu");
-        System.out.println("20. Częstotliwość odświerzania ekranu");
+        System.out.print("\t\t\t17. Rozmiar ekranu");
+        System.out.println("\t\t\t\t18. Pojemność baterii");
+        System.out.print("19. Rozdzielczość ekranu");
+        System.out.println("\t\t20. Częstotliwość odświerzania ekranu");
     }
 
-    public int editProduct() {
+    public void editProduct() {
         while (true){
-            this.displayInfo();
             this.displayExtraInfo();
             Scanner scanner = new Scanner(System.in);
             this.showListToEdit();
@@ -49,7 +48,7 @@ public class MobileDevice extends Computer{
             }
             switch(action) {
                 case 0:
-                    return 0;
+                    return;
                 case 1:
                     System.out.print("Podaj nową nazwę: ");
                     name = scanner.nextLine();
@@ -143,7 +142,6 @@ public class MobileDevice extends Computer{
                     System.out.println("Błędny numer akcji.");
                     break;
             }
-//            return 1;
         }
     }
     public String toString(){

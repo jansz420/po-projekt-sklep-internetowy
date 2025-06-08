@@ -21,11 +21,13 @@ public class Monitor extends PeripheralDevice{
         return super.isForGaming() && refreshRate >= 120 && screenSize >= 24 && screenSize <= 32;
     }
 
-    public String screenFormat(){
-        return "temp";
-    }
+    /**
+     * Zwraca format ekranu
+     * @return format ekranu w formie stringa
+     */
 
     public void displayExtraInfo() {
+        super.displayExtraInfo();
         if (this.isForGaming()){
             System.out.println("Idealny wybór dla graczy!");
         }
@@ -34,21 +36,20 @@ public class Monitor extends PeripheralDevice{
         System.out.printf("Przekątna ekranu: %.1f\n", screenSize);
         System.out.printf("Częstotliwość odświeżania: %d\n", refreshRate);
         System.out.printf("Wbudowane głośniki: %s\n", hasSpeakers ? "tak" : "nie");
-        super.displayExtraInfo();
     }
 
     protected void showListToEdit() {
         super.showListToEdit();
-        System.out.println("17. Rozdzielczość");
-        System.out.println("18. Rodzaj matrycy");
-        System.out.println("19. Przekątna ekranu");
-        System.out.println("20. Częstotliwość odświeżania");
-        System.out.println("21. Wbudowane głośniki");
+        System.out.print("\t\t17. Rozdzielczość");
+        System.out.println("\t\t18. Rodzaj matrycy");
+        System.out.print("19. Przekątna ekranu");
+        System.out.print("\t\t20. Częst. odświeżania");
+        System.out.println("\t21. Wbudowane głośniki");
     }
 
-    public int editProduct() {
+    @Override
+    public void editProduct() {
         while(true) {
-            this.displayInfo();
             this.displayExtraInfo();
             Scanner scanner = new Scanner(System.in);
             this.showListToEdit();
@@ -60,7 +61,7 @@ public class Monitor extends PeripheralDevice{
             }
             switch(action) {
                 case 0:
-                    return 0;
+                    return;
                 case 1:
                     System.out.print("Podaj nową nazwę: ");
                     name = scanner.nextLine();
@@ -156,7 +157,6 @@ public class Monitor extends PeripheralDevice{
                     System.out.println("Błędny numer akcji.");
                     break;
             }
-//            return 1;
         }
     }
     public String toString(){
