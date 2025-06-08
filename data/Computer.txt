@@ -1,5 +1,5 @@
-iMac 24;Apple;6999.99;10;Nowoczesny komputer All-in-One;Silver;4.5;iMac;24;Desktop;Apple M1;8;256;Integrated;Apple GPU;macOS Sonoma
-Predator Orion 5000;Acer;8999.00;5;Wydajny komputer do gamingu;Black;9.0;ATX;36;Desktop;Intel i7-13700KF;32;1024;Dedicated;NVIDIA RTX 4080;Windows 11
-ThinkCentre M90t;Lenovo;4599.50;8;Kompaktowy komputer biurowy;Black;6.2;MiniTower;24;Desktop;Intel i5-12500;16;512;Integrated;Intel UHD;Windows 11 Pro
-MacBook Pro 14;Apple;10999.00;4;Profesjonalny laptop z chipem M3;Space Gray;3.2;14-inch;12;Laptop;Apple M3;16;512;Integrated;Apple GPU;macOS Sonoma
-ROG Zephyrus G14;ASUS;7999.99;7;Lekki laptop gamingowy;White;1.8;14-inch;24;Laptop;AMD Ryzen 9 7940HS;32;1000;Dedicated;NVIDIA RTX 4060;Windows 11
+ProStation X1;CyberComp;4299.99;10;Wysokowydajna stacja robocza do zadań specjalistycznych, idealna dla grafików, inżynierów CAD oraz montażystów wideo.;czarny;12.5;40x20x45;36;desktop;Intel i9-13900K;64;2000;NVIDIA;RTX 4080;Windows 11 Pro
+MiniOffice Z2;OfficePro;1999.90;25;Kompaktowy komputer biurowy przeznaczony do pracy z dokumentami, przeglądania internetu oraz obsługi pakietu Office.;szary;4.0;30x10x25;24;desktop;Intel i5-13400;16;512;Intel;UHD 770;Windows 11 Home
+GamingBeast G7;RedFury;5999.00;8;Wydajny komputer gamingowy z najnowszą kartą RTX 4090, zaprojektowany z myślą o graczach oczekujących najwyższej płynności i detali.;czerwony;14.2;45x22x50;36;desktop;AMD Ryzen 9 7900X;32;1000;NVIDIA;RTX 4090;Windows 11 Pro
+SilentCube S3;CoolTech;1799.50;12;Bezgłośna jednostka robocza do domowego biura, zapewniająca komfort pracy w cichym otoczeniu.;biały;3.5;28x9x30;24;desktop;Intel i3-12100T;8;256;Intel;UHD 730;Windows 10
+HomeBox M1;BasicLine;1399.00;20;Tani komputer domowy, sprawdzający się w podstawowych zastosowaniach jak przeglądanie internetu, e-learning i obsługa multimediów.;czarny;6.0;35x18x38;12;desktop;AMD Athlon 3000G;8;512;AMD;Radeon Vega 3;Windows 10

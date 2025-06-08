@@ -1,5 +1,5 @@
-MX Master 3S;Logitech;449.00;14;Profesjonalna mysz ergonomiczna;Gray;0.14;Compact;24;800;7;Laser
-G Pro X Superlight;Logitech;649.00;10;Ultralekka mysz gamingowa;Black;0.063;Small;24;1600;5;Optical
-Magic Mouse 2;Apple;499.00;9;Minimalistyczna mysz do Maca;White;0.10;Compact;12;1300;2;Laser
-Basilisk V3;Razer;399.00;7;Mysz z regulowanym scroll'em;Black;0.16;Standard;24;2000;11;Optical
-M720 Triathlon;Logitech;299.00;13;Wielofunkcyjna mysz biurowa;Gray;0.13;Compact;24;1000;8;Optical
+MX Master 3S;Logitech;399.99;25;Ergonomiczna mysz biurowa z cichymi klikami i wieloma funkcjami.;szary;140;4x13x8;24;true;bateria;Bluetooth/USB;input;false;true;1.80;8000;7;laser
+G502 HERO;Logitech;299.00;40;Gamingowa mysz z 11 przyciskami i czujnikiem HERO 25K.;czarny;120;4x13x7;24;false;USB;USB;input;false;true;2.10;25600;11;optical
+Razer Basilisk V3;Razer;349.90;20;Programowalna mysz z dynamicznym podświetleniem RGB i przełącznikami optycznymi.;czarny;130;4x12x7;24;false;USB;USB;input;false;true;2.00;26000;11;optical
+Lift Vertical Mouse;Logitech;349.00;10;Pionowa mysz ergonomiczna dla komfortu nadgarstków.;biały;150;4x13x7;24;true;bateria;Bluetooth;input;false;false;1.70;4000;6;optical
+SteelSeries Prime;SteelSeries;289.90;18;Ultralekka mysz esportowa o błyskawicznej reakcji.;czarny;90;4x12x6;24;false;USB;USB;input;false;true;1.90;18000;6;optical

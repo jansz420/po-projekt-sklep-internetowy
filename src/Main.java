@@ -55,15 +55,15 @@ public class Main {
         //initial
 
         Catalog catalog = new Catalog();
-
-        catalog.addNewProduct();
-        catalog.addNewProduct();
-        catalog.addNewProduct();
-        catalog.addNewProduct();
-        catalog.addNewProduct();
-        catalog.addNewProduct();
-        catalog.addNewProduct();
-        catalog.saveToFile();
+        catalog.readFromFile();
+        //catalog.addNewProduct();
+        //catalog.addNewProduct();
+        //catalog.addNewProduct();
+        //catalog.addNewProduct();
+        //catalog.addNewProduct();
+        //catalog.addNewProduct();
+        //catalog.addNewProduct();
+        //catalog.saveToFile();
         //interface
 
         while (true) {

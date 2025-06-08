@@ -1,5 +1,5 @@
-WH-1000XM5;Sony;1599.99;15;Bezprzewodowe słuchawki z ANC;Black;0.25;Standard;24;Headphones;true;32;50;20kHz
-SoundLink Flex;Bose;899.00;10;Wodoodporny głośnik Bluetooth;Blue;0.6;Small;12;Speakers;true;8;20;18kHz
-Galaxy Buds 2 Pro;Samsung;799.00;20;Douszne słuchawki TWS;Graphite;0.1;Tiny;12;Earbuds;true;16;10;22kHz
-Yeti X;Blue;699.00;7;Profesjonalny mikrofon USB;Black;1.2;Desktop;12;Microphone;false;200;5;15kHz
-JBL Bar 9.1;JBL;3999.00;3;Soundbar z Dolby Atmos;Black;4.2;Wide;24;Soundbar;true;6;300;16kHz
+WH-1000XM5;Sony;1599.00;12;Bezprzewodowe słuchawki z ANC, oferujące krystaliczny dźwięk i komfort na wiele godzin.;czarny;250;20x18x7;24;true;USB-C;Bluetooth;output;true;false;0.30;headphones;true;32;30;20Hz-40kHz
+Soundcore Life Q35;Anker;399.90;25;Słuchawki Bluetooth z Hi-Res Audio i trybem transparentnym, idealne do codziennego słuchania.;niebieski;280;22x19x8;24;true;USB-C;Bluetooth;output;true;false;0.35;headphones;true;38;40;20Hz-40kHz
+JBL Flip 6;JBL;499.00;30;Wodoodporny głośnik Bluetooth z potężnym brzmieniem i kompaktową obudową.;czarny;550;10x20x8;12;true;USB-C;Bluetooth;output;true;true;0.50;speaker;false;4;30;65Hz-20kHz
+Bose QC45;Bose;1449.00;10;Wygodne słuchawki nauszne z aktywną redukcją szumów i wysoką jakością dźwięku.;szary;240;19x18x8;24;true;USB-C;Bluetooth;output;false;false;0.25;headphones;true;32;30;20Hz-40kHz
+Marshall Emberton;Marshall;699.00;15;Kompaktowy głośnik z charakterystycznym brzmieniem i stylowym wyglądem inspirowanym klasycznymi wzmacniaczami.;czarny;700;7x16x7;24;true;USB-C;Bluetooth;output;true;true;0.45;speaker;false;4;20;60Hz-20kHz
