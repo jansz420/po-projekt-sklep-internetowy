@@ -1,0 +1,5 @@
+K860 Ergo;Logitech;529.00;15;Bezprzewodowa klawiatura ergonomiczna z dzielonym układem i podparciem nadgarstków.;czarny;800;3x45x23;24;true;bateria;Bluetooth/USB;input;false;false;1.30;ergonomic;true;split;true
+HyperX Alloy Origins;HyperX;429.90;20;Kompaktowa klawiatura gamingowa z mechanicznymi przełącznikami i RGB.;czarny;950;4x44x13;24;false;USB;USB;input;false;true;1.80;mechanical;false;QWERTY;false
+Apple Magic Keyboard;Apple;499.99;10;Smukła i minimalistyczna klawiatura do komputerów Mac z niskim skokiem klawiszy.;biały;500;1x27x11;24;true;bateria;Bluetooth;input;false;false;1.00;scissor;false;QWERTY;false
+SteelSeries Apex Pro;SteelSeries;849.00;8;Zaawansowana klawiatura z ekranem OLED i regulacją czułości klawiszy.;czarny;1100;4x43x13;24;false;USB;USB;input;false;true;2.00;mechanical;true;QWERTY;true
+Logitech K120;Logitech;79.99;50;Podstawowa klawiatura do codziennego pisania i pracy biurowej.;czarny;650;3x45x15;12;false;USB;USB;input;false;false;1.50;membrane;true;QWERTY;false

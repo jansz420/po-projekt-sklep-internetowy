@@ -522,20 +522,18 @@ public class Catalog {
 
     public boolean saveToFile() throws IOException {
         try (
-            PrintWriter productWriter = new PrintWriter(new File("Product.txt"));
-            PrintWriter computerWriter = new PrintWriter(new File("Computer.txt"));
-            PrintWriter mobileDeviceWriter = new PrintWriter(new File("MobileDevice.txt"));
-            PrintWriter peripheralDeviceWriter = new PrintWriter(new File("PeripheralDevice.txt"));
-            PrintWriter audioDeviceWriter = new PrintWriter(new File("AudioDevice.txt"));
-            PrintWriter keyboardWriter = new PrintWriter(new File("Keyboard.txt"));
-            PrintWriter monitorWriter = new PrintWriter(new File("Monitor.txt"));
-            PrintWriter mouseWriter = new PrintWriter(new File ("Mouse.txt"));
+            PrintWriter computerWriter = new PrintWriter(new File("data/Computer.txt"));
+            PrintWriter mobileDeviceWriter = new PrintWriter(new File("data/MobileDevice.txt"));
+            PrintWriter audioDeviceWriter = new PrintWriter(new File("data/AudioDevice.txt"));
+            PrintWriter keyboardWriter = new PrintWriter(new File("data/Keyboard.txt"));
+            PrintWriter monitorWriter = new PrintWriter(new File("data/Monitor.txt"));
+            PrintWriter mouseWriter = new PrintWriter(new File ("data/Mouse.txt"));
         ) {
             for (Product product : products) {
-                if (product instanceof Computer) {
-                    computerWriter.println(((Computer) product).toString());
-                } else if (product instanceof MobileDevice) {
+                if (product instanceof MobileDevice) {
                     mobileDeviceWriter.println(((MobileDevice) product).toString());
+                } else if (product instanceof Computer) {
+                    computerWriter.println(((Computer) product).toString());
                 } else if (product instanceof AudioDevice) {
                     audioDeviceWriter.println(((AudioDevice) product).toString());
                 } else if (product instanceof Keyboard) {
@@ -544,16 +542,10 @@ public class Catalog {
                     monitorWriter.println(((Monitor) product).toString());
                 } else if (product instanceof Mouse) {
                     mouseWriter.println(((Mouse) product).toString());
-                } else if (product instanceof PeripheralDevice) {
-                    peripheralDeviceWriter.println(((PeripheralDevice) product).toString());
-                } else {
-                    productWriter.println(product.toString());
                 }
             }
-            productWriter.close();
             computerWriter.close();
             mobileDeviceWriter.close();
-            peripheralDeviceWriter.close();
             audioDeviceWriter.close();
             keyboardWriter.close();
             monitorWriter.close();
@@ -591,22 +583,6 @@ public class Catalog {
                                 parts[9], parts[10], Integer.parseInt(parts[11]), Integer.parseInt(parts[12]), parts[13],
                                 parts[14], parts[15], Integer.parseInt(parts[16]), Double.parseDouble(parts[17]), parts[18],
                                 Integer.parseInt(parts[19])
-                        );
-                        break;
-
-                    case "Product":
-                        product = new Product(
-                                parts[0], parts[1], Double.parseDouble(parts[2]), Integer.parseInt(parts[3]),
-                                parts[4], parts[5], Double.parseDouble(parts[6]), parts[7], Integer.parseInt(parts[8])
-                        );
-                        break;
-
-                    case "PeripheralDevice":
-                        product = new PeripheralDevice(
-                                parts[0], parts[1], Double.parseDouble(parts[2]), Integer.parseInt(parts[3]),
-                                parts[4], parts[5], Double.parseDouble(parts[6]), parts[7], Integer.parseInt(parts[8]),
-                                Boolean.parseBoolean(parts[9]), parts[10], parts[11], parts[12], Boolean.parseBoolean(parts[13]),
-                                Boolean.parseBoolean(parts[14]), Double.parseDouble(parts[15])
                         );
                         break;
 
@@ -663,14 +639,12 @@ public class Catalog {
     }
     public boolean readFromFile() throws IOException{
             if(
-                readFromSingleFile("Product.txt", "Product") &&
-                readFromSingleFile("Computer.txt", "Computer") &&
-                readFromSingleFile("MobileDevice.txt", "MobileDevice") &&
-                readFromSingleFile("PeripheralDevice.txt", "PeripheralDevice") &&
-                readFromSingleFile("AudioDevice.txt", "AudioDevice") &&
-                readFromSingleFile("Keyboard.txt", "Keyboard") &&
-                readFromSingleFile("Monitor.txt", "Monitor") &&
-                readFromSingleFile("Mouse.txt", "Mouse")
+                readFromSingleFile("data/Computer.txt", "Computer") &&
+                readFromSingleFile("data/MobileDevice.txt", "MobileDevice") &&
+                readFromSingleFile("data/AudioDevice.txt", "AudioDevice") &&
+                readFromSingleFile("data/Keyboard.txt", "Keyboard") &&
+                readFromSingleFile("data/Monitor.txt", "Monitor") &&
+                readFromSingleFile("data/Mouse.txt", "Mouse")
             ) {
                 return true;
             } else {

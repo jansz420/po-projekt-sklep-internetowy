@@ -19,7 +19,7 @@ public class AudioDevice extends PeripheralDevice{
 
     @Override
     public boolean isForGaming(){
-        return super.isForGaming() && isHifi && (deviceType.equalsIgnoreCase("Sluchawki" ) || deviceType.equalsIgnoreCase("Mikrofon")) && impedance <= 60 && frequencyResponse <= 20000;
+        return super.isForGaming() && isHifi && (deviceType.equalsIgnoreCase("Sluchawki" ) || deviceType.equalsIgnoreCase("Mikrofon")) && impedance <= 60 && frequencyResponse.equals("20-20000");
     }
 
     public void displayExtraInfo() {

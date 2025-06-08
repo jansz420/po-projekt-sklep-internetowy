@@ -30,6 +30,7 @@ public class Main {
         //initial
 
         Catalog catalog = new Catalog();
+
         if (catalog.readFromFile()) {
             System.out.println("Wczytano wszystkie produkty!");
         } else {
