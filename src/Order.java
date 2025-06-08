@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
@@ -69,7 +70,7 @@ public class Order {
      */
     public boolean printToFile(String orderSummary) {
         File summary = new File("orderSummary.txt");
-        try (PrintWriter writer = new PrintWriter(summary)) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(summary, true))) {
             writer.println(orderSummary);
             System.out.println("Pomyślnie zapisano podsumowanie zamówienia.");
             return true;
@@ -94,20 +95,20 @@ public class Order {
         while (true){
             System.out.print("Imię: ");
             this.customerName = scanner.nextLine().trim();
-            if (!this.customerName.isEmpty()) {
+            if (this.customerName.matches("^[A-Za-zĄĆĘŁŃÓŚŹŻąćęłńóśźż]+$")) {
                 break;
             }
-            System.out.println("Imię nie może być puste.");
+            System.out.println("Dane nieprawidłowe.");
         }
         details+="Imię: "+this.customerName+"\n";
 
         while (true) {
             System.out.print("Nazwisko: ");
             this.customerSurname = scanner.nextLine().trim();
-            if (!this.customerSurname.isEmpty()) {
+            if (this.customerSurname.matches("^[A-Za-zĄĆĘŁŃÓŚŹŻąćęłńóśźż]+$")) {
                 break;
             }
-            System.out.println("Nazwisko nie może być puste.");
+            System.out.println("Dane nieprawidłowe.");
         }
         details+="Nazwisko: "+this.customerSurname+"\n";
 
