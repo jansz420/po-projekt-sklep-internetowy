@@ -58,7 +58,7 @@ public class Catalog {
                 products.add(newDevice);
                 break;
             case "4":
-                AudioDevice newAudioDevice = new AudioDevice("brak", "brak", 0, 0, "brak", "brak", 0, "brak", 0, false, "brak", "brak", "brak", false, false, 0, "brak", false, 0, 0, 0);
+                AudioDevice newAudioDevice = new AudioDevice("brak", "brak", 0, 0, "brak", "brak", 0, "brak", 0, false, "brak", "brak", "brak", false, false, 0, "brak", false, 0, 0, "brak");
                 newAudioDevice.editProduct();
                 products.add(newAudioDevice);
                 break;
@@ -612,7 +612,7 @@ public class Catalog {
                                 parts[4], parts[5], Double.parseDouble(parts[6]), parts[7], Integer.parseInt(parts[8]),
                                 Boolean.parseBoolean(parts[9]), parts[10], parts[11], parts[12], Boolean.parseBoolean(parts[13]),
                                 Boolean.parseBoolean(parts[14]), Double.parseDouble(parts[15]), parts[16], Boolean.parseBoolean(parts[17]),
-                                Double.parseDouble(parts[18]), Double.parseDouble(parts[19]), Double.parseDouble(parts[20])
+                                Double.parseDouble(parts[18]), Double.parseDouble(parts[19]), parts[20]
                         );
                         break;
 

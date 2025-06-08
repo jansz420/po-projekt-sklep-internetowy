@@ -5,9 +5,9 @@ public class AudioDevice extends PeripheralDevice{
     protected boolean isHifi;
     protected double impedance;
     protected double power;
-    protected double frequencyResponse;
+    protected String frequencyResponse;
 
-    public AudioDevice(String name, String brand, double price, int stockQuantity, String description, String color, double weight, String size, int warranty, boolean isWireless, String powerSupply, String portType, String inputOutput, boolean isWaterproof, boolean hasRgb, double cableLength, String deviceType, boolean isHifi, double impedance, double power, double frequencyResponse) {
+    public AudioDevice(String name, String brand, double price, int stockQuantity, String description, String color, double weight, String size, int warranty, boolean isWireless, String powerSupply, String portType, String inputOutput, boolean isWaterproof, boolean hasRgb, double cableLength, String deviceType, boolean isHifi, double impedance, double power, String frequencyResponse) {
         super(name, brand, price, stockQuantity, description, color, weight, size, warranty, isWireless, powerSupply, portType, inputOutput, isWaterproof, hasRgb, cableLength);
         this.deviceType = deviceType;
         this.isHifi = isHifi;
@@ -147,8 +147,7 @@ public class AudioDevice extends PeripheralDevice{
                     break;
                 case 21:
                     System.out.print("Podaj nowe pasmo przenoszenia: ");
-                    if (scanner.hasNextDouble()) { frequencyResponse = scanner.nextDouble(); }
-                    else { System.out.print("Nieprawidłowa wartość!"); }
+                    frequencyResponse = scanner.nextLine();
                     break;
                 default:
                     System.out.println("Błędny numer akcji.");
