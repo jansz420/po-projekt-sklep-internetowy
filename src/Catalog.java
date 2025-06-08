@@ -158,6 +158,8 @@ public class Catalog {
 
                 switch (action) {
                     case "0":
+                        products.addAll(productsFilteredOut);
+                        productsFilteredOut.clear();
                         return;
                     case "1", "2", "3", "4", "5":
                         productIndex = page * productsPerPage + (parseInt(action) - 1);
@@ -185,15 +187,14 @@ public class Catalog {
                         }
                         break;
                     case "8":
-
                         displayCartMenu();
                         break;
-
                     case "9":
                         sortListBy();
                         break;
                     case "10":
                         filtering = filterProducts();
+                        page = 0;
                         break;
                     case "11":
                         if (isAdmin) {
