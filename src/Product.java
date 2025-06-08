@@ -78,7 +78,7 @@ public class Product {
         System.out.println("9. Gwarancję");
     }
 
-    public int editProduct(){  //to chyba useles bo kazda klasa i tak ma wlasne
+    public void editProduct(){  //to chyba useles bo kazda klasa i tak ma wlasne
         while (true){
             this.displayExtraInfo();
             Scanner scanner = new Scanner(System.in);
@@ -91,7 +91,7 @@ public class Product {
             }
             switch(action) {
                 case 0:
-                    return 0;
+                    return;
                 case 1:
                     System.out.print("Podaj nową nazwę: ");
                     name = scanner.nextLine();
@@ -135,7 +135,6 @@ public class Product {
                     System.out.println("Błędny numer akcji.");
                     break;
             }
-//            return 1;
         }
 
     }

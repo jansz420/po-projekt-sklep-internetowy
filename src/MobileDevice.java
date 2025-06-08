@@ -35,7 +35,7 @@ public class MobileDevice extends Computer{
         System.out.println("\t\t20. Częstotliwość odświerzania ekranu");
     }
 
-    public int editProduct() {
+    public void editProduct() {
         while (true){
             this.displayExtraInfo();
             Scanner scanner = new Scanner(System.in);
@@ -48,7 +48,7 @@ public class MobileDevice extends Computer{
             }
             switch(action) {
                 case 0:
-                    return 0;
+                    return;
                 case 1:
                     System.out.print("Podaj nową nazwę: ");
                     name = scanner.nextLine();
@@ -142,7 +142,6 @@ public class MobileDevice extends Computer{
                     System.out.println("Błędny numer akcji.");
                     break;
             }
-//            return 1;
         }
     }
     public String toString(){

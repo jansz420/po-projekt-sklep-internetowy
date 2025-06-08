@@ -39,7 +39,7 @@ public class Admin {
             System.out.println("Wystąpił błąd podczas czytania pliku: " + e.getMessage());
         }
         return false;
-    }
+        }
 
     /**
      * metoda do zwracania nazwy obecnie zalogowanego administratora

@@ -50,7 +50,7 @@ public class Computer extends Product {
         System.out.print("16. System operacyjny");
     }
 
-    public int editProduct() {
+    public void editProduct() {
         while (true){
             this.displayExtraInfo();
             Scanner scanner = new Scanner(System.in);
@@ -63,7 +63,7 @@ public class Computer extends Product {
             }
             switch(action) {
                 case 0:
-                    return 0;
+                    return;
                 case 1:
                     System.out.print("Podaj nową nazwę: ");
                     name = scanner.nextLine();
@@ -138,7 +138,6 @@ public class Computer extends Product {
                     System.out.println("Błędny numer akcji.");
                     break;
             }
-//            return 1;
         }
     }
 

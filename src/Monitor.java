@@ -51,7 +51,7 @@ public class Monitor extends PeripheralDevice{
     }
 
     @Override
-    public int editProduct() {
+    public void editProduct() {
         while(true) {
             this.displayExtraInfo();
             Scanner scanner = new Scanner(System.in);
@@ -64,7 +64,7 @@ public class Monitor extends PeripheralDevice{
             }
             switch(action) {
                 case 0:
-                    return 0;
+                    return;
                 case 1:
                     System.out.print("Podaj nową nazwę: ");
                     name = scanner.nextLine();
@@ -160,7 +160,6 @@ public class Monitor extends PeripheralDevice{
                     System.out.println("Błędny numer akcji.");
                     break;
             }
-//            return 1;
         }
     }
     public String toString(){
