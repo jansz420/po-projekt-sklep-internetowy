@@ -10,10 +10,6 @@ public class ShoppingCart {
 
     }
 
-    public ShoppingCart(List<Product> cartProducts) {
-        this.cartProducts = cartProducts;
-    }
-
     /**
      * dodaje produkt do koszyka
      *

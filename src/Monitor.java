@@ -25,9 +25,6 @@ public class Monitor extends PeripheralDevice{
      * Zwraca format ekranu
      * @return format ekranu w formie stringa
      */
-    public String screenFormat(){
-        return "temp";
-    }
 
     public void displayExtraInfo() {
         super.displayExtraInfo();

@@ -142,7 +142,7 @@ public class Catalog {
                 }
                 System.out.println("8 - Wyświetl koszyk");
                 System.out.println("9 - Sortuj");
-                System.out.printf("10 - Filtrowanie %s\n", filtering ? "[AKTYWNE]" : "");
+                System.out.printf("10 - Filtrowanie %s\n", filtering ? "[AKTYWNE]" : "");   
                 if(isAdmin) {
                     System.out.println("\n--- MENU ADMINA ---");
                     System.out.println("11. Dodaj produkt do katalogu ");
