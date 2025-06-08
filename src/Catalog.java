@@ -256,6 +256,8 @@ public class Catalog {
     public void displayCartMenu() {
 
         while (true) {
+            Map<Product, Integer> productCounts = cart.getGroupedProducts();
+            List<Product> uniqPrdcts = new ArrayList<>(productCounts.keySet());
             System.out.println("\n==== Koszyk ====");
             System.out.println(cart.cartSummary());
             System.out.println("1 - Usuń wybrany produkt");
@@ -267,9 +269,6 @@ public class Catalog {
 
             switch (input) {
                 case "1":
-                    Map<Product, Integer> productCounts = cart.getGroupedProducts();
-                    List<Product> uniqPrdcts = new ArrayList<>(productCounts.keySet());
-
                     for (int i = 0; i < uniqPrdcts.size(); i++) {
                         Product p = uniqPrdcts.get(i);
                         System.out.printf("%d. %s x%d\n", i + 1, p.name, productCounts.get(p));
@@ -320,6 +319,14 @@ public class Catalog {
                     orderSum = order.orderSummary();
                     System.out.println(orderSum);
 
+                    for (Map.Entry<Product, Integer> entry : cart.getGroupedProducts().entrySet()) {
+                        Product p = entry.getKey();
+                        int qty = entry.getValue();
+                        int result = p.reduceStockQuantity(qty);
+                        if (result == 0) {
+                            System.out.printf("Nie udało się zaktualizować stanu magazynowego produktu: %s\n", p.name);
+                        }
+                    }
                     while (true) {
                         System.out.println("\n1 - Zapisz podsumowanie do pliku");
                         System.out.println("2 - Zmień Dane ");

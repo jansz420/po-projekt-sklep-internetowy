@@ -28,7 +28,7 @@ public class Product {
     }
 
     public int reduceStockQuantity(int quantity) {
-        if (quantity > stockQuantity) {
+        if (quantity <= stockQuantity) {
             stockQuantity -= quantity;
             return 1;
         } else {
