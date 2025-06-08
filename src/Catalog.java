@@ -235,7 +235,7 @@ public class Catalog {
                         }
                         isAdmin = false;
                         break;
-                    case "420":
+                    case "99":
                         isAdmin = Admin.adminLogin();
                         break;
                     default:
@@ -338,6 +338,7 @@ public class Catalog {
 
                         if (choice.equals("1")) {
                             order.printToFile(orderSum);
+                            cart.clearCart();
                             break;
                         } else if (choice.equals("2")) {
                             orderSum=order.orderSummary();
