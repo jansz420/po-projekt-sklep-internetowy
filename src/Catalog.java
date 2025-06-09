@@ -126,7 +126,7 @@ public class Catalog {
                     System.out.printf("\n####################################[ Strona %d z %d ]####################################\n", page + 1, pageAmount);
 
 
-                    //tutaj wrzucic te printy jak maciej balcerzak raczy zrobic wyswietlanie koszyka
+
                     System.out.printf("1-%d - Pokaż pełny opis\n", id - 1); //poprawka zeby dobrze opcje wyswietlalo
                     if (page < pageAmount - 1) {
                         System.out.println("6 - Nastepna strona");
@@ -321,14 +321,6 @@ public class Catalog {
                     orderSum = order.orderSummary();
                     System.out.println(orderSum);
 
-                    for (Map.Entry<Product, Integer> entry : cart.getGroupedProducts().entrySet()) {
-                        Product p = entry.getKey();
-                        int qty = entry.getValue();
-                        int result = p.reduceStockQuantity(qty);
-                        if (result == 0) {
-                            System.out.printf("Nie udało się zaktualizować stanu magazynowego produktu: %s\n", p.name);
-                        }
-                    }
                     while (true) {
                         System.out.println("\n1 - Zapisz podsumowanie do pliku");
                         System.out.println("2 - Zmień Dane ");
@@ -338,6 +330,14 @@ public class Catalog {
 
                         if (choice.equals("1")) {
                             order.printToFile(orderSum);
+                            for (Map.Entry<Product, Integer> entry : cart.getGroupedProducts().entrySet()) {
+                                Product p = entry.getKey();
+                                int qty = entry.getValue();
+                                int result = p.reduceStockQuantity(qty);
+                                if (result == 0) {
+                                    System.out.printf("Nie udało się zaktualizować stanu magazynowego produktu: %s\n", p.name);
+                                }
+                            }
                             cart.clearCart();
                             break;
                         } else if (choice.equals("2")) {
