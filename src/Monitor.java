@@ -1,12 +1,44 @@
 import java.util.Scanner;
 
+/**
+ * Reprezentuje urządzenie peryferyjne typu monitor.
+ */
 public class Monitor extends PeripheralDevice{
+    /** Rozdzielczość ekranu, np. "1920x1080". */
     protected String resolution;
+    /** Typ matrycy, np. "IPS", "TN", "VA". */
     protected String panelType;
+    /** Przekątna ekranu w calach. */
     protected double screenSize;
+    /** Częstotliwość odświeżania ekranu w Hz. */
     protected int refreshRate;
+    /** Informacja czy monitor ma wbudowane głośniki. */
     protected boolean hasSpeakers;
 
+    /**
+     * Konstruktor klasy Monitor.
+     * @param name nazwa urządzenia
+     * @param brand marka urządzenia
+     * @param price cena urządzenia
+     * @param stockQuantity ilość dostępna w magazynie
+     * @param description opis urządzenia
+     * @param color kolor urządzenia
+     * @param weight waga urządzenia w gramach
+     * @param size rozmiar urządzenia w formacie WYSxSZERxDŁ [cm]
+     * @param warranty długość gwarancji w miesiącach
+     * @param isWireless informacja, czy urządzenie jest bezprzewodowe
+     * @param powerSupply rodzaj zasilania
+     * @param portType typ portu (np. HDMI, DisplayPort)
+     * @param inputOutput typ wejścia/wyjścia
+     * @param isWaterproof informacja o wodoodporności
+     * @param hasRgb informacja o podświetleniu RGB
+     * @param cableLength długość kabla w metrach
+     * @param resolution rozdzielczość ekranu
+     * @param panelType typ matrycy
+     * @param screenSize przekątna ekranu w calach
+     * @param refreshRate częstotliwość odświeżania w Hz
+     * @param hasSpeakers informacja o wbudowanych głośnikach
+     */
     public Monitor(String name, String brand, double price, int stockQuantity, String description, String color, double weight, String size, int warranty, boolean isWireless, String powerSupply, String portType, String inputOutput, boolean isWaterproof, boolean hasRgb, double cableLength, String resolution, String panelType, double screenSize, int refreshRate, boolean hasSpeakers) {
         super(name, brand, price, stockQuantity, description, color, weight, size, warranty, isWireless, powerSupply, portType, inputOutput, isWaterproof, hasRgb, cableLength);
         this.resolution = resolution;
@@ -16,16 +48,18 @@ public class Monitor extends PeripheralDevice{
         this.hasSpeakers = hasSpeakers;
     }
 
+    /**
+     * Sprawdza, czy monitor nadaje się do gier.
+     * @return true jeśli monitor jest odpowiedni do gier, w przeciwnym razie false
+     */
     @Override
     public boolean isForGaming(){
         return super.isForGaming() && refreshRate >= 120 && screenSize >= 24 && screenSize <= 32;
     }
 
     /**
-     * Zwraca format ekranu
-     * @return format ekranu w formie stringa
+     * Wyświetla rozszerzone informacje o monitorze
      */
-
     public void displayExtraInfo() {
         super.displayExtraInfo();
         if (this.isForGaming()){
@@ -38,6 +72,9 @@ public class Monitor extends PeripheralDevice{
         System.out.printf("Wbudowane głośniki: %s\n", hasSpeakers ? "tak" : "nie");
     }
 
+    /**
+     * Wyświetla listę opcji dostępnych do edycji przez użytkownika.
+     */
     protected void showListToEdit() {
         super.showListToEdit();
         System.out.print("\t\t17. Rozdzielczość");
@@ -47,6 +84,9 @@ public class Monitor extends PeripheralDevice{
         System.out.println("\t21. Wbudowane głośniki");
     }
 
+    /**
+     * Umożliwia interaktywną edycję właściwości produktu z poziomu konsoli.
+     */
     @Override
     public void editProduct() {
         while(true) {
@@ -159,6 +199,11 @@ public class Monitor extends PeripheralDevice{
             }
         }
     }
+    /**
+     * Zwraca reprezentację monitora w postaci łańcucha znaków
+     *
+     * @return string z informacjami o monitorze
+     */
     public String toString(){
         return String.format("%s;%s;%s;%.1f;%d;%b",super.toString(), resolution, panelType, screenSize, refreshRate, hasSpeakers);
     }

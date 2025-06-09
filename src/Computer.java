@@ -1,14 +1,69 @@
 import java.util.Scanner;
 
+/**
+ * Klasa reprezentująca ogólny komputer.
+ * Dziedziczy po klasie {@link Product} i rozszerza ją o pola specyficzne dla komputerów,
+ * takie jak typ komputera, procesor, ilość pamięci RAM, dysk, karta graficzna oraz system operacyjny.
+ * Klasa ta stanowi podstawę dla dalszych specjalizacji komputerów, np. laptopów.
+ */
+
 public class Computer extends Product {
+
+    /**
+     * typ komutera
+     */
     protected String type;
+
+    /**
+     * model procesora
+     */
     protected String processor;
+
+    /**
+     * ilość pamięci ram w GB
+     */
     protected int ram;
+
+    /**
+     * pojemność dysku w GB
+     */
     protected int memory;
+
+    /**
+     * typ karty graficznej (zintegrona, dedykowana)
+     */
     protected String graphicsCardType;
+
+    /**
+     * nazwa/model karty graficznej
+     */
     protected String graphicsCardName;
+
+    /**
+     * zainstalowany system operacyjny
+     */
     protected String operatingSystem;
 
+    /**
+     * Tworzy nowy obiekt klasy Computer z określonymi parametrami.
+     *
+     * @param name nazwa produktu
+     * @param brand marka producenta
+     * @param price cena produktu
+     * @param stockQuantity ilość sztuk dostępnych w magazynie
+     * @param description szczegółowy opis produktu
+     * @param color kolor urządzenia
+     * @param weight waga urządzenia w gramach
+     * @param size rozmiar urządzenia w formacie WysxSzerxDł
+     * @param warranty okres gwarancji (w miesiącach)
+     * @param type typ komputera (np. desktop, all-in-one, laptop)
+     * @param processor model procesora (np. Intel i5-12400F)
+     * @param ram ilość pamięci RAM w GB
+     * @param memory pojemność dysku w GB
+     * @param graphicsCardType typ karty graficznej (np. zintegrowana, dedykowana)
+     * @param graphicsCardName nazwa/model karty graficznej
+     * @param operatingSystem zainstalowany system operacyjny (np. Windows 11, Linux)
+     */
     public Computer(String name, String brand, double price, int stockQuantity, String description, String color, double weight, String size, int warranty, String type, String processor, int ram, int memory, String graphicsCardType, String graphicsCardName, String operatingSystem) {
         super(name, brand, price, stockQuantity, description, color, weight, size, warranty);
         this.type = type;
@@ -19,7 +74,15 @@ public class Computer extends Product {
         this.graphicsCardName = graphicsCardName;
         this.operatingSystem = operatingSystem;
     }
-
+    /**
+     * Określa, czy komputer spełnia podstawowe kryteria komputera gamingowego.
+     * Komputer jest uznany za gamingowy, jeśli:
+     *   posiada co najmniej 16 GB pamięci RAM,
+     *   ma dedykowaną kartę graficzną,
+     *   system operacyjny to Windows.
+     *
+     * @return true jeśli komputer spełnia powyższe kryteria, false w przeciwnym razie
+     */
     public boolean isGaming() {
         return ram >= 16 && graphicsCardType.compareTo("Dedykowana") == 0 && operatingSystem.contains("Windows");
     }

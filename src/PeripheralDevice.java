@@ -1,15 +1,45 @@
 import java.util.Scanner;
 
+/**
+ * Klasa reprezentująca urządzenia peryferyjne.
+ * Zawiera atrybuty charakterystyczne dla urządzeń peryferyjnych
+ * oraz metody umożliwiające ich prezentację i edycję.
+ */
 public class PeripheralDevice extends Product {
+    /**Określa, czy urządzenie jest bezprzewodowe (true) czy przewodowe (false).*/
     protected boolean isWireless;
+    /**Rodzaj zasilania urządzenia (np. bateria, USB, sieciowe).*/
     protected String powerSupply;
+    /**Typ interfejsu, np. USB.*/
     protected String portType;
+    /**Klasyfikacja urządzenia: wejścia, wyjścia lub wejścia/wyjścia. */
     protected String inputOutput;
+    /**Określa, czy urządzenie jest wodoodporne.*/
     protected boolean isWaterproof;
+    /**Określa, czy urządzenie posiada podświetlenie RGB.*/
     protected boolean hasRgb;
+    /**Długość przewodu w metrach (dotyczy urządzeń przewodowych).*/
     protected double cableLength;
 
-
+    /**
+     * Konstruktor tworzący nowy obiekt typu PeripheralDevice.
+     * @param name nazwa urządzenia
+     * @param brand marka urządzenia
+     * @param price cena urządzenia
+     * @param stockQuantity ilość dostępna w magazynie
+     * @param description opis urządzenia
+     * @param color kolor urządzenia
+     * @param weight waga urządzenia w gramach
+     * @param size rozmiar urządzenia w formacie WYSxSZERxDŁ [cm]
+     * @param warranty długość gwarancji w miesiącach
+     * @param isWireless informacja, czy urządzenie jest bezprzewodowe
+     * @param powerSupply rodzaj zasilania
+     * @param portType typ portu (np. HDMI, DisplayPort)
+     * @param inputOutput typ wejścia/wyjścia
+     * @param isWaterproof informacja o wodoodporności
+     * @param hasRgb informacja o podświetleniu RGB
+     * @param cableLength długość kabla w metrach
+     */
     public PeripheralDevice(String name, String brand, double price, int stockQuantity, String description, String color, double weight, String size, int warranty, boolean isWireless, String powerSupply, String portType, String inputOutput, boolean isWaterproof, boolean hasRgb, double cableLength) {
         super(name, brand, price, stockQuantity, description, color, weight, size, warranty);
         this.isWireless = isWireless;
@@ -22,16 +52,17 @@ public class PeripheralDevice extends Product {
     }
 
     /**
-     * Sprawdza czy urzadzenie jest dla graczy na podstawie jego parametrow
+     * Sprawdza, czy urządzenie nadaje się do zastosowań gamingowych.
+     * Kryteria: RGB, odpowiednia długość kabla lub bezprzewodowość, oraz port USB.
      *
-     * @return true jesli tak
+     * @return true jeśli spełnia wymagania gracza, false w przeciwnym razie
      */
     public boolean isForGaming() {
         return hasRgb && (isWireless || cableLength >= 1.5) && (portType.equalsIgnoreCase("USB"));
     }
 
     /**
-     * Wyswietla pelne info produktu
+     * Wyświetla szczegółowe informacje o urządzeniu peryferyjnym.
      */
     @Override
     public void displayExtraInfo() {
@@ -39,14 +70,14 @@ public class PeripheralDevice extends Product {
         System.out.printf("Łączność: %s\n", isWireless ? "bezprzewodowa" : "przewodowa");
         System.out.println("Zasilanie: " + powerSupply);
         System.out.println("Interfejs: " + portType);
-        System.out.println("Typ urządzenia: " + inputOutput); //do zmiany
+        System.out.println("Typ urządzenia: " + inputOutput);
         System.out.printf("Wodoodporność: %s\n", isWaterproof ? "tak" : "nie");
         System.out.printf("Podświetlenie RGB: %s\n", hasRgb ? "tak" : "nie");
         System.out.printf("Długość przewodu: %.2f\n", cableLength);
     }
 
     /**
-     * Wyswietla menu edycji
+     * Wyświetla listę opcji edycji charakterystycznych dla urządzenia peryferyjnego.
      */
     protected void showListToEdit() {
         super.showListToEdit();
@@ -61,9 +92,7 @@ public class PeripheralDevice extends Product {
     }
 
     /**
-     * Edytuje parametry produktu
-     *
-     * @return nie wiem
+     * Umożliwia edycję danych urządzenia przez użytkownika poprzez menu konsolowe.
      */
     @Override
     public void editProduct() {
@@ -133,7 +162,7 @@ public class PeripheralDevice extends Product {
                     portType = scanner.nextLine();
                     break;
                 case 13:
-                    System.out.print("Zmien typ urzadzenia: ");
+                    System.out.print("Zmień typ urządzenia: ");
                     inputOutput = scanner.nextLine();
                     break;
                 case 14:
@@ -145,7 +174,7 @@ public class PeripheralDevice extends Product {
                     hasRgb = !hasRgb;
                     break;
                 case 16:
-                    System.out.print("Podaj nową długość kabla");
+                    System.out.print("Podaj nową długość kabla: ");
                     if (scanner.hasNextDouble()) { cableLength = scanner.nextDouble(); }
                     else { System.out.print("Nieprawidłowa wartość!"); }
                     break;
@@ -155,7 +184,16 @@ public class PeripheralDevice extends Product {
             }
         }
     }
+
+    /**
+     * Zwraca tekstową reprezentację urządzenia peryferyjnego
+     * w postaci danych oddzielonych średnikami.
+     *
+     * @return ciąg znaków z informacjami o urządzeniu
+     */
+    @Override
     public String toString(){
-        return String.format("%s;%b;%s;%s;%s;%b;%b;%.2f",super.toString(), isWireless, powerSupply, portType, inputOutput, isWaterproof, hasRgb, cableLength);
+        return String.format("%s;%b;%s;%s;%s;%b;%b;%.2f",
+                super.toString(), isWireless, powerSupply, portType, inputOutput, isWaterproof, hasRgb, cableLength);
     }
 }

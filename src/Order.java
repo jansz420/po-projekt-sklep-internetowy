@@ -3,16 +3,49 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Scanner;
+/**
+ * Klasa reprezentuje zamówienie złożone przez użytkownika
+ * na podstawie zawartości koszyka zakupowego {@link ShoppingCart}.
+ * Umożliwia obliczenie kosztu dostawy, końcowej ceny zamówienia,
+ * pobranie danych klienta oraz zapisanie podsumowania do pliku.
+ */
 
 public class Order {
+    /**
+     * Koszyk z produktami, na podstawie którego tworzone jest zamówienie.
+     */
     private ShoppingCart cart = new ShoppingCart();
+    /**
+     * Koszt dostawy dla danego zamówienia.
+     */
     private double deliveryPrice;
+    /**
+     * Imię klienta składającego zamówienie.
+     */
     private String customerName;
+    /**
+     * Nazwisko klienta składającego zamówienie.
+     */
     private String customerSurname;
+    /**
+     * Adres e-mail klienta składającego zamówienie.
+     */
     private String customerEmail;
+
+    /**
+     * Numer telefonu klienta składającego zamówienie.
+     */
     private String customerPhoneNumber;
+    /**
+     * Adres dostawy zamówienia.
+     */
     private String customerAddress;
 
+    /**
+     * Tworzy nowe zamówienie na podstawie przekazanego koszyka zakupowego.
+     *
+     * @param cart koszyk z produktami do zamówienia
+     */
     public Order(ShoppingCart cart) {
         this.cart = cart;
     }

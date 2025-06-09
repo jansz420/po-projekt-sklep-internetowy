@@ -8,7 +8,15 @@ import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
 
+/**
+ * Klasa reprezentująca katalog produktów
+ * przechowuje liste produktów, zawiera metody wyświetlające interfejs katalogu oraz
+ * metody wczytujące listę produktów z pliku
+ */
 public class Catalog {
+    /**
+     * lista dostepnych produktow
+     */
     public ArrayList<Product> products;
     private ShoppingCart cart;
     private final Scanner scanner = new Scanner(System.in);
@@ -16,7 +24,9 @@ public class Catalog {
     private ArrayList<Product> productsFilteredOut = new ArrayList<>();
     private boolean isAdmin = false;
 
-
+    /**
+     * Tworzy obiekt klasy katalog z lista produktow oraz tworzy koszyk
+     */
     public Catalog() {
         products = new ArrayList<>();
         this.cart = new ShoppingCart();
@@ -522,6 +532,13 @@ public class Catalog {
         }
     }
 
+    /**
+     * Zapisuje dane z listy produktow klasy Catalog
+     * do plików txt w folderze data
+     * Computer.txt, MobileDevice.txt, AudioDevice.txt, Keyboard.txt, Monitor.txt, Mouse.txt
+     * @return true, jeśli funkcja wykona się poprawnie, false w przeciwnym razie.
+     * @throws IOException jeśli pliki nie utworzą się poprawnie
+     */
     public boolean saveToFile() throws IOException {
         try (
             PrintWriter computerWriter = new PrintWriter(new File("data/Computer.txt"));
@@ -639,6 +656,14 @@ public class Catalog {
             return false;
         }
     }
+
+    /**
+     *  Zczytuje dane z wszystkich plików txt w folderze data, czyli
+     *  Computer.txt, MobileDevice.txt, AudioDevice.txt, Keyboard.txt, Monitor.txt, Mouse.txt
+     *  do Listy produktów w klasie Catalog
+     * @return true jeśli funkcja wykona się poprawnie, false w przeciwnym razie.
+     * @throws IOException niepoprawne otwarcie lub nieotwarcie któregoś z pliku
+     */
     public boolean readFromFile() throws IOException{
             if(
                 readFromSingleFile("data/Computer.txt", "Computer") &&
