@@ -1,11 +1,54 @@
 import java.util.Scanner;
 
+/**
+ * Klasa reprezentująca urządzenie mobilne, takie jak laptop, tablet lub smartfon.
+ * Dziedziczy po klasie {@link Computer} i dodaje właściwości charakterystyczne dla urządzeń mobilnych,
+ * takie jak pojemność baterii, rozmiar ekranu, rozdzielczość oraz częstotliwość odświeżania.
+ * Stanowi wyspecjalizowaną wersję komputera przenośnego.
+ */
+
 public class MobileDevice extends Computer{
+    /**
+     * pojemność baterii
+     */
     protected int batteryCapacity;
+    /**
+     * rozmiar ekranu
+     */
     protected double screenSize;
+    /**
+     * rozdzielczość ekranu
+     */
     protected String resolution;
+    /**
+     * częstotliwość odświerzania ekranu
+     */
     protected int refreshRate;
 
+    /**
+     * Tworzy nowe urządzenie mobilne (np. laptop, tablet, smartfon) z podanymi parametrami.
+     *
+     * @param name nazwa produktu
+     * @param brand marka producenta
+     * @param price cena produktu
+     * @param stockQuantity ilość sztuk dostępnych w magazynie
+     * @param description opis produktu
+     * @param color kolor urządzenia
+     * @param weight waga w gramach
+     * @param size wymiary urządzenia w formacie WysxSzerxDł
+     * @param warranty okres gwarancji w miesiącach
+     * @param type typ komputera (np. laptop, tablet, smartphone)
+     * @param processor nazwa procesora
+     * @param ram ilość pamięci RAM w GB
+     * @param memory pojemność dysku w GB
+     * @param graphicsCardType typ karty graficznej (np. zintegrowana, dedykowana)
+     * @param graphicsCardName nazwa karty graficznej
+     * @param operatingSystem zainstalowany system operacyjny
+     * @param batteryCapacity pojemność baterii w mAh
+     * @param screenSize przekątna ekranu w calach
+     * @param resolution rozdzielczość ekranu (np. 1920x1080)
+     * @param refreshRate częstotliwość odświeżania ekranu w Hz
+     */
     public MobileDevice(String name, String brand, double price, int stockQuantity, String description, String color, double weight, String size, int warranty, String type, String processor, int ram, int memory, String graphicsCardType, String graphicsCardName, String operatingSystem, int batteryCapacity, double screenSize, String resolution, int refreshRate) {
         super(name, brand, price, stockQuantity, description, color, weight, size, warranty, type, processor, ram, memory, graphicsCardType, graphicsCardName, operatingSystem);
         this.batteryCapacity = batteryCapacity;

@@ -1,10 +1,38 @@
 import java.util.Scanner;
 
+/**
+ * Klasa reprezentująca urządzenie peryferyjne typu mysz komputerowa
+ */
 public class Mouse extends PeripheralDevice{
+    /**Czułość DPI myszy.*/
     protected int dpi;
+    /** Liczba przycisków w myszy.*/
     protected int buttonsAmount;
+    /**Typ sensora (np. optyczny, laserowy).*/
     protected String sensorType;
 
+    /**
+     * Konstruktor inicjalizujący wszystkie pola klasy
+     * @param name            nazwa produktu
+     * @param brand           marka
+     * @param price           cena
+     * @param stockQuantity   ilość na magazynie
+     * @param description     opis produktu
+     * @param color           kolor
+     * @param weight          waga w gramach
+     * @param size            rozmiar (format tekstowy)
+     * @param warranty        gwarancja w miesiącach
+     * @param isWireless      czy bezprzewodowa
+     * @param powerSupply     sposób zasilania
+     * @param portType        typ portu
+     * @param inputOutput     typ urządzenia (wejście/wyjście)
+     * @param isWaterproof    czy wodoodporna
+     * @param hasRgb          czy ma podświetlenie RGB
+     * @param cableLength     długość kabla
+     * @param dpi             czułość DPI
+     * @param buttonsAmount   liczba przycisków
+     * @param sensorType      typ sensora
+     */
     public Mouse(String name, String brand, double price, int stockQuantity, String description, String color, double weight, String size, int warranty, boolean isWireless, String powerSupply, String portType, String inputOutput, boolean isWaterproof, boolean hasRgb, double cableLength, int dpi, int buttonsAmount, String sensorType) {
         super(name, brand, price, stockQuantity, description, color, weight, size, warranty, isWireless, powerSupply, portType, inputOutput, isWaterproof, hasRgb, cableLength);
         this.dpi = dpi;
@@ -12,10 +40,18 @@ public class Mouse extends PeripheralDevice{
         this.sensorType = sensorType;
     }
 
+    /**
+     * Określa, czy mysz nadaje się do gier
+     *
+     * @return true jeśli mysz spełnia wymagania gracza
+     */
     public boolean isForGaming(){
         return super.isForGaming() && dpi >= 1600 && buttonsAmount >= 5 && (sensorType.equalsIgnoreCase("Laserowy")) || (sensorType.equalsIgnoreCase("Optyczny"));
     }
 
+    /**
+     * Wyświetla dodatkowe informacje o myszy
+     */
     public void displayExtraInfo() {
         super.displayExtraInfo();
         if (this.isForGaming()){
@@ -25,7 +61,9 @@ public class Mouse extends PeripheralDevice{
         System.out.println("Ilość przycisków: " + buttonsAmount);
         System.out.println("Sensor: " + sensorType);
     }
-
+    /**
+     * Wyświetla listę opcji dostępnych do edycji przez użytkownika.
+     */
     protected void showListToEdit() {
         super.showListToEdit();
         System.out.print("\t\t17. DPI");
@@ -33,6 +71,9 @@ public class Mouse extends PeripheralDevice{
         System.out.println("19. Sensor");
     }
 
+    /**
+     * Umożliwia interaktywną edycję właściwości produktu z poziomu konsoli.
+     */
     @Override
     public void editProduct() {
         while(true) {
@@ -137,6 +178,11 @@ public class Mouse extends PeripheralDevice{
             }
         }
     }
+    /**
+     * Zwraca reprezentację tekstową obiektu klasy
+     *
+     * @return dane myszy jako łańcuch tekstowy
+     */
     public String toString(){
         return String.format("%s;%d;%d;%s",super.toString(), dpi, buttonsAmount, sensorType);
     }

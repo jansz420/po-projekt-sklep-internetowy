@@ -2,10 +2,27 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * Klasa reprezentująca administratora sklepu internetowego.
+ * Administrator posiada rozszerzone uprawnienia w porównaniu do zwykłego użytkownika —
+ * może m.in. logować się do panelu administracyjnego oraz zarządzać katalogiem produktów,
+ * dodając i usuwając pozycje.
+ */
 public class Admin {
+    /**
+     * nazwa administratora
+     */
     private String name;
+    /**
+     * hasło administratora
+     */
     private String password;
 
+    /**
+     * tworzy obiekt klasy Admin z daną nazwą i hasłem
+     * @param name nazwa administratora
+     * @param password hasło administratora
+     */
     public Admin(String name, String password) {
         this.name = name;
         this.password = password;

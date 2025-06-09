@@ -8,7 +8,15 @@ import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
 
+/**
+ * Klasa reprezentująca katalog produktów
+ * przechowuje liste produktów, zawiera metody wyświetlające interfejs katalogu oraz
+ * metody wczytujące listę produktów z pliku
+ */
 public class Catalog {
+    /**
+     * lista dostepnych produktow
+     */
     public ArrayList<Product> products;
     private ShoppingCart cart;
     private final Scanner scanner = new Scanner(System.in);
@@ -16,7 +24,9 @@ public class Catalog {
     private ArrayList<Product> productsFilteredOut = new ArrayList<>();
     private boolean isAdmin = false;
 
-
+    /**
+     * Tworzy obiekt klasy katalog z lista produktow oraz tworzy koszyk
+     */
     public Catalog() {
         products = new ArrayList<>();
         this.cart = new ShoppingCart();
@@ -126,7 +136,7 @@ public class Catalog {
                     System.out.printf("\n####################################[ Strona %d z %d ]####################################\n", page + 1, pageAmount);
 
 
-                    //tutaj wrzucic te printy jak maciej balcerzak raczy zrobic wyswietlanie koszyka
+
                     System.out.printf("1-%d - Pokaż pełny opis\n", id - 1); //poprawka zeby dobrze opcje wyswietlalo
                     if (page < pageAmount - 1) {
                         System.out.println("6 - Nastepna strona");
@@ -235,7 +245,7 @@ public class Catalog {
                         }
                         isAdmin = false;
                         break;
-                    case "420":
+                    case "99":
                         isAdmin = Admin.adminLogin();
                         break;
                     default:
@@ -321,14 +331,6 @@ public class Catalog {
                     orderSum = order.orderSummary();
                     System.out.println(orderSum);
 
-                    for (Map.Entry<Product, Integer> entry : cart.getGroupedProducts().entrySet()) {
-                        Product p = entry.getKey();
-                        int qty = entry.getValue();
-                        int result = p.reduceStockQuantity(qty);
-                        if (result == 0) {
-                            System.out.printf("Nie udało się zaktualizować stanu magazynowego produktu: %s\n", p.name);
-                        }
-                    }
                     while (true) {
                         System.out.println("\n1 - Zapisz podsumowanie do pliku");
                         System.out.println("2 - Zmień Dane ");
@@ -338,6 +340,15 @@ public class Catalog {
 
                         if (choice.equals("1")) {
                             order.printToFile(orderSum);
+                            for (Map.Entry<Product, Integer> entry : cart.getGroupedProducts().entrySet()) {
+                                Product p = entry.getKey();
+                                int qty = entry.getValue();
+                                int result = p.reduceStockQuantity(qty);
+                                if (result == 0) {
+                                    System.out.printf("Nie udało się zaktualizować stanu magazynowego produktu: %s\n", p.name);
+                                }
+                            }
+                            cart.clearCart();
                             break;
                         } else if (choice.equals("2")) {
                             orderSum=order.orderSummary();
@@ -521,6 +532,13 @@ public class Catalog {
         }
     }
 
+    /**
+     * Zapisuje dane z listy produktow klasy Catalog
+     * do plików txt w folderze data
+     * Computer.txt, MobileDevice.txt, AudioDevice.txt, Keyboard.txt, Monitor.txt, Mouse.txt
+     * @return true, jeśli funkcja wykona się poprawnie, false w przeciwnym razie.
+     * @throws IOException jeśli pliki nie utworzą się poprawnie
+     */
     public boolean saveToFile() throws IOException {
         try (
             PrintWriter computerWriter = new PrintWriter(new File("data/Computer.txt"));
@@ -638,6 +656,14 @@ public class Catalog {
             return false;
         }
     }
+
+    /**
+     *  Zczytuje dane z wszystkich plików txt w folderze data, czyli
+     *  Computer.txt, MobileDevice.txt, AudioDevice.txt, Keyboard.txt, Monitor.txt, Mouse.txt
+     *  do Listy produktów w klasie Catalog
+     * @return true jeśli funkcja wykona się poprawnie, false w przeciwnym razie.
+     * @throws IOException niepoprawne otwarcie lub nieotwarcie któregoś z pliku
+     */
     public boolean readFromFile() throws IOException{
             if(
                 readFromSingleFile("data/Computer.txt", "Computer") &&

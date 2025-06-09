@@ -1,16 +1,74 @@
 import java.util.Scanner;
 
+/**
+ * Klasa bazowa dla wszystkich produktów.
+ * Zawiera uniwersalne pola oraz podstawowe implementacje metod,
+ * które są nadpisywane w klasach pochodnych.
+ * Może być używana jako samodzielny produkt, jednak nie jest to zalecane,
+ * ponieważ nie reprezentuje konkretnego typu produktu i nie zawiera
+ * specyficznych atrybutów niezbędnych do jego pełnego opisu.
+ * Zaleca się korzystanie z klas dziedziczących, które rozszerzają funkcjonalność tej klasy.
+ */
 public class Product {
+
+    /**
+     * nazwa produktu
+     */
     protected String name;
+
+    /**
+     * marka producenta
+     */
     protected String brand;
+
+    /**
+     * cena produktu
+     */
     protected double price;
+
+    /**
+     * ilość sztuk dostępnych w magazynie
+     */
     protected int stockQuantity;
+
+    /**
+     * szczegółowy opis produktu
+     */
     protected String description;
+
+    /**
+     * kolor urządzenia
+     */
     protected String color;
+
+    /**
+     * waga urządzenia w gramach
+     */
     protected double weight;
+
+    /**
+     * rozmiar urządzenia w formacie WysokośćxSzerokośćxDługość
+     */
     protected String size;
+
+    /**
+     * okres gwarancji (w miesiącach)
+     */
     protected int warranty;
 
+    /**
+     * Tworzy nowy obiekt klasy Computer z określonymi parametrami.
+     *
+     * @param name nazwa produktu
+     * @param brand marka producenta
+     * @param price cena produktu
+     * @param stockQuantity ilość sztuk dostępnych w magazynie
+     * @param description szczegółowy opis produktu
+     * @param color kolor urządzenia
+     * @param weight waga urządzenia w gramach
+     * @param size rozmiar urządzenia w formacie WysxSzerxDł
+     * @param warranty okres gwarancji (w miesiącach)
+     */
     public Product(String name, String brand, double price, int stockQuantity, String description, String color, double weight, String size, int warranty) {
         this.name = name;
         this.brand = brand;
@@ -23,10 +81,22 @@ public class Product {
         this.warranty = warranty;
     }
 
+    /**
+     * Zwiększa ilość sztuk produktów dostępnych w magazynie.
+     *
+     * @param quantity ilość produktów do dodania
+     */
     public void increaseStockQuantity(int quantity) {
         price += quantity;
     }
 
+    /**
+     * Zmniejsza ilość sztuk produktów dostępnych w magazynie.
+     * @param quantity ilość produktów do usunięcia
+     *
+     * @return 1 jeśli poprawnie wykonano zadanie,
+     * 0 w przypadku próby odjęcia większej liczby niż dostępna na magazynie.
+     */
     public int reduceStockQuantity(int quantity) {
         if (quantity <= stockQuantity) {
             stockQuantity -= quantity;
@@ -36,6 +106,9 @@ public class Product {
         }
     }
 
+    /**
+     * Wyświetla dodatkowe dane (opis produktu i dane techniczne)
+     */
     public void displayExtraInfo() {
         displayInfo();
         System.out.printf("Opis produktu: \n%s\n", description);
@@ -48,6 +121,9 @@ public class Product {
         System.out.println("\nDANE CHARAKTERYSTYCZNE:");
     }
 
+    /**
+     * Wyświetla podstawowe informacje o produkcie
+     */
     public void displayInfo() {
         System.out.print("\n");
         for (int i=0; i<88; i++) {
@@ -61,10 +137,19 @@ public class Product {
         System.out.print("\n");
     }
 
+    /**
+     * Zmienia cenę produktu o podany procent.
+     *
+     * @param percentage procent z ceny do odjęcia
+     */
     public void changePrice(double percentage) {
-        price *= percentage;
+        price -= price * percentage;
     }
 
+    /**
+     * Wyświetla listę pól produtku do edytowania.
+     * Używane do metody editProduct.
+     */
     protected void showListToEdit() {
         System.out.println("Co chcesz zmienić?:");
         System.out.print("1. Nazwę produktu\t\t");
@@ -78,7 +163,11 @@ public class Product {
         System.out.println("9. Gwarancję");
     }
 
-    public void editProduct(){  //to chyba useles bo kazda klasa i tak ma wlasne
+    /**
+     * Generuje cały panel do edytowania wszystkich pól produktu.
+     * Działa aż do wyłączenia przez użytkownika.
+     */
+    public void editProduct(){
         while (true){
             this.displayExtraInfo();
             Scanner scanner = new Scanner(System.in);
@@ -138,7 +227,13 @@ public class Product {
         }
 
     }
+
     @Override
+    /**
+     * Generuje linie tekstu, która jest w formacie używanym przez baze danych i funkcje z nią związane.
+     *
+     * @return sformatowaną linię tekstu
+     */
     public String toString(){
         return String.format("%s;%s;%.2f;%d;%s;%s;%.1f;%s;%d",name, brand, price, stockQuantity, description, color, weight, size, warranty);
     }

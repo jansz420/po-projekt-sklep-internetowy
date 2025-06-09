@@ -3,9 +3,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Klasa reprezentuje koszyk zakupowy użytkownika w sklepie internetowym.
+ * Pozwala na dodawanie i usuwanie produktów, zliczanie ich ilości, obliczanie łącznej ceny,
+ * objętości i wagi zamówienia oraz generowanie podsumowania koszyka.
+ * Produkty dodawane są do koszyka w postaci listy
+ */
 public class ShoppingCart {
+    /**
+     * Lista produktów znajdujących się w koszyku użytkownika.
+     */
     private List<Product> cartProducts = new ArrayList<>();
 
+    /**
+     * Tworzy nowy, pusty koszyk zakupowy.
+     */
     public ShoppingCart() {
 
     }
